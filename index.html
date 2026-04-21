@@ -519,14 +519,8 @@
     // Telegram WebApp инициализация
     let tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
-    
-    // ============================================================
-    // 🔐 БЕЗОПАСНОСТЬ: ТОЛЬКО ВЫ - АДМИНИСТРАТОР
-    // ВСТАВЬТЕ ВАШ TELEGRAM ID ВМЕСТО 123456789
-    // КАК НАЙТИ ID: напишите боту @userinfobot, он покажет ваш ID
-    // ============================================================
-    const ADMIN_ID = 123456789;  // 👈 ЗАМЕНИТЕ НА ВАШ TELEGRAM ID (число)
-    
+       
+    const ADMIN_ID = 379731685;      
     // Функция проверки прав администратора
     function isAdmin() {
         if (!tg) return false;
@@ -537,8 +531,8 @@
     
     // Настройки (без пароля)
     let settings = {
-        storeName: "BLENDER STORE",
-        logoText: "🌀 BLENDER STORE",
+        storeName: "BLENMAN STORE",
+        logoText: "BLENMAN STORE",
         logoImage: null
     };
     
