@@ -341,7 +341,6 @@
         .toast.show { opacity: 1; }
         .back-btn { background: none; border: 1px solid var(--border-light); padding: 8px 20px; border-radius: 40px; margin-bottom: 20px; color: white; cursor: pointer; }
 
-        /* Загрузка изображений товаров */
         .image-upload-area {
             background: #0c0f18; border: 2px dashed var(--border-light); border-radius: 28px;
             padding: 20px; text-align: center; cursor: pointer; margin-bottom: 16px;
@@ -418,7 +417,7 @@
     </div>
 </div>
 
-<!-- Админ-панель -->
+<!-- Админ-панель (только для вас) -->
 <div id="adminPanel" class="admin-panel">
     <div class="admin-header">
         <h2 style="font-weight: 700;">🔧 Админ-панель</h2>
@@ -461,35 +460,29 @@
 
     <div id="settingsTab" class="admin-section">
         <div class="settings-card">
-            <h3 style="margin-bottom: 20px;">Общие настройки магазина</h3>
+            <h3 style="margin-bottom: 20px;">⚙️ Настройки магазина</h3>
             <div class="form-group">
                 <label style="display:block; margin-bottom: 6px;">Название магазина</label>
                 <input type="text" id="settingsStoreName" placeholder="Название">
             </div>
             <div class="form-group">
-                <label style="display:block; margin-bottom: 6px;">Текстовый логотип (отображается рядом с картинкой или вместо неё)</label>
+                <label style="display:block; margin-bottom: 6px;">Текстовый логотип</label>
                 <input type="text" id="settingsLogoText" placeholder="🌀 BLENDER STORE">
             </div>
             <div class="form-group">
                 <label style="display:block; margin-bottom: 6px;">Логотип (изображение)</label>
                 <div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">
-                    📸 Нажмите или перетащите изображение для логотипа (PNG, JPG, WEBP)
+                    📸 Нажмите или перетащите изображение
                     <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
                 </div>
                 <div id="logoPreviewContainer" class="logo-preview"></div>
-                <button class="remove-logo-btn" onclick="removeLogo()" style="margin-top: 8px;">🗑️ Удалить логотип</button>
-            </div>
-            <div class="form-group">
-                <label style="display:block; margin-bottom: 6px;">Пароль администратора</label>
-                <input type="password" id="settingsAdminPassword" placeholder="Новый пароль">
-                <small style="color:#aaa;">Текущий пароль: 1234 (по умолчанию)</small>
+                <button class="remove-logo-btn" onclick="removeLogo()">🗑️ Удалить логотип</button>
             </div>
             <button class="checkout-btn" onclick="saveSettings()" style="margin-top: 20px;">💾 Сохранить настройки</button>
         </div>
     </div>
 </div>
 
-<!-- Модальное окно редактирования товара -->
 <div id="editProductModal" class="modal">
     <div class="modal-content" style="max-width: 650px;">
         <button class="modal-close" style="position: absolute; top: 20px; right: 20px; background: rgba(0,0,0,0.6); border: none; border-radius: 60px; width: 36px; height: 36px; color: white; font-size: 20px; cursor: pointer;" onclick="closeEditProductModal()">✖</button>
@@ -500,19 +493,19 @@
             <select id="editCategoryId" style="background:#0c0f18; border:1px solid var(--border-light); border-radius:28px; padding:12px; width:100%; color:white;"></select>
         </div>
         <div class="form-group"><input type="number" id="editPrice" placeholder="Цена"></div>
-        <div class="form-group"><input type="number" id="editOldPrice" placeholder="Старая цена (необязательно)"></div>
-        <div class="form-group"><input type="text" id="editFileUrl" placeholder="Ссылка на файл (zip, blend и т.д.)"></div>
-        <div class="form-group"><input type="text" id="editYoutubeUrl" placeholder="Ссылка на YouTube видео (необязательно)"></div>
+        <div class="form-group"><input type="number" id="editOldPrice" placeholder="Старая цена"></div>
+        <div class="form-group"><input type="text" id="editFileUrl" placeholder="Ссылка на файл"></div>
+        <div class="form-group"><input type="text" id="editYoutubeUrl" placeholder="Ссылка на YouTube видео"></div>
         
-        <label style="display:block; margin: 12px 0 8px; font-weight:500;">Изображения товара (первое будет превью)</label>
+        <label style="display:block; margin: 12px 0 8px;">Изображения товара</label>
         <div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">
-            📸 Нажмите или перетащите изображения сюда (PNG, JPG, WEBP)
+            📸 Нажмите или перетащите изображения
             <input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)">
         </div>
         <div id="imagePreviewList" class="image-preview-list"></div>
         
         <div class="form-group"><textarea id="editDesc" rows="3" placeholder="Описание товара" style="background:#0c0f18; border-radius:24px; padding:12px; width:100%;"></textarea></div>
-        <button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить изменения</button>
+        <button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button>
     </div>
 </div>
 
@@ -523,14 +516,29 @@
 </div>
 
 <script>
+    // Telegram WebApp инициализация
     let tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
     
-    // Настройки по умолчанию
+    // ============================================================
+    // 🔐 БЕЗОПАСНОСТЬ: ТОЛЬКО ВЫ - АДМИНИСТРАТОР
+    // ВСТАВЬТЕ ВАШ TELEGRAM ID ВМЕСТО 123456789
+    // КАК НАЙТИ ID: напишите боту @userinfobot, он покажет ваш ID
+    // ============================================================
+    const ADMIN_ID = 123456789;  // 👈 ЗАМЕНИТЕ НА ВАШ TELEGRAM ID (число)
+    
+    // Функция проверки прав администратора
+    function isAdmin() {
+        if (!tg) return false;
+        const userId = tg.initDataUnsafe?.user?.id;
+        return userId === ADMIN_ID;
+    }
+    // ============================================================
+    
+    // Настройки (без пароля)
     let settings = {
         storeName: "BLENDER STORE",
         logoText: "🌀 BLENDER STORE",
-        adminPassword: "1234",
         logoImage: null
     };
     
@@ -545,7 +553,6 @@
         document.title = settings.storeName;
         if (document.getElementById('settingsStoreName')) document.getElementById('settingsStoreName').value = settings.storeName;
         if (document.getElementById('settingsLogoText')) document.getElementById('settingsLogoText').value = settings.logoText;
-        if (document.getElementById('settingsAdminPassword')) document.getElementById('settingsAdminPassword').value = "";
         updateLogoDisplay();
     }
     
@@ -553,8 +560,6 @@
         const container = document.getElementById('logoContainer');
         if (!container) return;
         container.innerHTML = '';
-        
-        // Если есть изображение логотипа — показываем его
         if (settings.logoImage && settings.logoImage.startsWith('data:image')) {
             const img = document.createElement('img');
             img.src = settings.logoImage;
@@ -562,20 +567,17 @@
             img.alt = "Logo";
             container.appendChild(img);
         }
-        
-        // Всегда показываем текстовый логотип (название магазина)
         const textSpan = document.createElement('span');
         textSpan.className = 'logo-text';
         textSpan.innerText = settings.logoText;
         container.appendChild(textSpan);
         
-        // Обновляем preview в настройках
         const previewContainer = document.getElementById('logoPreviewContainer');
         if (previewContainer) {
             if (settings.logoImage && settings.logoImage.startsWith('data:image')) {
                 previewContainer.innerHTML = `<img src="${settings.logoImage}" alt="Logo preview"><span>Текущий логотип</span>`;
             } else {
-                previewContainer.innerHTML = '<span style="color:#aaa;">Логотип не загружен, используется только текст</span>';
+                previewContainer.innerHTML = '<span style="color:#aaa;">Логотип не загружен</span>';
             }
         }
     }
@@ -583,7 +585,7 @@
     function handleLogoUpload(event) {
         const file = event.target.files[0];
         if (!file || !file.type.startsWith('image/')) {
-            showToast("Пожалуйста, выберите изображение");
+            showToast("Выберите изображение");
             return;
         }
         const reader = new FileReader();
@@ -601,43 +603,18 @@
         settings.logoImage = null;
         localStorage.setItem('blender_settings', JSON.stringify(settings));
         updateLogoDisplay();
-        showToast("Логотип удалён, остался текстовый");
+        showToast("Логотип удалён");
     }
     
     function saveSettings() {
         const newStoreName = document.getElementById('settingsStoreName').value.trim();
         const newLogoText = document.getElementById('settingsLogoText').value.trim();
-        const newPassword = document.getElementById('settingsAdminPassword').value.trim();
         if (newStoreName) settings.storeName = newStoreName;
         if (newLogoText) settings.logoText = newLogoText;
-        if (newPassword) settings.adminPassword = newPassword;
         localStorage.setItem('blender_settings', JSON.stringify(settings));
         document.title = settings.storeName;
         updateLogoDisplay();
         showToast("Настройки сохранены");
-        document.getElementById('settingsAdminPassword').value = "";
-    }
-    
-    // Drag & drop для логотипа
-    const logoUploadArea = document.getElementById('logoUploadArea');
-    if (logoUploadArea) {
-        logoUploadArea.addEventListener('dragover', (e) => { e.preventDefault(); logoUploadArea.style.borderColor = '#ff7a2f'; });
-        logoUploadArea.addEventListener('dragleave', () => { logoUploadArea.style.borderColor = 'var(--border-light)'; });
-        logoUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            logoUploadArea.style.borderColor = 'var(--border-light)';
-            const file = e.dataTransfer.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    settings.logoImage = ev.target.result;
-                    localStorage.setItem('blender_settings', JSON.stringify(settings));
-                    updateLogoDisplay();
-                    showToast("Логотип загружен");
-                };
-                reader.readAsDataURL(file);
-            }
-        });
     }
     
     const DEFAULT_CATEGORIES = [
@@ -647,12 +624,12 @@
         { id: "cat5", name: "Материалы" }
     ];
     const DEFAULT_PRODUCTS = [
-        { id: 1, name: "NodeFlow Pro", categoryId: "cat1", price: 890, oldPrice: 1290, fileUrl: "https://example.com/nodeflow.zip", description: "Визуальный редактор нод. Мощный инструмент для процедурной генерации.", images: [], youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { id: 2, name: "RetopoMaster", categoryId: "cat1", price: 1490, oldPrice: null, fileUrl: "https://example.com/retopo.zip", description: "Автоматическая ретопология высокого качества.", images: [], youtubeUrl: "" },
-        { id: 3, name: "Procedural Worlds", categoryId: "cat5", price: 590, oldPrice: 790, fileUrl: "https://example.com/worlds.blend", description: "Генератор процедурных миров.", images: [], youtubeUrl: "" },
-        { id: 4, name: "Magic Terrain", categoryId: "cat5", price: 790, oldPrice: null, fileUrl: "https://example.com/terrain.blend", description: "Процедурный ландшафт с эрозией.", images: [], youtubeUrl: "" },
-        { id: 5, name: "CyberCity", categoryId: "cat4", price: 1290, oldPrice: 1990, fileUrl: "https://example.com/city.blend", description: "Киберпанк город готовый к рендеру.", images: [], youtubeUrl: "" },
-        { id: 6, name: "Space Hulk", categoryId: "cat4", price: 990, oldPrice: null, fileUrl: "https://example.com/space.blend", description: "Космический корабль с деталями.", images: [], youtubeUrl: "" }
+        { id: 1, name: "NodeFlow Pro", categoryId: "cat1", price: 890, oldPrice: 1290, fileUrl: "https://example.com/nodeflow.zip", description: "Визуальный редактор нод.", images: [], youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+        { id: 2, name: "RetopoMaster", categoryId: "cat1", price: 1490, oldPrice: null, fileUrl: "https://example.com/retopo.zip", description: "Автоматическая ретопология.", images: [], youtubeUrl: "" },
+        { id: 3, name: "Procedural Worlds", categoryId: "cat5", price: 590, oldPrice: 790, fileUrl: "https://example.com/worlds.blend", description: "Генератор миров.", images: [], youtubeUrl: "" },
+        { id: 4, name: "Magic Terrain", categoryId: "cat5", price: 790, oldPrice: null, fileUrl: "https://example.com/terrain.blend", description: "Процедурный ландшафт.", images: [], youtubeUrl: "" },
+        { id: 5, name: "CyberCity", categoryId: "cat4", price: 1290, oldPrice: 1990, fileUrl: "https://example.com/city.blend", description: "Киберпанк город.", images: [], youtubeUrl: "" },
+        { id: 6, name: "Space Hulk", categoryId: "cat4", price: 990, oldPrice: null, fileUrl: "https://example.com/space.blend", description: "Космический корабль.", images: [], youtubeUrl: "" }
     ];
     
     let categories = JSON.parse(localStorage.getItem('blender_categories')) || DEFAULT_CATEGORIES;
@@ -673,7 +650,6 @@
         return "https://placehold.co/1024x1024/2b2b3a/white?text=No+Image";
     }
     
-    // КАТАЛОГ
     let currentCategoryId = null, searchQuery = "";
     function renderCategories() {
         const container = document.getElementById('categoriesList');
@@ -717,7 +693,6 @@
         saveCart(); renderProducts(); renderCart(); showToast(idx===-1 ? "Добавлено" : "Удалено");
     }
     
-    // Модальное окно просмотра
     let currentModalProduct = null, currentImageIndex = 0;
     window.openProductModal = function(id) {
         let p = products.find(x=>x.id===id);
@@ -761,7 +736,6 @@
         closeModal();
     };
     
-    // Корзина
     function renderCart() {
         const container = document.getElementById('cartItems');
         if (!cart.length) {
@@ -808,7 +782,7 @@
         closeModal();
     };
     
-    // АДМИН-ПАНЕЛЬ (сокращённо, но рабочая версия)
+    // Админ-функции (доступны только администратору)
     function renderAdminCategoriesSidebar() {
         const container = document.getElementById('adminCategoryList');
         container.innerHTML = categories.map(cat => `
@@ -842,6 +816,7 @@
         showToast("Категория удалена");
     }
     window.addCategoryFromAdmin = function() {
+        if (!isAdmin()) { showToast("Доступ запрещён"); return; }
         const name = document.getElementById('newAdminCatName').value.trim();
         if (!name) return showToast("Введите название");
         categories.push({ id: "cat_" + Date.now(), name });
@@ -854,7 +829,7 @@
     };
     function renderProductsByCategory() {
         const container = document.getElementById('adminProductsByCategory');
-        if (!currentAdminCategoryId) { container.innerHTML = '<div style="padding:20px;text-align:center;">Выберите категорию слева</div>'; return; }
+        if (!currentAdminCategoryId) { container.innerHTML = '<div style="padding:20px;text-align:center;">Выберите категорию</div>'; return; }
         const categoryProducts = products.filter(p => p.categoryId === currentAdminCategoryId);
         if (!categoryProducts.length) { container.innerHTML = '<div style="padding:20px;text-align:center;">Нет товаров</div>'; return; }
         container.innerHTML = categoryProducts.map(p => `
@@ -887,6 +862,7 @@
         `).join('');
     }
     window.addProductInCurrentCategory = function() {
+        if (!isAdmin()) { showToast("Доступ запрещён"); return; }
         if (!currentAdminCategoryId) { showToast("Выберите категорию"); return; }
         const newId = Date.now();
         products.push({ id: newId, name: "Новый ассет", categoryId: currentAdminCategoryId, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "Добавьте описание" });
@@ -897,6 +873,7 @@
         openEditProductModal(newId);
     };
     window.addGlobalProduct = function() {
+        if (!isAdmin()) { showToast("Доступ запрещён"); return; }
         const newId = Date.now();
         products.push({ id: newId, name: "Новый ассет", categoryId: categories[0]?.id || null, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "" });
         saveProducts();
@@ -906,6 +883,7 @@
         openEditProductModal(newId);
     };
     window.deleteProductById = function(id) {
+        if (!isAdmin()) { showToast("Доступ запрещён"); return; }
         if (!confirm("Удалить товар?")) return;
         products = products.filter(p => p.id !== id);
         saveProducts();
@@ -942,6 +920,7 @@
     }
     
     window.openEditProductModal = function(id) {
+        if (!isAdmin()) { showToast("Доступ запрещён"); return; }
         const prod = products.find(p => p.id === id);
         if (!prod) return;
         tempImages = prod.images ? [...prod.images] : [];
@@ -959,6 +938,7 @@
     };
     window.closeEditProductModal = function() { document.getElementById('editProductModal').classList.remove('active'); tempImages = []; };
     window.saveProductChanges = function() {
+        if (!isAdmin()) { showToast("Доступ запрещён"); closeEditProductModal(); return; }
         const id = parseInt(document.getElementById('editProductId').value);
         const prod = products.find(p => p.id === id);
         if (prod) {
@@ -996,9 +976,33 @@
         });
     }
     
+    const logoUploadArea = document.getElementById('logoUploadArea');
+    if (logoUploadArea) {
+        logoUploadArea.addEventListener('dragover', (e) => { e.preventDefault(); logoUploadArea.style.borderColor = '#ff7a2f'; });
+        logoUploadArea.addEventListener('dragleave', () => { logoUploadArea.style.borderColor = 'var(--border-light)'; });
+        logoUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            logoUploadArea.style.borderColor = 'var(--border-light)';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    settings.logoImage = ev.target.result;
+                    localStorage.setItem('blender_settings', JSON.stringify(settings));
+                    updateLogoDisplay();
+                    showToast("Логотип загружен");
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    
+    // Вход в админ-панель только по Telegram ID
     function showAdminPanel() {
-        let pwd = prompt("Введите пароль администратора:");
-        if (pwd !== settings.adminPassword) { showToast("Неверный пароль"); return; }
+        if (!isAdmin()) {
+            showToast("⛔ Доступ запрещён. Вы не администратор.");
+            return;
+        }
         currentAdminCategoryId = categories[0]?.id || null;
         renderAdminCategoriesSidebar();
         renderProductsByCategory();
@@ -1040,50 +1044,6 @@
     window.toggleCart = toggleCart;
     window.filterProducts = filterProducts;
     window.handleImageFiles = handleImageFiles;
-</script>
-    <script>
-// Инициализация Telegram WebApp
-const tg = window.Telegram.WebApp;
-tg.ready();
-tg.expand(); // Растягиваем на весь экран
-
-// Переопределяем функцию processOrder, чтобы отправлять заказ боту
-const originalProcessOrder = window.processOrder;
-window.processOrder = function() {
-    const name = document.getElementById('customerName').value.trim();
-    const email = document.getElementById('customerEmail').value.trim();
-    
-    if (!name || !email) {
-        showToast("Заполните имя и email");
-        return;
-    }
-    
-    if (cart.length === 0) return;
-    
-    // Формируем данные заказа
-    const orderData = {
-        items: cart.map(item => ({
-            name: item.name,
-            price: item.price,
-            preview: item.preview
-        })),
-        total: cart.reduce((s, i) => s + i.price, 0),
-        customer: { name, email },
-        orderDate: new Date().toISOString()
-    };
-    
-    // Отправляем данные в Telegram боту
-    tg.sendData(JSON.stringify(orderData));
-    
-    // Показываем подтверждение
-    showToast("✅ Заказ отправлен! Бот свяжется с вами.");
-    
-    // Очищаем корзину
-    cart = [];
-    saveCart();
-    renderCart();
-    renderProducts();
-};
 </script>
 </body>
 </html>
