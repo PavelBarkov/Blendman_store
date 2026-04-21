@@ -1041,5 +1041,49 @@
     window.filterProducts = filterProducts;
     window.handleImageFiles = handleImageFiles;
 </script>
+    <script>
+// Инициализация Telegram WebApp
+const tg = window.Telegram.WebApp;
+tg.ready();
+tg.expand(); // Растягиваем на весь экран
+
+// Переопределяем функцию processOrder, чтобы отправлять заказ боту
+const originalProcessOrder = window.processOrder;
+window.processOrder = function() {
+    const name = document.getElementById('customerName').value.trim();
+    const email = document.getElementById('customerEmail').value.trim();
+    
+    if (!name || !email) {
+        showToast("Заполните имя и email");
+        return;
+    }
+    
+    if (cart.length === 0) return;
+    
+    // Формируем данные заказа
+    const orderData = {
+        items: cart.map(item => ({
+            name: item.name,
+            price: item.price,
+            preview: item.preview
+        })),
+        total: cart.reduce((s, i) => s + i.price, 0),
+        customer: { name, email },
+        orderDate: new Date().toISOString()
+    };
+    
+    // Отправляем данные в Telegram боту
+    tg.sendData(JSON.stringify(orderData));
+    
+    // Показываем подтверждение
+    showToast("✅ Заказ отправлен! Бот свяжется с вами.");
+    
+    // Очищаем корзину
+    cart = [];
+    saveCart();
+    renderCart();
+    renderProducts();
+};
+</script>
 </body>
 </html>
