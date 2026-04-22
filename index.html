@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Blender Shop</title>
+    <title>Blender Shop — магазин ассетов</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -40,7 +40,14 @@
             gap: 12px;
             cursor: pointer;
         }
-        .logo-img { height: 44px; width: auto; border-radius: 14px; }
+        .logo-img {
+            height: 44px;
+            width: auto;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.05);
+            padding: 4px;
+            object-fit: contain;
+        }
         .logo-text {
             font-size: 22px;
             font-weight: 800;
@@ -57,7 +64,9 @@
             display: flex;
             gap: 10px;
             cursor: pointer;
+            transition: 0.2s;
         }
+        .cart-btn:hover { border-color: var(--accent); background: rgba(255,122,47,0.1); }
         .cart-count {
             background: var(--accent);
             border-radius: 40px;
@@ -74,6 +83,7 @@
             color: white;
             font-size: 16px;
         }
+        .search-input:focus { border-color: var(--accent); outline: none; }
         .categories {
             max-width: 1400px;
             margin: 20px auto 0;
@@ -90,10 +100,12 @@
             font-size: 14px;
             cursor: pointer;
             white-space: nowrap;
+            transition: 0.2s;
         }
         .chip.active {
             background: var(--accent);
             color: #0a0c15;
+            border-color: var(--accent);
         }
         .products-grid {
             max-width: 1400px;
@@ -134,7 +146,9 @@
             font-weight: 600;
             margin-top: 16px;
             cursor: pointer;
+            transition: 0.2s;
         }
+        .add-btn:hover { background: var(--accent); color: #0a0c15; }
         .page { display: none; }
         .page.active { display: block; }
         .cart-container { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
@@ -147,6 +161,15 @@
             justify-content: space-between;
             align-items: center;
         }
+        .cart-preview { width: 48px; height: 48px; object-fit: cover; border-radius: 12px; margin-right: 12px; vertical-align: middle; }
+        .remove-item {
+            background: rgba(231,76,60,0.2);
+            border: none;
+            color: #ff6b5e;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+        }
         .total-block { font-size: 28px; font-weight: 800; margin: 24px 0; text-align: right; }
         .checkout-btn {
             background: linear-gradient(105deg, var(--accent), #c2410c);
@@ -157,6 +180,16 @@
             width: 100%;
             color: white;
             cursor: pointer;
+        }
+        .form-card { background: #131724; border-radius: 32px; padding: 24px; margin-top: 20px; }
+        .form-card input {
+            width: 100%;
+            padding: 14px;
+            background: #0c0f18;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            color: white;
+            margin-bottom: 12px;
         }
         .modal {
             position: fixed;
@@ -178,6 +211,7 @@
             border-radius: 48px;
             padding: 24px;
             border: 1px solid rgba(255,122,47,0.5);
+            position: relative;
         }
         .gallery {
             display: flex;
@@ -191,6 +225,35 @@
             max-height: 55vh;
             object-fit: contain;
             border-radius: 24px;
+        }
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            background: #4a4a5a;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 0 4px;
+        }
+        .gallery-dot.active { background: var(--accent); width: 24px; }
+        .product-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        .youtube-btn {
+            background: rgba(255,0,0,0.15);
+            border: 1px solid rgba(255,0,0,0.4);
+            color: #ff3b3b;
+            padding: 8px 16px;
+            border-radius: 60px;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .admin-panel {
             position: fixed;
@@ -218,6 +281,7 @@
             color: #aaa;
             font-weight: 600;
             cursor: pointer;
+            border: none;
         }
         .admin-tab.active {
             background: var(--accent);
@@ -234,55 +298,20 @@
             cursor: pointer;
         }
         .btn-danger { background: rgba(231,76,60,0.2); color: #ff8a7a; }
-        .toast {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e1f2a;
-            color: white;
-            padding: 12px 28px;
-            border-radius: 60px;
-            font-size: 14px;
-            opacity: 0;
-            transition: 0.2s;
-            z-index: 1200;
-            pointer-events: none;
+        .settings-card {
+            background: #131724;
+            border-radius: 32px;
+            padding: 24px;
+            max-width: 600px;
         }
-        .toast.show { opacity: 1; }
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(7,9,15,0.92);
-            backdrop-filter: blur(16px);
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 20px;
-            border-top: 1px solid rgba(255,122,47,0.2);
-        }
-        .nav-item {
-            background: none;
-            border: none;
-            color: #8e8e9e;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
+        .logo-upload-area {
+            background: #0c0f18;
+            border: 2px dashed var(--border);
+            border-radius: 28px;
+            padding: 20px;
+            text-align: center;
             cursor: pointer;
-        }
-        .nav-item.active { color: var(--accent); }
-        .back-btn {
-            background: none;
-            border: 1px solid var(--border);
-            padding: 8px 20px;
-            border-radius: 40px;
-            margin-bottom: 20px;
-            color: white;
-            cursor: pointer;
+            margin-bottom: 16px;
         }
         .image-upload-area {
             background: #0c0f18;
@@ -319,6 +348,57 @@
             font-size: 12px;
             cursor: pointer;
         }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(7,9,15,0.92);
+            backdrop-filter: blur(16px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 20px;
+            border-top: 1px solid rgba(255,122,47,0.2);
+        }
+        .nav-item {
+            background: none;
+            border: none;
+            color: #8e8e9e;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+        .nav-item.active { color: var(--accent); }
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e1f2a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 14px;
+            opacity: 0;
+            transition: 0.2s;
+            z-index: 1200;
+            border-left: 4px solid var(--accent);
+            pointer-events: none;
+        }
+        .toast.show { opacity: 1; }
+        .back-btn {
+            background: none;
+            border: 1px solid var(--border);
+            padding: 8px 20px;
+            border-radius: 40px;
+            margin-bottom: 20px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -336,7 +416,7 @@
 
 <div id="pageHome" class="page active">
     <div class="search-container">
-        <input type="text" class="search-input" id="searchInput" placeholder="Поиск..." oninput="filterProducts()">
+        <input type="text" class="search-input" id="searchInput" placeholder="Поиск ассетов..." oninput="filterProducts()">
     </div>
     <div class="categories" id="categoriesList"></div>
     <div id="productsGridContainer" class="products-grid"></div>
@@ -349,9 +429,9 @@
         <div id="cartItems"></div>
         <div id="cartTotal"></div>
         <div id="checkoutForm" style="display:none;">
-            <div class="form-card" style="background:#131724; border-radius:32px; padding:24px; margin-top:20px;">
-                <input type="text" id="customerName" placeholder="Ваше имя" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white; margin-bottom:12px;">
-                <input type="email" id="customerEmail" placeholder="Email" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white; margin-bottom:12px;">
+            <div class="form-card">
+                <input type="text" id="customerName" placeholder="Ваше имя">
+                <input type="email" id="customerEmail" placeholder="Email для файлов">
                 <button class="checkout-btn" onclick="processOrder()">✅ Подтвердить заказ</button>
             </div>
         </div>
@@ -363,7 +443,10 @@
         <button class="modal-close" style="position:absolute; top:20px; right:20px; background:rgba(0,0,0,0.6); border:none; border-radius:60px; width:36px; height:36px; color:white; font-size:20px; cursor:pointer;" onclick="closeModal()">✖</button>
         <div class="gallery" id="modalGallery"></div>
         <div class="gallery-nav" id="galleryNav" style="display:flex; justify-content:center; gap:8px; margin:12px 0;"></div>
-        <h2 id="modalName"></h2>
+        <div class="product-header">
+            <h2 id="modalName"></h2>
+            <a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none;">▶ Смотреть видео</a>
+        </div>
         <div id="modalCategory" style="color:#aaa;"></div>
         <div id="modalPrice" style="margin:12px 0;"></div>
         <p id="modalDesc"></p>
@@ -371,9 +454,9 @@
     </div>
 </div>
 
-<!-- Админ-панель (открывается 5 кликами по логотипу) -->
+<!-- АДМИН-ПАНЕЛЬ (открывается 5 кликами по логотипу) -->
 <div id="adminPanel" class="admin-panel">
-    <div class="admin-header" style="display:flex; justify-content:space-between; margin-bottom:28px;">
+    <div style="display:flex; justify-content:space-between; margin-bottom:28px;">
         <h2>🔧 Админ-панель</h2>
         <button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖ Закрыть</button>
     </div>
@@ -406,19 +489,19 @@
         <div id="allProductsList"></div>
     </div>
     <div id="settingsTab" class="admin-section">
-        <div style="background:#131724; border-radius:32px; padding:24px; max-width:600px;">
-            <h3>⚙️ Настройки</h3>
+        <div class="settings-card">
+            <h3>⚙️ Настройки магазина</h3>
             <div style="margin:20px 0;"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white;"></div>
             <div style="margin:20px 0;"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white;"></div>
             <div>
-                <div id="logoUploadArea" style="background:#0c0f18; border:2px dashed var(--border); border-radius:28px; padding:20px; text-align:center; cursor:pointer;" onclick="document.getElementById('logoFileInput').click()">
-                    📸 Загрузить логотип
+                <div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">
+                    📸 Нажмите или перетащите изображение для логотипа
                     <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
                 </div>
                 <div id="logoPreviewContainer" style="margin-top:16px;"></div>
-                <button class="btn-icon btn-danger" onclick="removeLogo()" style="margin-top:8px;">🗑️ Удалить логотип</button>
+                <button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить логотип</button>
             </div>
-            <button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px;">💾 Сохранить</button>
+            <button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px;">💾 Сохранить настройки</button>
         </div>
     </div>
 </div>
@@ -434,9 +517,9 @@
         <div style="margin:12px 0;"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white;"></div>
         <div style="margin:12px 0;"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white;"></div>
         <div style="margin:12px 0;"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%; padding:14px; background:#0c0f18; border-radius:28px; border:1px solid var(--border); color:white;"></div>
-        <label>Изображения</label>
+        <label>Изображения товара</label>
         <div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">
-            📸 Загрузить изображения
+            📸 Нажмите или перетащите изображения
             <input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)">
         </div>
         <div id="imagePreviewList" class="image-preview-list"></div>
@@ -451,76 +534,37 @@
     <button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button>
 </div>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
-    import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-firestore.js";
-    import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-storage.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyCg0EUX3grKMXmKoLKZyGcWSAYPDZ-bwuQ",
-        authDomain: "blendmanshop.firebaseapp.com",
-        projectId: "blendmanshop",
-        storageBucket: "blendmanshop.firebasestorage.app",
-        messagingSenderId: "32462864879",
-        appId: "1:32462864879:web:958c2f23c98859db9a761a",
-        measurementId: "G-HWLL4RRPDP"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const storage = getStorage(app);
-
-    // Telegram
+<script>
+    // Telegram WebApp
     let tg = window.Telegram?.WebApp;
     if (tg) { tg.ready(); tg.expand(); }
 
-    // ВАШ TELEGRAM ID (замените!)
-    const ADMIN_TELEGRAM_ID = 123456789; // 👈 СЮДА ВСТАВЬТЕ СВОЙ ID
+    // ==================== НАСТРОЙКИ (хранятся в localStorage) ====================
+    let settings = {
+        storeName: "BLENDER SHOP",
+        logoText: "🌀 BLENDER SHOP",
+        logoImage: null
+    };
 
-    function isAdmin() {
-        if (!tg) return false;
-        return tg.initDataUnsafe?.user?.id === ADMIN_TELEGRAM_ID;
-    }
-
-    let products = [];
-    let categories = [];
-    let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
-    let currentAdminCategoryId = null;
-    let selectedImageFiles = [];
-
-    let settings = { storeName: "Blender Shop", logoText: "🌀 BLENDER SHOP", logoImage: null };
-
-    // Загрузка данных
-    async function loadCategories() {
-        const snap = await getDocs(collection(db, "categories"));
-        categories = [];
-        snap.forEach(d => categories.push({ id: d.id, ...d.data() }));
-        if (categories.length === 0) {
-            const def = [{ id: "cat1", name: "Add-on" }, { id: "cat2", name: "Скрипты" }, { id: "cat4", name: "Бандлы" }, { id: "cat5", name: "Материалы" }];
-            for (let c of def) { await setDoc(doc(db, "categories", c.id), c); categories.push(c); }
+    // Загрузка настроек из localStorage
+    function loadSettings() {
+        const saved = localStorage.getItem('blender_settings');
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                settings = { ...settings, ...parsed };
+            } catch(e) {}
         }
-        renderCategories();
-    }
-    async function loadProducts() {
-        const snap = await getDocs(collection(db, "products"));
-        products = [];
-        snap.forEach(d => products.push({ id: parseInt(d.id), ...d.data() }));
-        renderProducts();
-        updateCartBadge();
-    }
-    async function loadSettings() {
-        const snap = await getDocs(collection(db, "settings"));
-        if (!snap.empty) snap.forEach(d => settings = { ...settings, ...d.data() });
-        else await setDoc(doc(db, "settings", "main"), settings);
         document.title = settings.storeName;
-        document.getElementById('settingsStoreName').value = settings.storeName;
-        document.getElementById('settingsLogoText').value = settings.logoText;
+        if (document.getElementById('settingsStoreName')) document.getElementById('settingsStoreName').value = settings.storeName;
+        if (document.getElementById('settingsLogoText')) document.getElementById('settingsLogoText').value = settings.logoText;
         updateLogoDisplay();
     }
 
     function updateLogoDisplay() {
         const container = document.getElementById('logoContainer');
         container.innerHTML = '';
-        if (settings.logoImage) {
+        if (settings.logoImage && settings.logoImage.startsWith('data:image')) {
             const img = document.createElement('img');
             img.src = settings.logoImage;
             img.className = 'logo-img';
@@ -530,178 +574,474 @@
         span.className = 'logo-text';
         span.innerText = settings.logoText;
         container.appendChild(span);
+
         const preview = document.getElementById('logoPreviewContainer');
-        if (preview) preview.innerHTML = settings.logoImage ? `<img src="${settings.logoImage}" style="height:60px;">` : '<span>Нет логотипа</span>';
+        if (preview) {
+            preview.innerHTML = settings.logoImage ? `<img src="${settings.logoImage}" style="height:60px; border-radius:12px;">` : '<span style="color:#aaa;">Нет логотипа</span>';
+        }
     }
+
+    function saveSettingsToLocal() {
+        localStorage.setItem('blender_settings', JSON.stringify(settings));
+        document.title = settings.storeName;
+        updateLogoDisplay();
+        showToast("Настройки сохранены");
+    }
+
+    function handleLogoUpload(event) {
+        const file = event.target.files[0];
+        if (!file || !file.type.startsWith('image/')) {
+            showToast("Выберите изображение");
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            settings.logoImage = e.target.result;
+            saveSettingsToLocal();
+            showToast("Логотип загружен");
+        };
+        reader.readAsDataURL(file);
+        document.getElementById('logoFileInput').value = '';
+    }
+
+    function removeLogo() {
+        settings.logoImage = null;
+        saveSettingsToLocal();
+        showToast("Логотип удалён");
+    }
+
+    // ==================== ДАННЫЕ (localStorage + опционально Firebase) ====================
+    let categories = JSON.parse(localStorage.getItem('blender_categories')) || [
+        { id: "cat1", name: "Add-on" },
+        { id: "cat2", name: "Скрипты" },
+        { id: "cat4", name: "Бандлы" },
+        { id: "cat5", name: "Материалы" }
+    ];
+    let products = JSON.parse(localStorage.getItem('blender_products')) || [
+        { id: 1, name: "NodeFlow Pro", categoryId: "cat1", price: 890, oldPrice: 1290, fileUrl: "#", youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", images: [], description: "Визуальный редактор нод" },
+        { id: 2, name: "RetopoMaster", categoryId: "cat1", price: 1490, oldPrice: null, fileUrl: "#", youtubeUrl: "", images: [], description: "Ретопология" }
+    ];
+    let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
+    let currentAdminCategoryId = null;
+    let selectedImageFiles = [];
+
+    function saveCategories() { localStorage.setItem('blender_categories', JSON.stringify(categories)); renderCategories(); renderAdminCategoriesSidebar(); renderAllProductsList(); renderProductsByCategory(); }
+    function saveProducts() { localStorage.setItem('blender_products', JSON.stringify(products)); renderProducts(); renderAllProductsList(); renderProductsByCategory(); updateCartBadge(); }
+    function saveCart() { localStorage.setItem('blender_cart', JSON.stringify(cart)); updateCartBadge(); }
+
+    function formatPrice(p) { return p === 0 ? "Бесплатно" : p.toLocaleString() + " ₽"; }
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
+    function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+    function updateCartBadge() { document.getElementById('cartCount').innerText = cart.length; }
+
+    // Получить превью товара
+    function getPreviewImage(product) {
+        if (product.images && product.images.length > 0) return product.images[0];
+        return "https://placehold.co/1024x1024/2b2b3a/white?text=No+Image";
+    }
+
+    // КАТАЛОГ
+    let currentCategoryId = null;
+    let searchQuery = "";
 
     function renderCategories() {
         const container = document.getElementById('categoriesList');
-        let cur = window.currentCategoryId || null;
-        container.innerHTML = `<div class="chip ${cur===null?'active':''}" data-cat="">🔥 Все</div>` + categories.map(c => `<div class="chip ${cur===c.id?'active':''}" data-cat="${c.id}">${c.name}</div>`).join('');
-        document.querySelectorAll('.chip').forEach(ch => ch.addEventListener('click', () => {
-            window.currentCategoryId = ch.dataset.cat === "" ? null : ch.dataset.cat;
-            renderCategories();
-            renderProducts();
-        }));
+        container.innerHTML = `<div class="chip ${currentCategoryId === null ? 'active' : ''}" data-cat="">🔥 Все</div>` +
+            categories.map(c => `<div class="chip ${currentCategoryId === c.id ? 'active' : ''}" data-cat="${c.id}">${c.name}</div>`).join('');
+        document.querySelectorAll('.chip').forEach(ch => {
+            ch.addEventListener('click', () => {
+                currentCategoryId = ch.dataset.cat === "" ? null : ch.dataset.cat;
+                renderCategories();
+                renderProducts();
+            });
+        });
     }
-    window.currentCategoryId = null;
-    window.searchQuery = "";
-    function filterProducts() { window.searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); }
+
+    function filterProducts() { searchQuery = document.getElementById('searchInput').value.toLowerCase(); renderProducts(); }
+
     function renderProducts() {
-        let filtered = products.filter(p => (!window.currentCategoryId || p.categoryId === window.currentCategoryId) && (!window.searchQuery || p.name.toLowerCase().includes(window.searchQuery)));
+        let filtered = products.filter(p => {
+            if (currentCategoryId && p.categoryId !== currentCategoryId) return false;
+            if (searchQuery && !p.name.toLowerCase().includes(searchQuery)) return false;
+            return true;
+        });
         const grid = document.getElementById('productsGridContainer');
         if (!filtered.length) { grid.innerHTML = '<div style="text-align:center;padding:40px;">✨ Ничего не найдено</div>'; return; }
         grid.innerHTML = filtered.map(p => `
             <div class="product-card" onclick="openProductModal(${p.id})">
-                <img class="product-preview" src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" loading="lazy">
+                <img class="product-preview" src="${getPreviewImage(p)}" loading="lazy">
                 <div class="product-name">${escapeHtml(p.name)}</div>
                 <div><span class="current-price">${formatPrice(p.price)}</span>${p.oldPrice ? `<span class="old-price">${formatPrice(p.oldPrice)}</span>` : ''}</div>
                 <button class="add-btn" onclick="event.stopPropagation(); toggleCart(${p.id})">${cart.some(i=>i.id===p.id) ? '✓ В корзине' : '+ В корзину'}</button>
             </div>
         `).join('');
     }
-    function formatPrice(p) { return p === 0 ? "Бесплатно" : p.toLocaleString() + " ₽"; }
-    function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m])); }
-    function updateCartBadge() { document.getElementById('cartCount').innerText = cart.length; }
-    function showToast(msg) { let t = document.getElementById('toastMsg'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
 
     function toggleCart(id) {
         let idx = cart.findIndex(i=>i.id===id);
         if (idx !== -1) cart.splice(idx,1);
-        else { let p = products.find(p=>p.id===id); cart.push({ id: p.id, name: p.name, price: p.price, fileUrl: p.fileUrl, preview: p.images?.[0] || '' }); }
-        localStorage.setItem('blender_cart', JSON.stringify(cart));
+        else {
+            let prod = products.find(p=>p.id===id);
+            cart.push({ id: prod.id, name: prod.name, price: prod.price, fileUrl: prod.fileUrl, preview: getPreviewImage(prod) });
+        }
+        saveCart();
         renderProducts();
         renderCart();
         showToast(idx===-1 ? "Добавлено" : "Удалено");
-        updateCartBadge();
     }
+
     function renderCart() {
         const container = document.getElementById('cartItems');
-        if (!cart.length) { container.innerHTML = '<div style="text-align:center;padding:40px;">Корзина пуста</div>'; document.getElementById('cartTotal').innerHTML = ''; document.getElementById('checkoutForm').style.display = 'none'; return; }
-        container.innerHTML = cart.map(item => `<div class="cart-item"><div><img class="cart-preview" style="width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px;" src="${item.preview}"> ${item.name} - ${formatPrice(item.price)}</div><button class="remove-item" style="background:rgba(231,76,60,0.2); border:none; color:#ff6b5e; padding:8px 18px; border-radius:40px;" onclick="removeFromCart(${item.id})">Удалить</button></div>`).join('');
-        let total = cart.reduce((s,i)=>s+i.price,0);
+        if (!cart.length) {
+            container.innerHTML = '<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';
+            document.getElementById('cartTotal').innerHTML = '';
+            document.getElementById('checkoutForm').style.display = 'none';
+            return;
+        }
+        container.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div><img class="cart-preview" src="${item.preview}" alt=""> ${item.name} - ${formatPrice(item.price)}</div>
+                <button class="remove-item" onclick="removeFromCart(${item.id})">Удалить</button>
+            </div>
+        `).join('');
+        let total = cart.reduce((s,i) => s + i.price, 0);
         document.getElementById('cartTotal').innerHTML = `<div class="total-block">Итого: ${formatPrice(total)}</div>`;
         document.getElementById('checkoutForm').style.display = 'block';
     }
-    window.removeFromCart = function(id) { cart = cart.filter(i=>i.id!==id); localStorage.setItem('blender_cart', JSON.stringify(cart)); renderCart(); renderProducts(); updateCartBadge(); };
+
+    window.removeFromCart = function(id) {
+        cart = cart.filter(i => i.id !== id);
+        saveCart();
+        renderCart();
+        renderProducts();
+    };
+
     window.processOrder = function() {
-        let name = document.getElementById('customerName').value.trim(), email = document.getElementById('customerEmail').value.trim();
+        const name = document.getElementById('customerName').value.trim();
+        const email = document.getElementById('customerEmail').value.trim();
         if (!name || !email) { showToast("Заполните имя и email"); return; }
         if (!cart.length) return;
-        let links = cart.map(item => ({ name: item.name, url: products.find(p=>p.id===item.id)?.fileUrl || item.fileUrl })).filter(l=>l.url);
-        let html = `<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>` + links.map(l=>`<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`).join('') + `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
+        const links = cart.map(item => ({ name: item.name, url: item.fileUrl }));
+        let html = `<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>`;
+        links.forEach(l => html += `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`);
+        html += `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
         document.getElementById('cartItems').innerHTML = html;
         document.getElementById('cartTotal').innerHTML = '';
         document.getElementById('checkoutForm').style.display = 'none';
-        cart = []; localStorage.setItem('blender_cart', JSON.stringify(cart)); updateCartBadge();
+        cart = [];
+        saveCart();
         if (tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
     };
+
     window.navigateTo = function(page) {
-        document.getElementById('pageHome').classList.toggle('active', page==='home');
-        document.getElementById('pageCart').classList.toggle('active', page==='cart');
-        document.querySelectorAll('.nav-item').forEach((btn,i)=>btn.classList.toggle('active', (page==='home' && i===0) || (page==='cart' && i===1)));
-        if (page==='cart') renderCart();
+        document.getElementById('pageHome').classList.toggle('active', page === 'home');
+        document.getElementById('pageCart').classList.toggle('active', page === 'cart');
+        document.querySelectorAll('.nav-item').forEach((btn,i) => btn.classList.toggle('active', (page === 'home' && i===0) || (page === 'cart' && i===1)));
+        if (page === 'cart') renderCart();
         closeModal();
     };
 
-    // Модалка товара
+    // МОДАЛЬНОЕ ОКНО ТОВАРА
     let currentModalProduct = null, currentImageIndex = 0;
     window.openProductModal = function(id) {
         let p = products.find(x=>x.id===id);
         if (!p) return;
         currentModalProduct = p;
         currentImageIndex = 0;
-        let images = p.images?.length ? p.images : ['https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'];
-        document.getElementById('modalGallery').innerHTML = images.map((img,i)=>`<img class="gallery-img" src="${img}" style="display:${i===0?'block':'none'};">`).join('');
-        document.getElementById('galleryNav').innerHTML = images.map((_,idx)=>`<div class="gallery-dot" style="width:8px;height:8px;background:${idx===0?'#ff7a2f':'#4a4a5a'};border-radius:10px;cursor:pointer;margin:0 4px;" data-dot="${idx}"></div>`).join('');
-        document.querySelectorAll('.gallery-dot').forEach(dot=>dot.addEventListener('click',(e)=>{ currentImageIndex = parseInt(e.target.dataset.dot); updateGallery(); }));
+        let images = p.images && p.images.length ? p.images : [getPreviewImage(p)];
+        document.getElementById('modalGallery').innerHTML = images.map((img, i) => `<img class="gallery-img" src="${img}" style="display:${i===0?'block':'none'};">`).join('');
+        document.getElementById('galleryNav').innerHTML = images.map((_, idx) => `<div class="gallery-dot ${idx === currentImageIndex ? 'active' : ''}" data-dot="${idx}"></div>`).join('');
+        document.querySelectorAll('.gallery-dot').forEach(dot => dot.addEventListener('click', (e) => {
+            currentImageIndex = parseInt(e.target.dataset.dot);
+            updateGallery();
+        }));
         function updateGallery() {
-            document.querySelectorAll('#modalGallery .gallery-img').forEach((img,i)=>img.style.display = i===currentImageIndex ? 'block' : 'none');
-            document.querySelectorAll('#galleryNav .gallery-dot').forEach((d,i)=>d.style.background = i===currentImageIndex ? '#ff7a2f' : '#4a4a5a');
+            document.querySelectorAll('#modalGallery .gallery-img').forEach((img, i) => img.style.display = i === currentImageIndex ? 'block' : 'none');
+            document.querySelectorAll('#galleryNav .gallery-dot').forEach((dot, i) => {
+                if (i === currentImageIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
         }
         document.getElementById('modalName').innerText = p.name;
         document.getElementById('modalCategory').innerHTML = categories.find(c=>c.id===p.categoryId)?.name || "Без категории";
         document.getElementById('modalPrice').innerHTML = `<span class="current-price">${formatPrice(p.price)}</span>${p.oldPrice ? `<span class="old-price">${formatPrice(p.oldPrice)}</span>` : ''}`;
-        document.getElementById('modalDesc').innerText = p.description || "";
-        let yt = document.getElementById('youtubeLink');
-        if (p.youtubeUrl) { yt.href = p.youtubeUrl; yt.style.display = 'inline-flex'; } else yt.style.display = 'none';
-        document.getElementById('modalAddBtn').innerText = cart.some(i=>i.id===p.id) ? "✓ В корзине" : "➕ В корзину";
+        document.getElementById('modalDesc').innerText = p.description || "Описание отсутствует";
+        const yt = document.getElementById('youtubeLink');
+        if (p.youtubeUrl && p.youtubeUrl.trim()) { yt.href = p.youtubeUrl; yt.style.display = "inline-flex"; }
+        else yt.style.display = "none";
+        document.getElementById('modalAddBtn').innerText = cart.some(i=>i.id===p.id) ? "✓ Уже в корзине" : "➕ В корзину";
         document.getElementById('productModal').classList.add('active');
     };
     window.closeModal = function() { document.getElementById('productModal').classList.remove('active'); };
-    document.getElementById('modalAddBtn').onclick = () => { if (currentModalProduct && !cart.some(i=>i.id===currentModalProduct.id)) toggleCart(currentModalProduct.id); closeModal(); };
+    document.getElementById('modalAddBtn').onclick = () => {
+        if (currentModalProduct && !cart.some(i=>i.id===currentModalProduct.id)) toggleCart(currentModalProduct.id);
+        closeModal();
+    };
 
-    // Админ-панель (все функции)
+    // АДМИН-ПАНЕЛЬ (localStorage версия, работает сразу)
     function renderAdminCategoriesSidebar() {
         const container = document.getElementById('adminCategoryList');
-        container.innerHTML = categories.map(cat => `<div class="category-folder ${currentAdminCategoryId===cat.id?'active':''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03); border-radius:20px; padding:12px 16px; margin-bottom:10px; display:flex; justify-content:space-between; cursor:pointer;"><span>📂 ${cat.name}</span><button class="delete-cat-btn" data-catid="${cat.id}" style="background:none; border:none; color:#ff8a7a; cursor:pointer;">🗑️</button></div>`).join('');
+        if (!container) return;
+        container.innerHTML = categories.map(cat => `
+            <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03); border-radius:20px; padding:12px 16px; margin-bottom:10px; display:flex; justify-content:space-between; cursor:pointer; border-left:3px solid ${currentAdminCategoryId === cat.id ? '#ff7a2f' : 'transparent'}">
+                <span>📂 ${cat.name}</span>
+                <button class="delete-cat-btn" data-catid="${cat.id}" style="background:none; border:none; color:#ff8a7a; cursor:pointer;">🗑️</button>
+            </div>
+        `).join('');
         document.querySelectorAll('.category-folder').forEach(el => {
             el.addEventListener('click', (e) => { if(e.target.classList.contains('delete-cat-btn')) return; currentAdminCategoryId = el.dataset.catid; renderAdminCategoriesSidebar(); renderProductsByCategory(); document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name || '?'}`; });
             const del = el.querySelector('.delete-cat-btn');
             if(del) del.addEventListener('click', (e) => { e.stopPropagation(); deleteCategoryById(el.dataset.catid); });
         });
     }
-    async function deleteCategoryById(catId) { if(!isAdmin()) return; if(!confirm("Удалить категорию и все товары?")) return; const q = query(collection(db,"products"), where("categoryId","==",catId)); const snap = await getDocs(q); for(let d of snap.docs) await deleteDoc(doc(db,"products",d.id)); await deleteDoc(doc(db,"categories",catId)); await loadCategories(); await loadProducts(); if(currentAdminCategoryId===catId) currentAdminCategoryId = categories[0]?.id || null; renderAdminCategoriesSidebar(); renderProductsByCategory(); renderAllProductsList(); showToast("Категория удалена"); }
-    window.addCategoryFromAdmin = async function() { if(!isAdmin()) return; let name = document.getElementById('newAdminCatName').value.trim(); if(!name) return; let newId = "cat_"+Date.now(); await setDoc(doc(db,"categories",newId), { name }); await loadCategories(); renderAdminCategoriesSidebar(); renderAllProductsList(); document.getElementById('newAdminCatName').value = ''; showToast(`Категория "${name}" добавлена`); };
+
+    function deleteCategoryById(catId) {
+        if (!confirm("Удалить категорию и все товары в ней?")) return;
+        products = products.filter(p => p.categoryId !== catId);
+        categories = categories.filter(c => c.id !== catId);
+        if (currentAdminCategoryId === catId) currentAdminCategoryId = categories[0]?.id || null;
+        saveCategories();
+        saveProducts();
+        renderAdminCategoriesSidebar();
+        renderProductsByCategory();
+        renderAllProductsList();
+        showToast("Категория удалена");
+    }
+
+    window.addCategoryFromAdmin = function() {
+        const name = document.getElementById('newAdminCatName').value.trim();
+        if (!name) return showToast("Введите название");
+        const newId = "cat_" + Date.now();
+        categories.push({ id: newId, name });
+        saveCategories();
+        renderAdminCategoriesSidebar();
+        renderAllProductsList();
+        document.getElementById('newAdminCatName').value = '';
+        showToast(`Категория "${name}" добавлена`);
+    };
+
     function renderProductsByCategory() {
         const container = document.getElementById('adminProductsByCategory');
-        if(!currentAdminCategoryId) { container.innerHTML = '<div style="padding:20px;">Выберите категорию</div>'; return; }
-        let filtered = products.filter(p=>p.categoryId === currentAdminCategoryId);
-        if(!filtered.length) { container.innerHTML = '<div style="padding:20px;">Нет товаров</div>'; return; }
-        container.innerHTML = filtered.map(p => `<div class="product-admin-row" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border-radius:24px; padding:12px 16px; margin-bottom:12px;"><div class="product-admin-info" style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="openEditProductModal(${p.id})"><img class="admin-preview" src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px;"><div><strong>${escapeHtml(p.name)}</strong><br><span>${formatPrice(p.price)}</span></div></div><div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div></div>`).join('');
+        if (!currentAdminCategoryId) { container.innerHTML = '<div style="padding:20px;">Выберите категорию</div>'; return; }
+        const categoryProducts = products.filter(p => p.categoryId === currentAdminCategoryId);
+        if (!categoryProducts.length) { container.innerHTML = '<div style="padding:20px;">Нет товаров</div>'; return; }
+        container.innerHTML = categoryProducts.map(p => `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border-radius:24px; padding:12px 16px; margin-bottom:12px;">
+                <div style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="openEditProductModal(${p.id})">
+                    <img src="${getPreviewImage(p)}" style="width:48px;height:48px;object-fit:cover;border-radius:12px;">
+                    <div><strong>${escapeHtml(p.name)}</strong><br><span>${formatPrice(p.price)}</span></div>
+                </div>
+                <div>
+                    <button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button>
+                    <button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button>
+                </div>
+            </div>
+        `).join('');
     }
+
     function renderAllProductsList() {
         const container = document.getElementById('allProductsList');
-        if(!products.length) { container.innerHTML = '<div style="padding:20px;">Нет товаров</div>'; return; }
-        container.innerHTML = products.map(p => `<div class="product-admin-row" style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border-radius:24px; padding:12px 16px; margin-bottom:12px;"><div class="product-admin-info" style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="openEditProductModal(${p.id})"><img class="admin-preview" src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px;"><div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c=>c.id===p.categoryId)?.name || 'Без категории'} | ${formatPrice(p.price)}</span></div></div><div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div></div>`).join('');
+        if (!products.length) { container.innerHTML = '<div style="padding:20px;">Нет товаров</div>'; return; }
+        container.innerHTML = products.map(p => `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border-radius:24px; padding:12px 16px; margin-bottom:12px;">
+                <div style="display:flex; align-items:center; gap:12px; cursor:pointer;" onclick="openEditProductModal(${p.id})">
+                    <img src="${getPreviewImage(p)}" style="width:48px;height:48px;object-fit:cover;border-radius:12px;">
+                    <div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c=>c.id===p.categoryId)?.name || 'Без категории'} | ${formatPrice(p.price)}</span></div>
+                </div>
+                <div>
+                    <button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button>
+                    <button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button>
+                </div>
+            </div>
+        `).join('');
     }
-    window.addProductInCurrentCategory = async function() { if(!isAdmin()) return; if(!currentAdminCategoryId) { showToast("Выберите категорию"); return; } let newId = Date.now(); let newProd = { id: newId, name: "Новый ассет", categoryId: currentAdminCategoryId, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "" }; await setDoc(doc(db,"products",String(newId)), newProd); await loadProducts(); renderProductsByCategory(); renderAllProductsList(); openEditProductModal(newId); };
-    window.addGlobalProduct = async function() { if(!isAdmin()) return; let newId = Date.now(); let newProd = { id: newId, name: "Новый ассет", categoryId: categories[0]?.id || null, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "" }; await setDoc(doc(db,"products",String(newId)), newProd); await loadProducts(); renderAllProductsList(); renderProductsByCategory(); openEditProductModal(newId); };
-    window.deleteProductById = async function(id) { if(!isAdmin()) return; if(!confirm("Удалить товар?")) return; let prod = products.find(p=>p.id===id); if(prod?.images) for(let img of prod.images) if(img.includes('firebasestorage')) try { await deleteObject(ref(storage, img)); } catch(e){} await deleteDoc(doc(db,"products",String(id))); await loadProducts(); renderProductsByCategory(); renderAllProductsList(); showToast("Товар удалён"); };
-    async function uploadImagesToStorage(files, productId) { let urls = []; for(let file of files) { let refFile = ref(storage, `products/${productId}/${Date.now()}_${file.name}`); await uploadBytes(refFile, file); urls.push(await getDownloadURL(refFile)); } return urls; }
-    function handleImageFiles(event) { let files = Array.from(event.target.files); for(let file of files) { if(!file.type.startsWith('image/')) continue; selectedImageFiles.push(file); let reader = new FileReader(); reader.onload = function(e) { let div = document.createElement('div'); div.className = 'image-preview-item'; div.innerHTML = `<img src="${e.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`; document.getElementById('imagePreviewList').appendChild(div); div.querySelector('.remove-image-btn').addEventListener('click', () => { let idx = selectedImageFiles.findIndex(f=>f.name===file.name); if(idx!==-1) selectedImageFiles.splice(idx,1); div.remove(); }); }; reader.readAsDataURL(file); } document.getElementById('imageFileInput').value = ''; }
-    window.openEditProductModal = async function(id) { if(!isAdmin()) return; let prod = products.find(p=>p.id===id); if(!prod) return; selectedImageFiles = []; document.getElementById('imagePreviewList').innerHTML = ''; if(prod.images) for(let imgUrl of prod.images) { let div = document.createElement('div'); div.className = 'image-preview-item'; div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`; document.getElementById('imagePreviewList').appendChild(div); div.querySelector('.remove-image-btn').addEventListener('click', async () => { if(imgUrl.includes('firebasestorage')) try { await deleteObject(ref(storage, imgUrl)); } catch(e){} prod.images = prod.images.filter(u=>u!==imgUrl); await setDoc(doc(db,"products",String(id)), prod); await loadProducts(); div.remove(); showToast("Изображение удалено"); }); } document.getElementById('editProductId').value = id; document.getElementById('editName').value = prod.name; let catSelect = document.getElementById('editCategoryId'); catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c=>`<option value="${c.id}" ${prod.categoryId===c.id?'selected':''}>${c.name}</option>`).join(''); document.getElementById('editPrice').value = prod.price; document.getElementById('editOldPrice').value = prod.oldPrice || ''; document.getElementById('editFileUrl').value = prod.fileUrl || ''; document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || ''; document.getElementById('editDesc').value = prod.description || ''; document.getElementById('editProductModal').classList.add('active'); };
-    window.closeEditProductModal = function() { document.getElementById('editProductModal').classList.remove('active'); selectedImageFiles = []; };
-    window.saveProductChanges = async function() { if(!isAdmin()) return; let id = parseInt(document.getElementById('editProductId').value); let prod = products.find(p=>p.id===id); if(!prod) return; prod.name = document.getElementById('editName').value; prod.categoryId = document.getElementById('editCategoryId').value || null; prod.price = parseInt(document.getElementById('editPrice').value) || 0; prod.oldPrice = document.getElementById('editOldPrice').value ? parseInt(document.getElementById('editOldPrice').value) : null; prod.fileUrl = document.getElementById('editFileUrl').value; prod.youtubeUrl = document.getElementById('editYoutubeUrl').value; prod.description = document.getElementById('editDesc').value; if(selectedImageFiles.length) { let newUrls = await uploadImagesToStorage(selectedImageFiles, id); prod.images = [...(prod.images || []), ...newUrls]; } await setDoc(doc(db,"products",String(id)), prod); await loadProducts(); renderProductsByCategory(); renderAllProductsList(); showToast("Товар сохранён"); closeEditProductModal(); };
-    async function saveSettings() { if(!isAdmin()) return; settings.storeName = document.getElementById('settingsStoreName').value.trim(); settings.logoText = document.getElementById('settingsLogoText').value.trim(); await setDoc(doc(db,"settings","main"), settings); document.title = settings.storeName; updateLogoDisplay(); showToast("Настройки сохранены"); }
-    function handleLogoUpload(event) { if(!isAdmin()) return; let file = event.target.files[0]; if(!file || !file.type.startsWith('image/')) return; let reader = new FileReader(); reader.onload = async function(e) { let storageRef = ref(storage, `logo/logo_${Date.now()}`); let blob = await fetch(e.target.result).then(r=>r.blob()); await uploadBytes(storageRef, blob); let url = await getDownloadURL(storageRef); settings.logoImage = url; await setDoc(doc(db,"settings","main"), settings); updateLogoDisplay(); showToast("Логотип загружен"); }; reader.readAsDataURL(file); document.getElementById('logoFileInput').value = ''; }
-    async function removeLogo() { if(!isAdmin()) return; if(settings.logoImage && settings.logoImage.includes('firebasestorage')) try { await deleteObject(ref(storage, settings.logoImage)); } catch(e){} settings.logoImage = null; await setDoc(doc(db,"settings","main"), settings); updateLogoDisplay(); showToast("Логотип удалён"); }
 
+    window.addProductInCurrentCategory = function() {
+        if (!currentAdminCategoryId) { showToast("Выберите категорию"); return; }
+        const newId = Date.now();
+        products.push({ id: newId, name: "Новый ассет", categoryId: currentAdminCategoryId, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "Добавьте описание" });
+        saveProducts();
+        renderProductsByCategory();
+        renderAllProductsList();
+        openEditProductModal(newId);
+        showToast("Товар создан, отредактируйте");
+    };
+
+    window.addGlobalProduct = function() {
+        const newId = Date.now();
+        products.push({ id: newId, name: "Новый ассет", categoryId: categories[0]?.id || null, price: 0, oldPrice: null, fileUrl: "", youtubeUrl: "", images: [], description: "" });
+        saveProducts();
+        renderAllProductsList();
+        renderProductsByCategory();
+        openEditProductModal(newId);
+        showToast("Товар создан");
+    };
+
+    window.deleteProductById = function(id) {
+        if (!confirm("Удалить товар?")) return;
+        products = products.filter(p => p.id !== id);
+        saveProducts();
+        renderProductsByCategory();
+        renderAllProductsList();
+        showToast("Товар удалён");
+    };
+
+    // Загрузка изображений (base64 для localStorage)
+    function handleImageFiles(event) {
+        const files = Array.from(event.target.files);
+        for (let file of files) {
+            if (!file.type.startsWith('image/')) continue;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                selectedImageFiles.push(e.target.result);
+                renderImagePreviewList();
+            };
+            reader.readAsDataURL(file);
+        }
+        document.getElementById('imageFileInput').value = '';
+    }
+
+    function renderImagePreviewList() {
+        const container = document.getElementById('imagePreviewList');
+        container.innerHTML = selectedImageFiles.map((img, idx) => `
+            <div class="image-preview-item">
+                <img src="${img}">
+                <button class="remove-image-btn" data-index="${idx}">✖</button>
+            </div>
+        `).join('');
+        document.querySelectorAll('.remove-image-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const idx = parseInt(btn.dataset.index);
+                selectedImageFiles.splice(idx, 1);
+                renderImagePreviewList();
+            });
+        });
+    }
+
+    window.openEditProductModal = function(id) {
+        const prod = products.find(p => p.id === id);
+        if (!prod) return;
+        selectedImageFiles = prod.images ? [...prod.images] : [];
+        renderImagePreviewList();
+        document.getElementById('editProductId').value = id;
+        document.getElementById('editName').value = prod.name;
+        const catSelect = document.getElementById('editCategoryId');
+        catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${c.name}</option>`).join('');
+        document.getElementById('editPrice').value = prod.price;
+        document.getElementById('editOldPrice').value = prod.oldPrice || '';
+        document.getElementById('editFileUrl').value = prod.fileUrl || '';
+        document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || '';
+        document.getElementById('editDesc').value = prod.description || '';
+        document.getElementById('editProductModal').classList.add('active');
+    };
+
+    window.closeEditProductModal = function() { document.getElementById('editProductModal').classList.remove('active'); selectedImageFiles = []; };
+
+    window.saveProductChanges = function() {
+        const id = parseInt(document.getElementById('editProductId').value);
+        const prod = products.find(p => p.id === id);
+        if (prod) {
+            prod.name = document.getElementById('editName').value;
+            prod.categoryId = document.getElementById('editCategoryId').value || null;
+            prod.price = parseInt(document.getElementById('editPrice').value) || 0;
+            prod.oldPrice = document.getElementById('editOldPrice').value ? parseInt(document.getElementById('editOldPrice').value) : null;
+            prod.fileUrl = document.getElementById('editFileUrl').value;
+            prod.youtubeUrl = document.getElementById('editYoutubeUrl').value;
+            prod.images = [...selectedImageFiles];
+            prod.description = document.getElementById('editDesc').value;
+            saveProducts();
+            renderProductsByCategory();
+            renderAllProductsList();
+            showToast("Товар сохранён");
+            closeEditProductModal();
+        }
+    };
+
+    // Вход в админ-панель
     function showAdminPanel() {
-        if(!isAdmin()) { showToast("⛔ Доступ запрещён. Вы не администратор."); return; }
         currentAdminCategoryId = categories[0]?.id || null;
         renderAdminCategoriesSidebar();
         renderProductsByCategory();
         renderAllProductsList();
         document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
         document.getElementById('adminPanel').classList.add('active');
-        document.querySelectorAll('.admin-tab').forEach(tab => tab.addEventListener('click', () => { document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); document.querySelectorAll('.admin-section').forEach(sec=>sec.classList.remove('active')); document.getElementById(tab.dataset.tab).classList.add('active'); }));
-        document.querySelector('.admin-tab').click();
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
     }
+
     window.closeAdminPanel = function() { document.getElementById('adminPanel').classList.remove('active'); };
 
+    // Drag & drop для логотипа
+    const logoArea = document.getElementById('logoUploadArea');
+    if (logoArea) {
+        logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
+        logoArea.addEventListener('dragleave', () => logoArea.style.borderColor = 'var(--border-light)');
+        logoArea.addEventListener('drop', e => {
+            e.preventDefault();
+            logoArea.style.borderColor = 'var(--border-light)';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    settings.logoImage = ev.target.result;
+                    saveSettingsToLocal();
+                    showToast("Логотип загружен");
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Drag & drop для изображений товаров
+    const imageArea = document.getElementById('imageUploadArea');
+    if (imageArea) {
+        imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
+        imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'var(--border-light)');
+        imageArea.addEventListener('drop', e => {
+            e.preventDefault();
+            imageArea.style.borderColor = 'var(--border-light)';
+            const files = Array.from(e.dataTransfer.files);
+            for (let file of files) {
+                if (!file.type.startsWith('image/')) continue;
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    selectedImageFiles.push(ev.target.result);
+                    renderImagePreviewList();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // 5 кликов по логотипу для входа в админку
     let clickCount = 0, clickTimer;
     document.getElementById('logoClick').addEventListener('click', () => {
         clickCount++;
         clearTimeout(clickTimer);
         clickTimer = setTimeout(() => clickCount = 0, 800);
-        if (clickCount >= 5) { clickCount = 0; showAdminPanel(); }
+        if (clickCount >= 5) {
+            clickCount = 0;
+            showAdminPanel();
+        }
     });
 
-    // Drag & drop для логотипа
-    let logoArea = document.getElementById('logoUploadArea');
-    if(logoArea) {
-        logoArea.addEventListener('dragover', e=>{ e.preventDefault(); logoArea.style.borderColor='#ff7a2f'; });
-        logoArea.addEventListener('dragleave', ()=> logoArea.style.borderColor='var(--border-light)');
-        logoArea.addEventListener('drop', async e=>{ e.preventDefault(); logoArea.style.borderColor='var(--border-light)'; let file = e.dataTransfer.files[0]; if(file && file.type.startsWith('image/')) { let reader = new FileReader(); reader.onload = async function(ev) { let storageRef = ref(storage, `logo/logo_${Date.now()}`); let blob = await fetch(ev.target.result).then(r=>r.blob()); await uploadBytes(storageRef, blob); let url = await getDownloadURL(storageRef); settings.logoImage = url; await setDoc(doc(db,"settings","main"), settings); updateLogoDisplay(); showToast("Логотип загружен"); }; reader.readAsDataURL(file); } });
-    }
-
-    async function init() {
-        await loadSettings();
-        await loadCategories();
-        await loadProducts();
+    // ИНИЦИАЛИЗАЦИЯ
+    function init() {
+        loadSettings();
+        renderCategories();
+        renderProducts();
         renderCart();
-        if(tg?.BackButton) { tg.BackButton.onClick(() => { if(document.getElementById('pageHome').classList.contains('active')) tg.close(); else navigateTo('home'); }); tg.BackButton.hide(); }
+        updateCartBadge();
+        if (tg?.BackButton) {
+            tg.BackButton.onClick(() => { if (document.getElementById('pageHome').classList.contains('active')) tg.close(); else navigateTo('home'); });
+            tg.BackButton.hide();
+        }
     }
     init();
 
@@ -710,7 +1050,7 @@
     window.handleImageFiles = handleImageFiles;
     window.handleLogoUpload = handleLogoUpload;
     window.removeLogo = removeLogo;
-    window.saveSettings = saveSettings;
+    window.saveSettings = saveSettingsToLocal;
 </script>
 </body>
 </html>
