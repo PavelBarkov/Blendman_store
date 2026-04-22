@@ -37,10 +37,12 @@
         window.uploadBytes = uploadBytes;
         window.getDownloadURL = getDownloadURL;
         window.deleteObject = deleteObject;
+        
+        console.log("Firebase инициализирован");
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px;background:rgba(255,255,255,0.05);padding:4px;object-fit:contain}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer;transition:0.2s}.cart-btn:hover{border-color:var(--accent);background:rgba(255,122,47,0.1)}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}
     </style>
 </head>
 <body>
@@ -52,6 +54,7 @@
 <div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Загрузить<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
 <div class="toast" id="toastMsg">Сообщение</div>
 <div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
+
 <script type="module">
 import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
@@ -70,386 +73,602 @@ let currentAdminCategoryId = null;
 let selectedImageFiles = [];
 
 async function loadCategories(){
-    const snap = await getDocs(collection(db,"categories"));
+    const querySnapshot = await getDocs(collection(db, "categories"));
     categories = [];
-    snap.forEach(d=>categories.push({id:d.id,...d.data()}));
-    if(categories.length===0){
-        const def = [{id:"cat1",name:"Add-on"},{id:"cat2",name:"Скрипты"},{id:"cat4",name:"Бандлы"},{id:"cat5",name:"Материалы"}];
-        for(let c of def){await setDoc(doc(db,"categories",c.id),c);categories.push(c);}
+    querySnapshot.forEach((doc) => {
+        categories.push({ id: doc.id, ...doc.data() });
+    });
+    if(categories.length === 0){
+        const defaultCats = [
+            { id: "cat1", name: "Add-on" },
+            { id: "cat2", name: "Скрипты" },
+            { id: "cat4", name: "Бандлы" },
+            { id: "cat5", name: "Материалы" }
+        ];
+        for(const cat of defaultCats){
+            await setDoc(doc(db, "categories", cat.id), cat);
+            categories.push(cat);
+        }
+        console.log("Категории созданы в Firestore");
     }
     renderCategories();
 }
+
 async function loadProducts(){
-    const snap = await getDocs(collection(db,"products"));
+    const querySnapshot = await getDocs(collection(db, "products"));
     products = [];
-    snap.forEach(d=>products.push({id:parseInt(d.id),...d.data()}));
+    querySnapshot.forEach((doc) => {
+        products.push({ id: parseInt(doc.id), ...doc.data() });
+    });
     renderProducts();
-    document.getElementById('cartCount').innerText=cart.length;
+    updateCartBadge();
+    console.log("Товары загружены из Firestore:", products.length);
 }
+
 async function loadSettings(){
-    const snap = await getDocs(collection(db,"settings"));
-    if(!snap.empty)snap.forEach(d=>settings={...settings,...d.data()});
-    else await setDoc(doc(db,"settings","main"),settings);
-    document.title=settings.storeName;
-    document.getElementById('settingsStoreName').value=settings.storeName;
-    document.getElementById('settingsLogoText').value=settings.logoText;
-    updateLogoDisplay();
-}
-function updateLogoDisplay(){
-    const c=document.getElementById('logoContainer');
-    c.innerHTML='';
-    if(settings.logoImage){
-        const i=document.createElement('img');
-        i.src=settings.logoImage;
-        i.className='logo-img';
-        c.appendChild(i);
+    const querySnapshot = await getDocs(collection(db, "settings"));
+    if(!querySnapshot.empty){
+        querySnapshot.forEach((doc) => {
+            settings = { ...settings, ...doc.data() };
+        });
+    } else {
+        await setDoc(doc(db, "settings", "main"), settings);
+        console.log("Настройки созданы в Firestore");
     }
-    const s=document.createElement('span');
-    s.className='logo-text';
-    s.innerText=settings.logoText;
-    c.appendChild(s);
-    const p=document.getElementById('logoPreviewContainer');
-    if(p)p.innerHTML=settings.logoImage?`<img src="${settings.logoImage}" style="height:60px">`:'<span>Нет логотипа</span>';
-}
-async function saveSettings(){
-    settings.storeName=document.getElementById('settingsStoreName').value.trim();
-    settings.logoText=document.getElementById('settingsLogoText').value.trim();
-    await setDoc(doc(db,"settings","main"),settings);
-    document.title=settings.storeName;
+    document.title = settings.storeName;
+    if(document.getElementById('settingsStoreName')) document.getElementById('settingsStoreName').value = settings.storeName;
+    if(document.getElementById('settingsLogoText')) document.getElementById('settingsLogoText').value = settings.logoText;
     updateLogoDisplay();
-    showToast("Настройки сохранены");
 }
-function showToast(m){let t=document.getElementById('toastMsg');t.innerText=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+
+function updateLogoDisplay(){
+    const container = document.getElementById('logoContainer');
+    container.innerHTML = '';
+    if(settings.logoImage){
+        const img = document.createElement('img');
+        img.src = settings.logoImage;
+        img.className = 'logo-img';
+        container.appendChild(img);
+    }
+    const span = document.createElement('span');
+    span.className = 'logo-text';
+    span.innerText = settings.logoText;
+    container.appendChild(span);
+    const preview = document.getElementById('logoPreviewContainer');
+    if(preview){
+        preview.innerHTML = settings.logoImage ? `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;">` : '<span style="color:#aaa;">Нет логотипа</span>';
+    }
+}
+
+async function saveSettings(){
+    settings.storeName = document.getElementById('settingsStoreName').value.trim();
+    settings.logoText = document.getElementById('settingsLogoText').value.trim();
+    await setDoc(doc(db, "settings", "main"), settings);
+    document.title = settings.storeName;
+    updateLogoDisplay();
+    showToast("Настройки сохранены в Firebase");
+}
+
+function showToast(msg){
+    let t = document.getElementById('toastMsg');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function updateCartBadge(){
+    document.getElementById('cartCount').innerText = cart.length;
+}
+
 function renderCategories(){
-    const cont=document.getElementById('categoriesList');
-    let cur=window.currentCategoryId||null;
-    cont.innerHTML=`<div class="chip ${cur===null?'active':''}" data-cat="">🔥 Все</div>`+categories.map(c=>`<div class="chip ${cur===c.id?'active':''}" data-cat="${c.id}">${c.name}</div>`).join('');
-    document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{window.currentCategoryId=ch.dataset.cat===""?null:ch.dataset.cat;renderCategories();renderProducts();}));
+    const container = document.getElementById('categoriesList');
+    let cur = window.currentCategoryId || null;
+    container.innerHTML = `<div class="chip ${cur === null ? 'active' : ''}" data-cat="">🔥 Все</div>` + 
+        categories.map(c => `<div class="chip ${cur === c.id ? 'active' : ''}" data-cat="${c.id}">${c.name}</div>`).join('');
+    document.querySelectorAll('.chip').forEach(ch => {
+        ch.addEventListener('click', () => {
+            window.currentCategoryId = ch.dataset.cat === "" ? null : ch.dataset.cat;
+            renderCategories();
+            renderProducts();
+        });
+    });
 }
-window.currentCategoryId=null;
-window.searchQuery="";
-function filterProducts(){window.searchQuery=document.getElementById('searchInput').value.toLowerCase();renderProducts();}
+
+window.currentCategoryId = null;
+window.searchQuery = "";
+
+function filterProducts(){
+    window.searchQuery = document.getElementById('searchInput').value.toLowerCase();
+    renderProducts();
+}
+
 function renderProducts(){
-    let filtered=products.filter(p=>{
-        if(window.currentCategoryId&&p.categoryId!==window.currentCategoryId)return false;
-        if(window.searchQuery&&!p.name.toLowerCase().includes(window.searchQuery))return false;
+    let filtered = products.filter(p => {
+        if(window.currentCategoryId && p.categoryId !== window.currentCategoryId) return false;
+        if(window.searchQuery && !p.name.toLowerCase().includes(window.searchQuery)) return false;
         return true;
     });
-    const grid=document.getElementById('productsGridContainer');
-    if(!filtered.length){grid.innerHTML='<div style="text-align:center;padding:40px;">✨ Ничего не найдено</div>';return;}
-    grid.innerHTML=filtered.map(p=>`
+    const grid = document.getElementById('productsGridContainer');
+    if(!filtered.length){
+        grid.innerHTML = '<div style="text-align:center;padding:40px;">✨ Ничего не найдено</div>';
+        return;
+    }
+    grid.innerHTML = filtered.map(p => `
         <div class="product-card" onclick="openProductModal(${p.id})">
-            <img class="product-preview" src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}">
-            <div class="product-name">${p.name}</div>
-            <div><span class="current-price">${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span>${p.oldPrice?`<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>`:''}</div>
-            <button class="add-btn" onclick="event.stopPropagation(); toggleCart(${p.id})">${cart.some(i=>i.id===p.id)?'✓ В корзине':'+ В корзину'}</button>
+            <img class="product-preview" src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}">
+            <div class="product-name">${escapeHtml(p.name)}</div>
+            <div><span class="current-price">${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span>${p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>` : ''}</div>
+            <button class="add-btn" onclick="event.stopPropagation(); toggleCart(${p.id})">${cart.some(i => i.id === p.id) ? '✓ В корзине' : '+ В корзину'}</button>
         </div>
     `).join('');
 }
+
+function escapeHtml(str){
+    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
+}
+
 function toggleCart(id){
-    let idx=cart.findIndex(i=>i.id===id);
-    if(idx!==-1)cart.splice(idx,1);
-    else{
-        let prod=products.find(p=>p.id===id);
-        cart.push({id:prod.id,name:prod.name,price:prod.price,fileUrl:prod.fileUrl,preview:prod.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'});
+    let idx = cart.findIndex(i => i.id === id);
+    if(idx !== -1){
+        cart.splice(idx, 1);
+    } else {
+        let prod = products.find(p => p.id === id);
+        cart.push({
+            id: prod.id,
+            name: prod.name,
+            price: prod.price,
+            fileUrl: prod.fileUrl,
+            preview: prod.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'
+        });
     }
-    localStorage.setItem('blender_cart',JSON.stringify(cart));
+    localStorage.setItem('blender_cart', JSON.stringify(cart));
     renderProducts();
     renderCart();
-    showToast(idx===-1?"Добавлено":"Удалено");
-    document.getElementById('cartCount').innerText=cart.length;
+    showToast(idx === -1 ? "Добавлено" : "Удалено");
+    updateCartBadge();
 }
+
 function renderCart(){
-    const cont=document.getElementById('cartItems');
-    if(!cart.length){cont.innerHTML='<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';document.getElementById('cartTotal').innerHTML='';document.getElementById('checkoutForm').style.display='none';return;}
-    cont.innerHTML=cart.map(item=>`
+    const container = document.getElementById('cartItems');
+    if(!cart.length){
+        container.innerHTML = '<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';
+        document.getElementById('cartTotal').innerHTML = '';
+        document.getElementById('checkoutForm').style.display = 'none';
+        return;
+    }
+    container.innerHTML = cart.map(item => `
         <div class="cart-item">
-            <div><img class="cart-preview" src="${item.preview}"> ${item.name} - ${item.price===0?"Бесплатно":item.price.toLocaleString()+" ₽"}</div>
+            <div><img class="cart-preview" src="${item.preview}"> ${item.name} - ${item.price === 0 ? "Бесплатно" : item.price.toLocaleString() + " ₽"}</div>
             <button class="remove-item" onclick="removeFromCart(${item.id})">Удалить</button>
         </div>
     `).join('');
-    let total=cart.reduce((s,i)=>s+i.price,0);
-    document.getElementById('cartTotal').innerHTML=`<div class="total-block">Итого: ${total===0?"Бесплатно":total.toLocaleString()+" ₽"}</div>`;
-    document.getElementById('checkoutForm').style.display='block';
+    let total = cart.reduce((s, i) => s + i.price, 0);
+    document.getElementById('cartTotal').innerHTML = `<div class="total-block">Итого: ${total === 0 ? "Бесплатно" : total.toLocaleString() + " ₽"}</div>`;
+    document.getElementById('checkoutForm').style.display = 'block';
 }
-function removeFromCart(id){cart=cart.filter(i=>i.id!==id);localStorage.setItem('blender_cart',JSON.stringify(cart));renderCart();renderProducts();document.getElementById('cartCount').innerText=cart.length;}
+
+function removeFromCart(id){
+    cart = cart.filter(i => i.id !== id);
+    localStorage.setItem('blender_cart', JSON.stringify(cart));
+    renderCart();
+    renderProducts();
+    updateCartBadge();
+}
+
 function processOrder(){
-    let name=document.getElementById('customerName').value.trim(),email=document.getElementById('customerEmail').value.trim();
-    if(!name||!email){showToast("Заполните имя и email");return;}
-    if(!cart.length)return;
-    let links=cart.map(item=>({name:item.name,url:item.fileUrl})).filter(l=>l.url);
-    let html=`<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>`+links.map(l=>`<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`).join('')+`<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
-    document.getElementById('cartItems').innerHTML=html;
-    document.getElementById('cartTotal').innerHTML='';
-    document.getElementById('checkoutForm').style.display='none';
-    cart=[];localStorage.setItem('blender_cart',JSON.stringify(cart));document.getElementById('cartCount').innerText=0;
-    if(tg?.HapticFeedback)tg.HapticFeedback.notificationOccurred('success');
+    let name = document.getElementById('customerName').value.trim();
+    let email = document.getElementById('customerEmail').value.trim();
+    if(!name || !email){
+        showToast("Заполните имя и email");
+        return;
+    }
+    if(!cart.length) return;
+    let links = cart.map(item => ({ name: item.name, url: item.fileUrl })).filter(l => l.url);
+    let html = `<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>` + 
+        links.map(l => `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`).join('') + 
+        `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
+    document.getElementById('cartItems').innerHTML = html;
+    document.getElementById('cartTotal').innerHTML = '';
+    document.getElementById('checkoutForm').style.display = 'none';
+    cart = [];
+    localStorage.setItem('blender_cart', JSON.stringify(cart));
+    updateCartBadge();
+    if(tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
 }
+
 function navigateTo(page){
-    document.getElementById('pageHome').classList.toggle('active',page==='home');
-    document.getElementById('pageCart').classList.toggle('active',page==='cart');
-    document.querySelectorAll('.nav-item').forEach((btn,i)=>btn.classList.toggle('active',(page==='home'&&i===0)||(page==='cart'&&i===1)));
-    if(page==='cart')renderCart();
+    document.getElementById('pageHome').classList.toggle('active', page === 'home');
+    document.getElementById('pageCart').classList.toggle('active', page === 'cart');
+    document.querySelectorAll('.nav-item').forEach((btn, i) => {
+        btn.classList.toggle('active', (page === 'home' && i === 0) || (page === 'cart' && i === 1));
+    });
+    if(page === 'cart') renderCart();
     closeModal();
 }
-let currentModalProduct=null,currentImageIndex=0;
-window.openProductModal=function(id){
-    let p=products.find(x=>x.id===id);if(!p)return;
-    currentModalProduct=p;currentImageIndex=0;
-    let images=p.images?.length?p.images:['https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'];
-    document.getElementById('modalGallery').innerHTML=images.map((img,i)=>`<img class="gallery-img" src="${img}" style="display:${i===0?'block':'none'};">`).join('');
-    document.getElementById('galleryNav').innerHTML=images.map((_,idx)=>`<div class="gallery-dot ${idx===currentImageIndex?'active':''}" data-dot="${idx}"></div>`).join('');
-    document.querySelectorAll('.gallery-dot').forEach(dot=>dot.addEventListener('click',(e)=>{currentImageIndex=parseInt(e.target.dataset.dot);updateGallery();}));
+
+let currentModalProduct = null, currentImageIndex = 0;
+
+window.openProductModal = function(id){
+    let p = products.find(x => x.id === id);
+    if(!p) return;
+    currentModalProduct = p;
+    currentImageIndex = 0;
+    let images = p.images?.length ? p.images : ['https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'];
+    document.getElementById('modalGallery').innerHTML = images.map((img, i) => `<img class="gallery-img" src="${img}" style="display:${i === 0 ? 'block' : 'none'};">`).join('');
+    document.getElementById('galleryNav').innerHTML = images.map((_, idx) => `<div class="gallery-dot ${idx === currentImageIndex ? 'active' : ''}" data-dot="${idx}"></div>`).join('');
+    document.querySelectorAll('.gallery-dot').forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            currentImageIndex = parseInt(e.target.dataset.dot);
+            updateGallery();
+        });
+    });
     function updateGallery(){
-        document.querySelectorAll('#modalGallery .gallery-img').forEach((img,i)=>img.style.display=i===currentImageIndex?'block':'none');
-        document.querySelectorAll('#galleryNav .gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===currentImageIndex));
+        document.querySelectorAll('#modalGallery .gallery-img').forEach((img, i) => {
+            img.style.display = i === currentImageIndex ? 'block' : 'none';
+        });
+        document.querySelectorAll('#galleryNav .gallery-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === currentImageIndex);
+        });
     }
-    document.getElementById('modalName').innerText=p.name;
-    document.getElementById('modalCategory').innerHTML=categories.find(c=>c.id===p.categoryId)?.name||"Без категории";
-    document.getElementById('modalPrice').innerHTML=`<span class="current-price">${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span>${p.oldPrice?`<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>`:''}`;
-    document.getElementById('modalDesc').innerText=p.description||"";
-    let yt=document.getElementById('youtubeLink');
-    if(p.youtubeUrl&&p.youtubeUrl.trim()){yt.href=p.youtubeUrl;yt.style.display='inline-flex';}else yt.style.display='none';
-    document.getElementById('modalAddBtn').innerText=cart.some(i=>i.id===p.id)?"✓ В корзине":"➕ В корзину";
+    document.getElementById('modalName').innerText = p.name;
+    document.getElementById('modalCategory').innerHTML = categories.find(c => c.id === p.categoryId)?.name || "Без категории";
+    document.getElementById('modalPrice').innerHTML = `<span class="current-price">${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span>${p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>` : ''}`;
+    document.getElementById('modalDesc').innerText = p.description || "";
+    let yt = document.getElementById('youtubeLink');
+    if(p.youtubeUrl && p.youtubeUrl.trim()){
+        yt.href = p.youtubeUrl;
+        yt.style.display = 'inline-flex';
+    } else {
+        yt.style.display = 'none';
+    }
+    document.getElementById('modalAddBtn').innerText = cart.some(i => i.id === p.id) ? "✓ В корзине" : "➕ В корзину";
     document.getElementById('productModal').classList.add('active');
 };
-window.closeModal=function(){document.getElementById('productModal').classList.remove('active');};
-document.getElementById('modalAddBtn').onclick=()=>{if(currentModalProduct&&!cart.some(i=>i.id===currentModalProduct.id))toggleCart(currentModalProduct.id);closeModal();};
 
+window.closeModal = function(){
+    document.getElementById('productModal').classList.remove('active');
+};
+
+document.getElementById('modalAddBtn').onclick = () => {
+    if(currentModalProduct && !cart.some(i => i.id === currentModalProduct.id)){
+        toggleCart(currentModalProduct.id);
+    }
+    closeModal();
+};
+
+// АДМИН-ПАНЕЛЬ
 function renderAdminCategoriesSidebar(){
-    const cont=document.getElementById('adminCategoryList');
-    cont.innerHTML=categories.map(cat=>`
-        <div class="category-folder ${currentAdminCategoryId===cat.id?'active':''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId===cat.id?'#ff7a2f':'transparent'}">
+    const container = document.getElementById('adminCategoryList');
+    container.innerHTML = categories.map(cat => `
+        <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId === cat.id ? '#ff7a2f' : 'transparent'}">
             <span>📂 ${cat.name}</span>
-            <button class="delete-cat-btn" data-catid="${cat.id}" style="background:0 0;border:none;color:#ff8a7a;cursor:pointer">🗑️</button>
+            <button class="delete-cat-btn" data-catid="${cat.id}" style="background:none;border:none;color:#ff8a7a;cursor:pointer">🗑️</button>
         </div>
     `).join('');
-    document.querySelectorAll('.category-folder').forEach(el=>{
-        el.addEventListener('click',(e)=>{if(e.target.classList.contains('delete-cat-btn'))return;currentAdminCategoryId=el.dataset.catid;renderAdminCategoriesSidebar();renderProductsByCategory();document.getElementById('currentCategoryTitle').innerText=`📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name||'?'}`;});
-        const del=el.querySelector('.delete-cat-btn');
-        if(del)del.addEventListener('click',(e)=>{e.stopPropagation();deleteCategoryById(el.dataset.catid);});
+    document.querySelectorAll('.category-folder').forEach(el => {
+        el.addEventListener('click', (e) => {
+            if(e.target.classList.contains('delete-cat-btn')) return;
+            currentAdminCategoryId = el.dataset.catid;
+            renderAdminCategoriesSidebar();
+            renderProductsByCategory();
+            document.getElementById('currentCategoryTitle').innerText = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
+        });
+        const del = el.querySelector('.delete-cat-btn');
+        if(del){
+            del.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteCategoryById(el.dataset.catid);
+            });
+        }
     });
 }
+
 async function deleteCategoryById(catId){
-    if(!confirm("Удалить категорию и все товары?"))return;
-    const q=query(collection(db,"products"),where("categoryId","==",catId));
-    const snap=await getDocs(q);
-    for(let d of snap.docs)await deleteDoc(doc(db,"products",d.id));
-    await deleteDoc(doc(db,"categories",catId));
-    await loadCategories();await loadProducts();
-    if(currentAdminCategoryId===catId)currentAdminCategoryId=categories[0]?.id||null;
-    renderAdminCategoriesSidebar();renderProductsByCategory();renderAllProductsList();
-    showToast("Категория удалена");
-}
-window.addCategoryFromAdmin=async function(){
-    let name=document.getElementById('newAdminCatName').value.trim();
-    if(!name)return showToast("Введите название");
-    let newId="cat_"+Date.now();
-    await setDoc(doc(db,"categories",newId),{name});
+    if(!confirm("Удалить категорию и все товары в ней?")) return;
+    const q = query(collection(db, "products"), where("categoryId", "==", catId));
+    const snapshot = await getDocs(q);
+    for(const docSnap of snapshot.docs){
+        await deleteDoc(doc(db, "products", docSnap.id));
+    }
+    await deleteDoc(doc(db, "categories", catId));
     await loadCategories();
-    renderAdminCategoriesSidebar();renderAllProductsList();
-    document.getElementById('newAdminCatName').value='';
-    showToast(`Категория "${name}" добавлена`);
+    await loadProducts();
+    if(currentAdminCategoryId === catId) currentAdminCategoryId = categories[0]?.id || null;
+    renderAdminCategoriesSidebar();
+    renderProductsByCategory();
+    renderAllProductsList();
+    showToast("Категория удалена из Firebase");
+}
+
+window.addCategoryFromAdmin = async function(){
+    let name = document.getElementById('newAdminCatName').value.trim();
+    if(!name) return showToast("Введите название");
+    let newId = "cat_" + Date.now();
+    await setDoc(doc(db, "categories", newId), { name });
+    await loadCategories();
+    renderAdminCategoriesSidebar();
+    renderAllProductsList();
+    document.getElementById('newAdminCatName').value = '';
+    showToast(`Категория "${name}" добавлена в Firebase`);
 };
+
 function renderProductsByCategory(){
-    const cont=document.getElementById('adminProductsByCategory');
-    if(!currentAdminCategoryId){cont.innerHTML='<div style="padding:20px">Выберите категорию</div>';return;}
-    let filtered=products.filter(p=>p.categoryId===currentAdminCategoryId);
-    if(!filtered.length){cont.innerHTML='<div style="padding:20px">Нет товаров</div>';return;}
-    cont.innerHTML=filtered.map(p=>`
+    const container = document.getElementById('adminProductsByCategory');
+    if(!currentAdminCategoryId){
+        container.innerHTML = '<div style="padding:20px">Выберите категорию</div>';
+        return;
+    }
+    let filtered = products.filter(p => p.categoryId === currentAdminCategoryId);
+    if(!filtered.length){
+        container.innerHTML = '<div style="padding:20px">Нет товаров</div>';
+        return;
+    }
+    container.innerHTML = filtered.map(p => `
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
             <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
-                <img src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
-                <div><strong>${p.name}</strong><br><span>${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span></div>
+                <img src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
+                <div><strong>${escapeHtml(p.name)}</strong><br><span>${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
         </div>
     `).join('');
 }
+
 function renderAllProductsList(){
-    const cont=document.getElementById('allProductsList');
-    if(!products.length){cont.innerHTML='<div style="padding:20px">Нет товаров</div>';return;}
-    cont.innerHTML=products.map(p=>`
+    const container = document.getElementById('allProductsList');
+    if(!products.length){
+        container.innerHTML = '<div style="padding:20px">Нет товаров</div>';
+        return;
+    }
+    container.innerHTML = products.map(p => `
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
             <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
-                <img src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
-                <div><strong>${p.name}</strong><br><span>${categories.find(c=>c.id===p.categoryId)?.name||'Без категории'} | ${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span></div>
+                <img src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
+                <div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c => c.id === p.categoryId)?.name || 'Без категории'} | ${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
         </div>
     `).join('');
 }
-window.addProductInCurrentCategory=async function(){
-    if(!currentAdminCategoryId){showToast("Выберите категорию");return;}
-    let newId=Date.now();
-    let newProd={id:newId,name:"Новый ассет",categoryId:currentAdminCategoryId,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:"Добавьте описание"};
-    await setDoc(doc(db,"products",String(newId)),newProd);
+
+window.addProductInCurrentCategory = async function(){
+    if(!currentAdminCategoryId){
+        showToast("Выберите категорию");
+        return;
+    }
+    let newId = Date.now();
+    let newProduct = {
+        id: newId,
+        name: "Новый ассет",
+        categoryId: currentAdminCategoryId,
+        price: 0,
+        oldPrice: null,
+        fileUrl: "",
+        youtubeUrl: "",
+        images: [],
+        description: "Добавьте описание"
+    };
+    await setDoc(doc(db, "products", String(newId)), newProduct);
     await loadProducts();
-    renderProductsByCategory();renderAllProductsList();
+    renderProductsByCategory();
+    renderAllProductsList();
     openEditProductModal(newId);
+    showToast("Товар создан в Firebase");
 };
-window.addGlobalProduct=async function(){
-    let newId=Date.now();
-    let newProd={id:newId,name:"Новый ассет",categoryId:categories[0]?.id||null,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:""};
-    await setDoc(doc(db,"products",String(newId)),newProd);
+
+window.addGlobalProduct = async function(){
+    let newId = Date.now();
+    let newProduct = {
+        id: newId,
+        name: "Новый ассет",
+        categoryId: categories[0]?.id || null,
+        price: 0,
+        oldPrice: null,
+        fileUrl: "",
+        youtubeUrl: "",
+        images: [],
+        description: ""
+    };
+    await setDoc(doc(db, "products", String(newId)), newProduct);
     await loadProducts();
-    renderAllProductsList();renderProductsByCategory();
+    renderAllProductsList();
+    renderProductsByCategory();
     openEditProductModal(newId);
+    showToast("Товар создан в Firebase");
 };
-window.deleteProductById=async function(id){
-    if(!confirm("Удалить товар?"))return;
-    let prod=products.find(p=>p.id===id);
-    if(prod?.images)for(let img of prod.images)if(img.includes('firebasestorage'))try{await deleteObject(ref(storage,img));}catch(e){}
-    await deleteDoc(doc(db,"products",String(id)));
+
+window.deleteProductById = async function(id){
+    if(!confirm("Удалить товар?")) return;
+    await deleteDoc(doc(db, "products", String(id)));
     await loadProducts();
-    renderProductsByCategory();renderAllProductsList();
-    showToast("Товар удалён");
+    renderProductsByCategory();
+    renderAllProductsList();
+    showToast("Товар удалён из Firebase");
 };
-async function uploadImagesToStorage(files,productId){
-    let urls=[];
+
+async function uploadImagesToStorage(files, productId){
+    let urls = [];
     for(let file of files){
-        let refFile=ref(storage,`products/${productId}/${Date.now()}_${file.name}`);
-        await uploadBytes(refFile,file);
-        urls.push(await getDownloadURL(refFile));
+        let storageRef = ref(storage, `products/${productId}/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        let url = await getDownloadURL(storageRef);
+        urls.push(url);
     }
     return urls;
 }
+
 function handleImageFiles(event){
-    let files=Array.from(event.target.files);
+    let files = Array.from(event.target.files);
     for(let file of files){
-        if(!file.type.startsWith('image/'))continue;
+        if(!file.type.startsWith('image/')) continue;
         selectedImageFiles.push(file);
-        let reader=new FileReader();
-        reader.onload=function(e){
-            let div=document.createElement('div');
-            div.className='image-preview-item';
-            div.innerHTML=`<img src="${e.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
+        let reader = new FileReader();
+        reader.onload = function(e){
+            let div = document.createElement('div');
+            div.className = 'image-preview-item';
+            div.innerHTML = `<img src="${e.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
             document.getElementById('imagePreviewList').appendChild(div);
-            div.querySelector('.remove-image-btn').addEventListener('click',()=>{
-                let idx=selectedImageFiles.findIndex(f=>f.name===file.name);
-                if(idx!==-1)selectedImageFiles.splice(idx,1);
+            div.querySelector('.remove-image-btn').addEventListener('click', () => {
+                let idx = selectedImageFiles.findIndex(f => f.name === file.name);
+                if(idx !== -1) selectedImageFiles.splice(idx, 1);
                 div.remove();
             });
         };
         reader.readAsDataURL(file);
     }
-    document.getElementById('imageFileInput').value='';
+    document.getElementById('imageFileInput').value = '';
 }
-window.openEditProductModal=async function(id){
-    let prod=products.find(p=>p.id===id);if(!prod)return;
-    selectedImageFiles=[];
-    document.getElementById('imagePreviewList').innerHTML='';
-    if(prod.images)for(let imgUrl of prod.images){
-        let div=document.createElement('div');
-        div.className='image-preview-item';
-        div.innerHTML=`<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
-        document.getElementById('imagePreviewList').appendChild(div);
-        div.querySelector('.remove-image-btn').addEventListener('click',async()=>{
-            if(imgUrl.includes('firebasestorage'))try{await deleteObject(ref(storage,imgUrl));}catch(e){}
-            prod.images=prod.images.filter(u=>u!==imgUrl);
-            await setDoc(doc(db,"products",String(id)),prod);
-            await loadProducts();
-            div.remove();
-            showToast("Изображение удалено");
-        });
+
+window.openEditProductModal = async function(id){
+    let prod = products.find(p => p.id === id);
+    if(!prod) return;
+    selectedImageFiles = [];
+    document.getElementById('imagePreviewList').innerHTML = '';
+    if(prod.images){
+        for(let imgUrl of prod.images){
+            let div = document.createElement('div');
+            div.className = 'image-preview-item';
+            div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
+            document.getElementById('imagePreviewList').appendChild(div);
+            div.querySelector('.remove-image-btn').addEventListener('click', async () => {
+                if(imgUrl.includes('firebasestorage')){
+                    try{
+                        const imageRef = ref(storage, imgUrl);
+                        await deleteObject(imageRef);
+                    }catch(e){}
+                }
+                prod.images = prod.images.filter(u => u !== imgUrl);
+                await setDoc(doc(db, "products", String(id)), prod);
+                await loadProducts();
+                div.remove();
+                showToast("Изображение удалено");
+            });
+        }
     }
-    document.getElementById('editProductId').value=id;
-    document.getElementById('editName').value=prod.name;
-    let catSelect=document.getElementById('editCategoryId');
-    catSelect.innerHTML=`<option value="">— Без категории —</option>`+categories.map(c=>`<option value="${c.id}" ${prod.categoryId===c.id?'selected':''}>${c.name}</option>`).join('');
-    document.getElementById('editPrice').value=prod.price;
-    document.getElementById('editOldPrice').value=prod.oldPrice||'';
-    document.getElementById('editFileUrl').value=prod.fileUrl||'';
-    document.getElementById('editYoutubeUrl').value=prod.youtubeUrl||'';
-    document.getElementById('editDesc').value=prod.description||'';
+    document.getElementById('editProductId').value = id;
+    document.getElementById('editName').value = prod.name;
+    let catSelect = document.getElementById('editCategoryId');
+    catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${c.name}</option>`).join('');
+    document.getElementById('editPrice').value = prod.price;
+    document.getElementById('editOldPrice').value = prod.oldPrice || '';
+    document.getElementById('editFileUrl').value = prod.fileUrl || '';
+    document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || '';
+    document.getElementById('editDesc').value = prod.description || '';
     document.getElementById('editProductModal').classList.add('active');
 };
-window.closeEditProductModal=function(){document.getElementById('editProductModal').classList.remove('active');selectedImageFiles=[];};
-window.saveProductChanges=async function(){
-    let id=parseInt(document.getElementById('editProductId').value);
-    let prod=products.find(p=>p.id===id);if(!prod)return;
-    prod.name=document.getElementById('editName').value;
-    prod.categoryId=document.getElementById('editCategoryId').value||null;
-    prod.price=parseInt(document.getElementById('editPrice').value)||0;
-    prod.oldPrice=document.getElementById('editOldPrice').value?parseInt(document.getElementById('editOldPrice').value):null;
-    prod.fileUrl=document.getElementById('editFileUrl').value;
-    prod.youtubeUrl=document.getElementById('editYoutubeUrl').value;
-    prod.description=document.getElementById('editDesc').value;
+
+window.closeEditProductModal = function(){
+    document.getElementById('editProductModal').classList.remove('active');
+    selectedImageFiles = [];
+};
+
+window.saveProductChanges = async function(){
+    let id = parseInt(document.getElementById('editProductId').value);
+    let prod = products.find(p => p.id === id);
+    if(!prod) return;
+    prod.name = document.getElementById('editName').value;
+    prod.categoryId = document.getElementById('editCategoryId').value || null;
+    prod.price = parseInt(document.getElementById('editPrice').value) || 0;
+    prod.oldPrice = document.getElementById('editOldPrice').value ? parseInt(document.getElementById('editOldPrice').value) : null;
+    prod.fileUrl = document.getElementById('editFileUrl').value;
+    prod.youtubeUrl = document.getElementById('editYoutubeUrl').value;
+    prod.description = document.getElementById('editDesc').value;
     if(selectedImageFiles.length){
-        let newUrls=await uploadImagesToStorage(selectedImageFiles,id);
-        prod.images=[...(prod.images||[]),...newUrls];
+        let newUrls = await uploadImagesToStorage(selectedImageFiles, id);
+        prod.images = [...(prod.images || []), ...newUrls];
     }
-    await setDoc(doc(db,"products",String(id)),prod);
+    await setDoc(doc(db, "products", String(id)), prod);
     await loadProducts();
-    renderProductsByCategory();renderAllProductsList();
-    showToast("Товар сохранён");
+    renderProductsByCategory();
+    renderAllProductsList();
+    showToast("Товар сохранён в Firebase");
     closeEditProductModal();
 };
+
 function handleLogoUpload(event){
-    let file=event.target.files[0];
-    if(!file||!file.type.startsWith('image/'))return;
-    let reader=new FileReader();
-    reader.onload=async function(e){
-        let storageRef=ref(storage,`logo/logo_${Date.now()}`);
-        let blob=await fetch(e.target.result).then(r=>r.blob());
-        await uploadBytes(storageRef,blob);
-        let url=await getDownloadURL(storageRef);
-        settings.logoImage=url;
-        await setDoc(doc(db,"settings","main"),settings);
+    let file = event.target.files[0];
+    if(!file || !file.type.startsWith('image/')) return;
+    let reader = new FileReader();
+    reader.onload = async function(e){
+        let storageRef = ref(storage, `logo/logo_${Date.now()}`);
+        let blob = await fetch(e.target.result).then(r => r.blob());
+        await uploadBytes(storageRef, blob);
+        let url = await getDownloadURL(storageRef);
+        settings.logoImage = url;
+        await setDoc(doc(db, "settings", "main"), settings);
         updateLogoDisplay();
-        showToast("Логотип загружен");
+        showToast("Логотип загружен в Firebase Storage");
     };
     reader.readAsDataURL(file);
-    document.getElementById('logoFileInput').value='';
+    document.getElementById('logoFileInput').value = '';
 }
+
 async function removeLogo(){
-    if(settings.logoImage&&settings.logoImage.includes('firebasestorage'))try{await deleteObject(ref(storage,settings.logoImage));}catch(e){}
-    settings.logoImage=null;
-    await setDoc(doc(db,"settings","main"),settings);
+    if(settings.logoImage && settings.logoImage.includes('firebasestorage')){
+        try{
+            const logoRef = ref(storage, settings.logoImage);
+            await deleteObject(logoRef);
+        }catch(e){}
+    }
+    settings.logoImage = null;
+    await setDoc(doc(db, "settings", "main"), settings);
     updateLogoDisplay();
     showToast("Логотип удалён");
 }
+
 function showAdminPanel(){
-    if(!tg||tg.initDataUnsafe?.user?.id!==ADMIN_ID){showToast("⛔ Доступ запрещён");return;}
-    currentAdminCategoryId=categories[0]?.id||null;
-    renderAdminCategoriesSidebar();renderProductsByCategory();renderAllProductsList();
-    document.getElementById('currentCategoryTitle').innerHTML=currentAdminCategoryId?`📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name||''}`:'📦 Товары в категории';
+    if(!tg || tg.initDataUnsafe?.user?.id !== ADMIN_ID){
+        showToast("⛔ Доступ запрещён");
+        return;
+    }
+    currentAdminCategoryId = categories[0]?.id || null;
+    renderAdminCategoriesSidebar();
+    renderProductsByCategory();
+    renderAllProductsList();
+    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
     document.getElementById('adminPanel').classList.add('active');
-    document.querySelectorAll('.admin-tab').forEach(tab=>{
-        tab.addEventListener('click',()=>{
-            document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            document.querySelectorAll('.admin-section').forEach(sec=>sec.classList.remove('active'));
+            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(tab.dataset.tab).classList.add('active');
         });
     });
 }
-window.closeAdminPanel=function(){document.getElementById('adminPanel').classList.remove('active');};
 
-let clickCount=0,clickTimer;
-document.getElementById('logoClick').addEventListener('click',()=>{
+window.closeAdminPanel = function(){
+    document.getElementById('adminPanel').classList.remove('active');
+};
+
+let clickCount = 0, clickTimer;
+document.getElementById('logoClick').addEventListener('click', () => {
     clickCount++;
     clearTimeout(clickTimer);
-    clickTimer=setTimeout(()=>clickCount=0,800);
-    if(clickCount>=5){clickCount=0;showAdminPanel();}
+    clickTimer = setTimeout(() => clickCount = 0, 800);
+    if(clickCount >= 5){
+        clickCount = 0;
+        showAdminPanel();
+    }
 });
 
-let logoArea=document.getElementById('logoUploadArea');
+let logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
-    logoArea.addEventListener('dragover',e=>{e.preventDefault();logoArea.style.borderColor='#ff7a2f';});
-    logoArea.addEventListener('dragleave',()=>logoArea.style.borderColor='var(--border-light)');
-    logoArea.addEventListener('drop',async e=>{
-        e.preventDefault();logoArea.style.borderColor='var(--border-light)';
-        let file=e.dataTransfer.files[0];
-        if(file&&file.type.startsWith('image/')){
-            let reader=new FileReader();
-            reader.onload=async function(ev){
-                let storageRef=ref(storage,`logo/logo_${Date.now()}`);
-                let blob=await fetch(ev.target.result).then(r=>r.blob());
-                await uploadBytes(storageRef,blob);
-                let url=await getDownloadURL(storageRef);
-                settings.logoImage=url;
-                await setDoc(doc(db,"settings","main"),settings);
+    logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
+    logoArea.addEventListener('dragleave', () => logoArea.style.borderColor = 'var(--border-light)');
+    logoArea.addEventListener('drop', async e => {
+        e.preventDefault();
+        logoArea.style.borderColor = 'var(--border-light)';
+        let file = e.dataTransfer.files[0];
+        if(file && file.type.startsWith('image/')){
+            let reader = new FileReader();
+            reader.onload = async function(ev){
+                let storageRef = ref(storage, `logo/logo_${Date.now()}`);
+                let blob = await fetch(ev.target.result).then(r => r.blob());
+                await uploadBytes(storageRef, blob);
+                let url = await getDownloadURL(storageRef);
+                settings.logoImage = url;
+                await setDoc(doc(db, "settings", "main"), settings);
                 updateLogoDisplay();
                 showToast("Логотип загружен");
             };
@@ -457,25 +676,27 @@ if(logoArea){
         }
     });
 }
-let imageArea=document.getElementById('imageUploadArea');
+
+let imageArea = document.getElementById('imageUploadArea');
 if(imageArea){
-    imageArea.addEventListener('dragover',e=>{e.preventDefault();imageArea.style.borderColor='#ff7a2f';});
-    imageArea.addEventListener('dragleave',()=>imageArea.style.borderColor='var(--border-light)');
-    imageArea.addEventListener('drop',e=>{
-        e.preventDefault();imageArea.style.borderColor='var(--border-light)';
-        let files=Array.from(e.dataTransfer.files);
+    imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
+    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'var(--border-light)');
+    imageArea.addEventListener('drop', e => {
+        e.preventDefault();
+        imageArea.style.borderColor = 'var(--border-light)';
+        let files = Array.from(e.dataTransfer.files);
         for(let file of files){
-            if(!file.type.startsWith('image/'))continue;
+            if(!file.type.startsWith('image/')) continue;
             selectedImageFiles.push(file);
-            let reader=new FileReader();
-            reader.onload=function(ev){
-                let div=document.createElement('div');
-                div.className='image-preview-item';
-                div.innerHTML=`<img src="${ev.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
+            let reader = new FileReader();
+            reader.onload = function(ev){
+                let div = document.createElement('div');
+                div.className = 'image-preview-item';
+                div.innerHTML = `<img src="${ev.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
                 document.getElementById('imagePreviewList').appendChild(div);
-                div.querySelector('.remove-image-btn').addEventListener('click',()=>{
-                    let idx=selectedImageFiles.findIndex(f=>f.name===file.name);
-                    if(idx!==-1)selectedImageFiles.splice(idx,1);
+                div.querySelector('.remove-image-btn').addEventListener('click', () => {
+                    let idx = selectedImageFiles.findIndex(f => f.name === file.name);
+                    if(idx !== -1) selectedImageFiles.splice(idx, 1);
                     div.remove();
                 });
             };
@@ -483,32 +704,38 @@ if(imageArea){
         }
     });
 }
+
+// ЗАПУСК
 await loadSettings();
 await loadCategories();
 await loadProducts();
 renderCart();
 if(tg?.BackButton){
-    tg.BackButton.onClick(()=>{if(document.getElementById('pageHome').classList.contains('active'))tg.close();else navigateTo('home');});
+    tg.BackButton.onClick(() => {
+        if(document.getElementById('pageHome').classList.contains('active')) tg.close();
+        else navigateTo('home');
+    });
     tg.BackButton.hide();
 }
-window.filterProducts=filterProducts;
-window.toggleCart=toggleCart;
-window.removeFromCart=removeFromCart;
-window.processOrder=processOrder;
-window.navigateTo=navigateTo;
-window.openProductModal=openProductModal;
-window.closeModal=closeModal;
-window.openEditProductModal=openEditProductModal;
-window.closeEditProductModal=closeEditProductModal;
-window.saveProductChanges=saveProductChanges;
-window.deleteProductById=deleteProductById;
-window.addProductInCurrentCategory=addProductInCurrentCategory;
-window.addGlobalProduct=addGlobalProduct;
-window.addCategoryFromAdmin=addCategoryFromAdmin;
-window.handleImageFiles=handleImageFiles;
-window.handleLogoUpload=handleLogoUpload;
-window.removeLogo=removeLogo;
-window.saveSettings=saveSettings;
+
+window.filterProducts = filterProducts;
+window.toggleCart = toggleCart;
+window.removeFromCart = removeFromCart;
+window.processOrder = processOrder;
+window.navigateTo = navigateTo;
+window.openProductModal = openProductModal;
+window.closeModal = closeModal;
+window.openEditProductModal = openEditProductModal;
+window.closeEditProductModal = closeEditProductModal;
+window.saveProductChanges = saveProductChanges;
+window.deleteProductById = deleteProductById;
+window.addProductInCurrentCategory = addProductInCurrentCategory;
+window.addGlobalProduct = addGlobalProduct;
+window.addCategoryFromAdmin = addCategoryFromAdmin;
+window.handleImageFiles = handleImageFiles;
+window.handleLogoUpload = handleLogoUpload;
+window.removeLogo = removeLogo;
+window.saveSettings = saveSettings;
 </script>
 </body>
 </html>
