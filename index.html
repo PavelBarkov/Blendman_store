@@ -5,6 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Blender Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCg0EUX3grKMXmKoLKZyGcWSAYPDZ-bwuQ",
+            authDomain: "blendmanshop.firebaseapp.com",
+            projectId: "blendmanshop",
+            storageBucket: "blendmanshop.firebasestorage.app",
+            messagingSenderId: "32462864879",
+            appId: "1:32462864879:web:958c2f23c98859db9a761a",
+            measurementId: "G-HWLL4RRPDP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        window.db = db;
+        window.storage = storage;
+        window.collection = collection;
+        window.doc = doc;
+        window.setDoc = setDoc;
+        window.deleteDoc = deleteDoc;
+        window.getDocs = getDocs;
+        window.query = query;
+        window.where = where;
+        window.ref = ref;
+        window.uploadBytes = uploadBytes;
+        window.getDownloadURL = getDownloadURL;
+        window.deleteObject = deleteObject;
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px;background:rgba(255,255,255,0.05);padding:4px;object-fit:contain}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer;transition:0.2s}.cart-btn:hover{border-color:var(--accent);background:rgba(255,122,47,0.1)}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}
@@ -19,54 +52,445 @@
 <div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Загрузить<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
 <div class="toast" id="toastMsg">Сообщение</div>
 <div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
-<script>
-(function(){
-const _0x4b3d=['tgWebAppData','user','id','initDataUnsafe','WebApp','ready','expand','setItem','getItem','blender_cart','blender_products','blender_categories','blender_settings','JSON','parse','stringify','toLowerCase','includes','addEventListener','click','classList','active','contains','toggle','innerHTML','textContent','value','trim','src','logo-img','logo-text','style','display','forEach','map','filter','find','some','push','splice','length','createElement','appendChild','toLocaleString','replace','&amp;','&lt;','&gt;','href','target','_blank'];
-let _0x1a2b=function(_0x3c4d,_0x5e6f){_0x3c4d=_0x3c4d-0x0;let _0x7g8h=_0x4b3d[_0x3c4d];return _0x7g8h;};
-let tg=window[_0x1a2b(0x0)];if(tg){tg[_0x1a2b(0x1)]();tg[_0x1a2b(0x2)]();}
-const ADMIN_ID=379731685;
-let _0x2c4d=null;
-let categories=JSON.parse(localStorage[_0x1a2b(0x3)](_0x1a2b(0x4)))||[{id:"cat1",name:"Add-on"},{id:"cat2",name:"Скрипты"},{id:"cat4",name:"Бандлы"},{id:"cat5",name:"Материалы"}];
-let products=JSON.parse(localStorage[_0x1a2b(0x3)](_0x1a2b(0x5)))||[{id:1,name:"NodeFlow Pro",categoryId:"cat1",price:890,oldPrice:1290,fileUrl:"#",youtubeUrl:"https://youtu.be/dQw4w9WgXcQ",images:[],description:"Визуальный редактор нод"},{id:2,name:"RetopoMaster",categoryId:"cat1",price:1490,oldPrice:null,fileUrl:"#",youtubeUrl:"",images:[],description:"Ретопология"}];
-let cart=JSON.parse(localStorage[_0x1a2b(0x3)](_0x1a2b(0x6)))||[];
-let settings=JSON.parse(localStorage[_0x1a2b(0x3)](_0x1a2b(0x7)))||{storeName:"Blender Shop",logoText:"🌀 BLENDER SHOP",logoImage:null};
-function _0x5a6b(){let _0x7c8d=document.getElementById('logoContainer');_0x7c8d[_0x1a2b(0x8)]='';if(settings.logoImage){let _0x9e0f=document[_0x1a2b(0x9)]('img');_0x9e0f[_0x1a2b(0xa)]=settings.logoImage;_0x9e0f.className=_0x1a2b(0xb);_0x7c8d[_0x1a2b(0xc)](_0x9e0f);}let _0x1d2e=document[_0x1a2b(0x9)]('span');_0x1d2e.className=_0x1a2b(0xd);_0x1d2e[_0x1a2b(0xe)]=settings.logoText;_0x7c8d[_0x1a2b(0xc)](_0x1d2e);document.title=settings.storeName;}
-function _0x2f3a(){localStorage[_0x1a2b(0xf)](_0x1a2b(0x7),JSON[_0x1a2b(0x10)](settings));_0x5a6b();_0x7b8c("Настройки сохранены");}
-function _0x7b8c(_0x9a0b){let _0x1c2d=document.getElementById('toastMsg');_0x1c2d[_0x1a2b(0xe)]=_0x9a0b;_0x1c2d.classList.add('show');setTimeout(()=>_0x1c2d.classList.remove('show'),2000);}
-function _0x3e4f(){let _0x5g6h=document.getElementById('settingsStoreName').value.trim();let _0x7i8j=document.getElementById('settingsLogoText').value.trim();if(_0x5g6h)settings.storeName=_0x5g6h;if(_0x7i8j)settings.logoText=_0x7i8j;_0x2f3a();}
-function handleLogoUpload(_0x1a2c){let _0x3d4e=_0x1a2c.target.files[0];if(!_0x3d4e||!_0x3d4e.type.startsWith('image/'))return;let _0x5f6g=new FileReader();_0x5f6g.onload=function(_0x7h8i){settings.logoImage=_0x7h8i.target.result;_0x2f3a();_0x7b8c("Логотип загружен");};_0x5f6g.readAsDataURL(_0x3d4e);}
-function removeLogo(){settings.logoImage=null;_0x2f3a();_0x7b8c("Логотип удалён");}
-function _0x9c0d(){let _0x1a2b3c=document.getElementById('categoriesList');let _0x4d5e6f=window._0x7f8g||null;_0x1a2b3c[_0x1a2b(0x8)]=`<div class="chip ${_0x4d5e6f===null?'active':''}" data-cat="">🔥 Все</div>`+categories.map(_0x9a0b=>`<div class="chip ${_0x4d5e6f===_0x9a0b.id?'active':''}" data-cat="${_0x9a0b.id}">${_0x9a0b.name}</div>`).join('');document.querySelectorAll('.chip').forEach(_0x1c2d=>{_0x1c2d[_0x1a2b(0x10)]('click',()=>{window._0x7f8g=_0x1c2d.dataset.cat===""?null:_0x1c2d.dataset.cat;_0x9c0d();_0x3a4b();});});}
-function _0x3a4b(){let _0x5b6c=products.filter(_0x7d8e=>{if(window._0x7f8g&&_0x7d8e.categoryId!==window._0x7f8g)return false;if(window._0x9e0f&&!_0x7d8e.name[_0x1a2b(0x11)]().includes(window._0x9e0f))return false;return true;});let _0x1f2g=document.getElementById('productsGridContainer');if(!_0x5b6c.length){_0x1f2g[_0x1a2b(0x8)]='<div style="text-align:center;padding:40px;">✨ Ничего не найдено</div>';return;}_0x1f2g[_0x1a2b(0x8)]=_0x5b6c.map(_0x3c4d=>`<div class="product-card" onclick="openProductModal(${_0x3c4d.id})"><img class="product-preview" src="${_0x3c4d.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}"><div class="product-name">${_0x3c4d.name}</div><div><span class="current-price">${_0x3c4d.price===0?"Бесплатно":_0x3c4d.price.toLocaleString()+" ₽"}</span>${_0x3c4d.oldPrice?`<span class="old-price">${_0x3c4d.oldPrice.toLocaleString()} ₽</span>`:''}</div><button class="add-btn" onclick="event.stopPropagation(); toggleCart(${_0x3c4d.id})">${cart.some(_0x5e6f=>_0x5e6f.id===_0x3c4d.id)?'✓ В корзине':'+ В корзину'}</button></div>`).join('');}
-function filterProducts(){window._0x9e0f=document.getElementById('searchInput').value[_0x1a2b(0x11)]();_0x3a4b();}
-function toggleCart(_0x1a2c){let _0x3d4e=cart.findIndex(_0x5f6g=>_0x5f6g.id===_0x1a2c);if(_0x3d4e!==-1)cart.splice(_0x3d4e,1);else{let _0x7h8i=products.find(_0x9i0j=>_0x9i0j.id===_0x1a2c);cart.push({id:_0x7h8i.id,name:_0x7h8i.name,price:_0x7h8i.price,fileUrl:_0x7h8i.fileUrl,preview:_0x7h8i.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'});}localStorage[_0x1a2b(0xf)](_0x1a2b(0x6),JSON[_0x1a2b(0x10)](cart));_0x3a4b();_0x1b2c();_0x7b8c(_0x3d4e===-1?"Добавлено":"Удалено");document.getElementById('cartCount').innerText=cart.length;}
-function _0x1b2c(){let _0x3c4d=document.getElementById('cartItems');if(!cart.length){_0x3c4d[_0x1a2b(0x8)]='<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';document.getElementById('cartTotal')[_0x1a2b(0x8)]='';document.getElementById('checkoutForm')[_0x1a2b(0x12)]=_0x1a2b(0x13);return;}_0x3c4d[_0x1a2b(0x8)]=cart.map(_0x5e6f=>`<div class="cart-item"><div><img class="cart-preview" src="${_0x5e6f.preview}"> ${_0x5e6f.name} - ${_0x5e6f.price===0?"Бесплатно":_0x5e6f.price.toLocaleString()+" ₽"}</div><button class="remove-item" onclick="removeFromCart(${_0x5e6f.id})">Удалить</button></div>`).join('');let _0x7g8h=cart.reduce((_0x9i0j,_0x1a2c)=>_0x9i0j+_0x1a2c.price,0);document.getElementById('cartTotal')[_0x1a2b(0x8)]=`<div class="total-block">Итого: ${_0x7g8h===0?"Бесплатно":_0x7g8h.toLocaleString()+" ₽"}</div>`;document.getElementById('checkoutForm')[_0x1a2b(0x12)]='block';}
-function removeFromCart(_0x1a2c){cart=cart.filter(_0x3d4e=>_0x3d4e.id!==_0x1a2c);localStorage[_0x1a2b(0xf)](_0x1a2b(0x6),JSON[_0x1a2b(0x10)](cart));_0x1b2c();_0x3a4b();document.getElementById('cartCount').innerText=cart.length;}
-function processOrder(){let _0x3c4d=document.getElementById('customerName').value.trim();let _0x5e6f=document.getElementById('customerEmail').value.trim();if(!_0x3c4d||!_0x5e6f){_0x7b8c("Заполните имя и email");return;}if(!cart.length)return;let _0x7g8h=cart.map(_0x9i0j=>({name:_0x9i0j.name,url:_0x9i0j.fileUrl})).filter(_0x1a2c=>_0x1a2c.url);let _0x2b3c=`<div><h3>✅ Спасибо, ${_0x3c4d}!</h3><p>Ваши файлы:</p>`;_0x7g8h.forEach(_0x4d5e=>{_0x2b3c+=`<a href="${_0x4d5e.url}" target="${_0x1a2b(0x14)}" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${_0x4d5e.name}</a>`;});_0x2b3c+=`<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;document.getElementById('cartItems')[_0x1a2b(0x8)]=_0x2b3c;document.getElementById('cartTotal')[_0x1a2b(0x8)]='';document.getElementById('checkoutForm')[_0x1a2b(0x12)]=_0x1a2b(0x13);cart=[];localStorage[_0x1a2b(0xf)](_0x1a2b(0x6),JSON[_0x1a2b(0x10)](cart));document.getElementById('cartCount').innerText=0;if(tg?.HapticFeedback)tg.HapticFeedback.notificationOccurred('success');}
-function navigateTo(_0x1a2c){document.getElementById('pageHome').classList.toggle('active',_0x1a2c==='home');document.getElementById('pageCart').classList.toggle('active',_0x1a2c==='cart');document.querySelectorAll('.nav-item').forEach((_0x3d4e,_0x5e6f)=>{_0x3d4e.classList.toggle('active',(_0x1a2c==='home'&&_0x5e6f===0)||(_0x1a2c==='cart'&&_0x5e6f===1));});if(_0x1a2c==='cart')_0x1b2c();closeModal();}
-let _0x7f8g=null,_0x9e0f=null,_0x1c2d=null,_0x3a4b=0;
-function openProductModal(_0x1a2c){let _0x3d4e=products.find(_0x5f6g=>_0x5f6g.id===_0x1a2c);if(!_0x3d4e)return;_0x1c2d=_0x3d4e;_0x3a4b=0;let _0x7h8i=_0x3d4e.images?.length?_0x3d4e.images:['https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'];document.getElementById('modalGallery')[_0x1a2b(0x8)]=_0x7h8i.map((_0x9i0j,_0x1a2c)=>`<img class="gallery-img" src="${_0x9i0j}" style="display:${_0x1a2c===0?'block':'none'};">`).join('');document.getElementById('galleryNav')[_0x1a2b(0x8)]=_0x7h8i.map((_0x2b3c,_0x4d5e)=>`<div class="gallery-dot ${_0x4d5e===_0x3a4b?'active':''}" data-dot="${_0x4d5e}"></div>`).join('');document.querySelectorAll('.gallery-dot').forEach(_0x5e6f=>_0x5e6f[_0x1a2b(0x10)]('click',(_0x6g7h)=>{_0x3a4b=parseInt(_0x6g7h.target.dataset.dot);_0x7b8d();}));function _0x7b8d(){document.querySelectorAll('#modalGallery .gallery-img').forEach((_0x8c9d,_0x9e0f)=>{_0x8c9d[_0x1a2b(0x12)]=_0x9e0f===_0x3a4b?'block':'none';});document.querySelectorAll('#galleryNav .gallery-dot').forEach((_0x1a2c,_0x2b3c)=>{if(_0x2b3c===_0x3a4b)_0x1a2c.classList.add('active');else _0x1a2c.classList.remove('active');});}document.getElementById('modalName')[_0x1a2b(0xe)]=_0x3d4e.name;document.getElementById('modalCategory')[_0x1a2b(0x8)]=categories.find(_0x4c5d=>_0x4c5d.id===_0x3d4e.categoryId)?.name||"Без категории";document.getElementById('modalPrice')[_0x1a2b(0x8)]=`<span class="current-price">${_0x3d4e.price===0?"Бесплатно":_0x3d4e.price.toLocaleString()+" ₽"}</span>${_0x3d4e.oldPrice?`<span class="old-price">${_0x3d4e.oldPrice.toLocaleString()} ₽</span>`:''}`;document.getElementById('modalDesc')[_0x1a2b(0xe)]=_0x3d4e.description||"";let _0x5e6f=document.getElementById('youtubeLink');if(_0x3d4e.youtubeUrl&&_0x3d4e.youtubeUrl.trim()){_0x5e6f[_0x1a2b(0x15)]=_0x3d4e.youtubeUrl;_0x5e6f[_0x1a2b(0x12)]='inline-flex';}else _0x5e6f[_0x1a2b(0x12)]='none';document.getElementById('modalAddBtn').innerText=cart.some(_0x6g7h=>_0x6g7h.id===_0x3d4e.id)?"✓ В корзине":"➕ В корзину";document.getElementById('productModal').classList.add('active');}
-function closeModal(){document.getElementById('productModal').classList.remove('active');_0x1c2d=null;}
-document.getElementById('modalAddBtn').onclick=()=>{if(_0x1c2d&&!cart.some(_0x3d4e=>_0x3d4e.id===_0x1c2d.id))toggleCart(_0x1c2d.id);closeModal();};
-function _0x2a3b(){let _0x4c5d=document.getElementById('adminCategoryList');if(!_0x4c5d)return;_0x4c5d[_0x1a2b(0x8)]=categories.map(_0x5e6f=>`<div class="category-folder ${window._0x6f7g===_0x5e6f.id?'active':''}" data-catid="${_0x5e6f.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${window._0x6f7g===_0x5e6f.id?'#ff7a2f':'transparent'}"><span>📂 ${_0x5e6f.name}</span><button class="delete-cat-btn" data-catid="${_0x5e6f.id}" style="background:0 0;border:none;color:#ff8a7a;cursor:pointer">🗑️</button></div>`).join('');document.querySelectorAll('.category-folder').forEach(_0x7g8h=>{_0x7g8h[_0x1a2b(0x10)]('click',(_0x9i0j)=>{if(_0x9i0j.target.classList.contains('delete-cat-btn'))return;window._0x6f7g=_0x7g8h.dataset.catid;_0x2a3b();_0x3b4c();document.getElementById('currentCategoryTitle')[_0x1a2b(0xe)]=`📦 Товары в категории: ${categories.find(_0x1a2c=>_0x1a2c.id===window._0x6f7g)?.name||'?'}`;});let _0x1a2b=_0x7g8h.querySelector('.delete-cat-btn');if(_0x1a2b)_0x1a2b[_0x1a2b(0x10)]('click',(_0x3c4d)=>{_0x3c4d.stopPropagation();_0x4d5e(_0x7g8h.dataset.catid);});});}
-function _0x4d5e(_0x5e6f){if(!confirm("Удалить категорию и все товары?"))return;products=products.filter(_0x7g8h=>_0x7g8h.categoryId!==_0x5e6f);categories=categories.filter(_0x9i0j=>_0x9i0j.id!==_0x5e6f);if(window._0x6f7g===_0x5e6f)window._0x6f7g=categories[0]?.id||null;localStorage[_0x1a2b(0xf)](_0x1a2b(0x4),JSON[_0x1a2b(0x10)](categories));localStorage[_0x1a2b(0xf)](_0x1a2b(0x5),JSON[_0x1a2b(0x10)](products));_0x2a3b();_0x3b4c();_0x1b2d();_0x9c0d();_0x3a4b();_0x7b8c("Категория удалена");}
-function addCategoryFromAdmin(){let _0x3c4d=document.getElementById('newAdminCatName').value.trim();if(!_0x3c4d)return _0x7b8c("Введите название");let _0x5e6f="cat_"+Date.now();categories.push({id:_0x5e6f,name:_0x3c4d});localStorage[_0x1a2b(0xf)](_0x1a2b(0x4),JSON[_0x1a2b(0x10)](categories));_0x2a3b();_0x1b2d();_0x9c0d();document.getElementById('newAdminCatName').value='';_0x7b8c(`Категория "${_0x3c4d}" добавлена`);}
-function _0x3b4c(){let _0x1a2b=document.getElementById('adminProductsByCategory');if(!window._0x6f7g){_0x1a2b[_0x1a2b(0x8)]='<div style="padding:20px">Выберите категорию</div>';return;}let _0x3c4d=products.filter(_0x5e6f=>_0x5e6f.categoryId===window._0x6f7g);if(!_0x3c4d.length){_0x1a2b[_0x1a2b(0x8)]='<div style="padding:20px">Нет товаров</div>';return;}_0x1a2b[_0x1a2b(0x8)]=_0x3c4d.map(_0x7g8h=>`<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px"><div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${_0x7g8h.id})"><img src="${_0x7g8h.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px"><div><strong>${_0x7g8h.name}</strong><br><span>${_0x7g8h.price===0?"Бесплатно":_0x7g8h.price.toLocaleString()+" ₽"}</span></div></div><div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${_0x7g8h.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${_0x7g8h.id})">🗑️</button></div></div>`).join('');}
-function _0x1b2d(){let _0x3c4d=document.getElementById('allProductsList');if(!products.length){_0x3c4d[_0x1a2b(0x8)]='<div style="padding:20px">Нет товаров</div>';return;}_0x3c4d[_0x1a2b(0x8)]=products.map(_0x5e6f=>`<div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px"><div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${_0x5e6f.id})"><img src="${_0x5e6f.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px"><div><strong>${_0x5e6f.name}</strong><br><span>${categories.find(_0x7g8h=>_0x7g8h.id===_0x5e6f.categoryId)?.name||'Без категории'} | ${_0x5e6f.price===0?"Бесплатно":_0x5e6f.price.toLocaleString()+" ₽"}</span></div></div><div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${_0x5e6f.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${_0x5e6f.id})">🗑️</button></div></div>`).join('');}
-function addProductInCurrentCategory(){if(!window._0x6f7g){_0x7b8c("Выберите категорию");return;}let _0x3c4d=Date.now();products.push({id:_0x3c4d,name:"Новый ассет",categoryId:window._0x6f7g,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:"Добавьте описание"});localStorage[_0x1a2b(0xf)](_0x1a2b(0x5),JSON[_0x1a2b(0x10)](products));_0x3b4c();_0x1b2d();_0x3a4b();openEditProductModal(_0x3c4d);_0x7b8c("Товар создан");}
-function addGlobalProduct(){let _0x3c4d=Date.now();products.push({id:_0x3c4d,name:"Новый ассет",categoryId:categories[0]?.id||null,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:""});localStorage[_0x1a2b(0xf)](_0x1a2b(0x5),JSON[_0x1a2b(0x10)](products));_0x1b2d();_0x3b4c();_0x3a4b();openEditProductModal(_0x3c4d);_0x7b8c("Товар создан");}
-function deleteProductById(_0x3c4d){if(!confirm("Удалить товар?"))return;products=products.filter(_0x5e6f=>_0x5e6f.id!==_0x3c4d);localStorage[_0x1a2b(0xf)](_0x1a2b(0x5),JSON[_0x1a2b(0x10)](products));_0x3b4c();_0x1b2d();_0x3a4b();_0x7b8c("Товар удалён");}
-let _0x2c3d=[];
-function handleImageFiles(_0x4d5e){let _0x5e6f=Array.from(_0x4d5e.target.files);for(let _0x7g8h of _0x5e6f){if(!_0x7g8h.type.startsWith('image/'))continue;_0x2c3d.push(_0x7g8h);let _0x9i0j=new FileReader();_0x9i0j.onload=function(_0x1a2c){let _0x3b4c=document.createElement('div');_0x3b4c.className='image-preview-item';_0x3b4c.innerHTML=`<img src="${_0x1a2c.target.result}"><button class="remove-image-btn" data-filename="${_0x7g8h.name}">✖</button>`;document.getElementById('imagePreviewList').appendChild(_0x3b4c);_0x3b4c.querySelector('.remove-image-btn').addEventListener('click',()=>{let _0x4d5e=_0x2c3d.findIndex(_0x5e6f=>_0x5e6f.name===_0x7g8h.name);if(_0x4d5e!==-1)_0x2c3d.splice(_0x4d5e,1);_0x3b4c.remove();});};_0x9i0j.readAsDataURL(_0x7g8h);}document.getElementById('imageFileInput').value='';}
-function openEditProductModal(_0x3c4d){let _0x4d5e=products.find(_0x5e6f=>_0x5e6f.id===_0x3c4d);if(!_0x4d5e)return;_0x2c3d=[];document.getElementById('imagePreviewList').innerHTML='';if(_0x4d5e.images)for(let _0x7g8h of _0x4d5e.images){let _0x9i0j=document.createElement('div');_0x9i0j.className='image-preview-item';_0x9i0j.innerHTML=`<img src="${_0x7g8h}"><button class="remove-image-btn" data-url="${_0x7g8h}">✖</button>`;document.getElementById('imagePreviewList').appendChild(_0x9i0j);_0x9i0j.querySelector('.remove-image-btn').addEventListener('click',()=>{_0x4d5e.images=_0x4d5e.images.filter(_0x1a2c=>_0x1a2c!==_0x7g8h);localStorage.setItem('blender_products',JSON.stringify(products));_0x9i0j.remove();_0x7b8c("Изображение удалено");});}document.getElementById('editProductId').value=_0x3c4d;document.getElementById('editName').value=_0x4d5e.name;let _0x1a2b=document.getElementById('editCategoryId');_0x1a2b.innerHTML=`<option value="">— Без категории —</option>`+categories.map(_0x3c4d=>`<option value="${_0x3c4d.id}" ${_0x4d5e.categoryId===_0x3c4d.id?'selected':''}>${_0x3c4d.name}</option>`).join('');document.getElementById('editPrice').value=_0x4d5e.price;document.getElementById('editOldPrice').value=_0x4d5e.oldPrice||'';document.getElementById('editFileUrl').value=_0x4d5e.fileUrl||'';document.getElementById('editYoutubeUrl').value=_0x4d5e.youtubeUrl||'';document.getElementById('editDesc').value=_0x4d5e.description||'';document.getElementById('editProductModal').classList.add('active');}
-function closeEditProductModal(){document.getElementById('editProductModal').classList.remove('active');_0x2c3d=[];}
-async function saveProductChanges(){let _0x3c4d=parseInt(document.getElementById('editProductId').value);let _0x4d5e=products.find(_0x5e6f=>_0x5e6f.id===_0x3c4d);if(!_0x4d5e)return;_0x4d5e.name=document.getElementById('editName').value;_0x4d5e.categoryId=document.getElementById('editCategoryId').value||null;_0x4d5e.price=parseInt(document.getElementById('editPrice').value)||0;_0x4d5e.oldPrice=document.getElementById('editOldPrice').value?parseInt(document.getElementById('editOldPrice').value):null;_0x4d5e.fileUrl=document.getElementById('editFileUrl').value;_0x4d5e.youtubeUrl=document.getElementById('editYoutubeUrl').value;_0x4d5e.description=document.getElementById('editDesc').value;for(let _0x7g8h of _0x2c3d){let _0x9i0j=await new Promise((_0x1a2c)=>{let _0x3b4c=new FileReader();_0x3b4c.onload=_0x1a2c;_0x3b4c.readAsDataURL(_0x7g8h);});_0x4d5e.images.push(_0x9i0j.target.result);}localStorage.setItem('blender_products',JSON.stringify(products));_0x3b4c();_0x1b2d();_0x3a4b();_0x7b8c("Товар сохранён");closeEditProductModal();}
-function showAdminPanel(){if(!tg||tg.initDataUnsafe?.user?.id!==ADMIN_ID){_0x7b8c("⛔ Доступ запрещён");return;}window._0x6f7g=categories[0]?.id||null;_0x2a3b();_0x3b4c();_0x1b2d();document.getElementById('currentCategoryTitle').innerHTML=window._0x6f7g?`📦 Товары в категории: ${categories.find(_0x3c4d=>_0x3c4d.id===window._0x6f7g)?.name||''}`:'📦 Товары в категории';document.getElementById('adminPanel').classList.add('active');document.querySelectorAll('.admin-tab').forEach(_0x3c4d=>{_0x3c4d.addEventListener('click',()=>{document.querySelectorAll('.admin-tab').forEach(_0x4d5e=>_0x4d5e.classList.remove('active'));_0x3c4d.classList.add('active');document.querySelectorAll('.admin-section').forEach(_0x5e6f=>_0x5e6f.classList.remove('active'));document.getElementById(_0x3c4d.dataset.tab).classList.add('active');});});}
-function closeAdminPanel(){document.getElementById('adminPanel').classList.remove('active');}
-let _0x1a2b3c=0,_0x4d5e6f;document.getElementById('logoClick').addEventListener('click',()=>{_0x1a2b3c++;clearTimeout(_0x4d5e6f);_0x4d5e6f=setTimeout(()=>_0x1a2b3c=0,800);if(_0x1a2b3c>=5){_0x1a2b3c=0;showAdminPanel();}});
-let _0x7g8h=document.getElementById('logoUploadArea');if(_0x7g8h){_0x7g8h.addEventListener('dragover',_0x9i0j=>{_0x9i0j.preventDefault();_0x7g8h.style.borderColor='#ff7a2f';});_0x7g8h.addEventListener('dragleave',()=>_0x7g8h.style.borderColor='var(--border-light)');_0x7g8h.addEventListener('drop',_0x1a2c=>{_0x1a2c.preventDefault();_0x7g8h.style.borderColor='var(--border-light)';let _0x3b4c=_0x1a2c.dataTransfer.files[0];if(_0x3b4c&&_0x3b4c.type.startsWith('image/')){let _0x4d5e=new FileReader();_0x4d5e.onload=function(_0x5e6f){settings.logoImage=_0x5e6f.target.result;_0x2f3a();_0x7b8c("Логотип загружен");};_0x4d5e.readAsDataURL(_0x3b4c);}});}
-let _0x9i0j=document.getElementById('imageUploadArea');if(_0x9i0j){_0x9i0j.addEventListener('dragover',_0x1a2c=>{_0x1a2c.preventDefault();_0x9i0j.style.borderColor='#ff7a2f';});_0x9i0j.addEventListener('dragleave',()=>_0x9i0j.style.borderColor='var(--border-light)');_0x9i0j.addEventListener('drop',_0x3b4c=>{_0x3b4c.preventDefault();_0x9i0j.style.borderColor='var(--border-light)';let _0x4d5e=Array.from(_0x3b4c.dataTransfer.files);for(let _0x5e6f of _0x4d5e){if(!_0x5e6f.type.startsWith('image/'))continue;_0x2c3d.push(_0x5e6f);let _0x7g8h=new FileReader();_0x7g8h.onload=function(_0x9i0j){let _0x1a2c=document.createElement('div');_0x1a2c.className='image-preview-item';_0x1a2c.innerHTML=`<img src="${_0x9i0j.target.result}"><button class="remove-image-btn" data-filename="${_0x5e6f.name}">✖</button>`;document.getElementById('imagePreviewList').appendChild(_0x1a2c);_0x1a2c.querySelector('.remove-image-btn').addEventListener('click',()=>{let _0x3b4c=_0x2c3d.findIndex(_0x4d5e=>_0x4d5e.name===_0x5e6f.name);if(_0x3b4c!==-1)_0x2c3d.splice(_0x3b4c,1);_0x1a2c.remove();});};_0x7g8h.readAsDataURL(_0x5e6f);}});}
-_0x5a6b();_0x9c0d();_0x3a4b();_0x1b2c();document.getElementById('cartCount').innerText=cart.length;if(tg?.BackButton){tg.BackButton.onClick(()=>{if(document.getElementById('pageHome').classList.contains('active'))tg.close();else navigateTo('home');});tg.BackButton.hide();}
+<script type="module">
+import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+
+const db = window.db;
+const storage = window.storage;
+const ADMIN_ID = 379731685;
+let tg = window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();}
+
+let categories = [];
+let products = [];
+let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
+let settings = {storeName:"Blender Shop",logoText:"🌀 BLENDER SHOP",logoImage:null};
+let currentAdminCategoryId = null;
+let selectedImageFiles = [];
+
+async function loadCategories(){
+    const snap = await getDocs(collection(db,"categories"));
+    categories = [];
+    snap.forEach(d=>categories.push({id:d.id,...d.data()}));
+    if(categories.length===0){
+        const def = [{id:"cat1",name:"Add-on"},{id:"cat2",name:"Скрипты"},{id:"cat4",name:"Бандлы"},{id:"cat5",name:"Материалы"}];
+        for(let c of def){await setDoc(doc(db,"categories",c.id),c);categories.push(c);}
+    }
+    renderCategories();
+}
+async function loadProducts(){
+    const snap = await getDocs(collection(db,"products"));
+    products = [];
+    snap.forEach(d=>products.push({id:parseInt(d.id),...d.data()}));
+    renderProducts();
+    document.getElementById('cartCount').innerText=cart.length;
+}
+async function loadSettings(){
+    const snap = await getDocs(collection(db,"settings"));
+    if(!snap.empty)snap.forEach(d=>settings={...settings,...d.data()});
+    else await setDoc(doc(db,"settings","main"),settings);
+    document.title=settings.storeName;
+    document.getElementById('settingsStoreName').value=settings.storeName;
+    document.getElementById('settingsLogoText').value=settings.logoText;
+    updateLogoDisplay();
+}
+function updateLogoDisplay(){
+    const c=document.getElementById('logoContainer');
+    c.innerHTML='';
+    if(settings.logoImage){
+        const i=document.createElement('img');
+        i.src=settings.logoImage;
+        i.className='logo-img';
+        c.appendChild(i);
+    }
+    const s=document.createElement('span');
+    s.className='logo-text';
+    s.innerText=settings.logoText;
+    c.appendChild(s);
+    const p=document.getElementById('logoPreviewContainer');
+    if(p)p.innerHTML=settings.logoImage?`<img src="${settings.logoImage}" style="height:60px">`:'<span>Нет логотипа</span>';
+}
+async function saveSettings(){
+    settings.storeName=document.getElementById('settingsStoreName').value.trim();
+    settings.logoText=document.getElementById('settingsLogoText').value.trim();
+    await setDoc(doc(db,"settings","main"),settings);
+    document.title=settings.storeName;
+    updateLogoDisplay();
+    showToast("Настройки сохранены");
+}
+function showToast(m){let t=document.getElementById('toastMsg');t.innerText=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function renderCategories(){
+    const cont=document.getElementById('categoriesList');
+    let cur=window.currentCategoryId||null;
+    cont.innerHTML=`<div class="chip ${cur===null?'active':''}" data-cat="">🔥 Все</div>`+categories.map(c=>`<div class="chip ${cur===c.id?'active':''}" data-cat="${c.id}">${c.name}</div>`).join('');
+    document.querySelectorAll('.chip').forEach(ch=>ch.addEventListener('click',()=>{window.currentCategoryId=ch.dataset.cat===""?null:ch.dataset.cat;renderCategories();renderProducts();}));
+}
+window.currentCategoryId=null;
+window.searchQuery="";
+function filterProducts(){window.searchQuery=document.getElementById('searchInput').value.toLowerCase();renderProducts();}
+function renderProducts(){
+    let filtered=products.filter(p=>{
+        if(window.currentCategoryId&&p.categoryId!==window.currentCategoryId)return false;
+        if(window.searchQuery&&!p.name.toLowerCase().includes(window.searchQuery))return false;
+        return true;
+    });
+    const grid=document.getElementById('productsGridContainer');
+    if(!filtered.length){grid.innerHTML='<div style="text-align:center;padding:40px;">✨ Ничего не найдено</div>';return;}
+    grid.innerHTML=filtered.map(p=>`
+        <div class="product-card" onclick="openProductModal(${p.id})">
+            <img class="product-preview" src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}">
+            <div class="product-name">${p.name}</div>
+            <div><span class="current-price">${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span>${p.oldPrice?`<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>`:''}</div>
+            <button class="add-btn" onclick="event.stopPropagation(); toggleCart(${p.id})">${cart.some(i=>i.id===p.id)?'✓ В корзине':'+ В корзину'}</button>
+        </div>
+    `).join('');
+}
+function toggleCart(id){
+    let idx=cart.findIndex(i=>i.id===id);
+    if(idx!==-1)cart.splice(idx,1);
+    else{
+        let prod=products.find(p=>p.id===id);
+        cart.push({id:prod.id,name:prod.name,price:prod.price,fileUrl:prod.fileUrl,preview:prod.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'});
+    }
+    localStorage.setItem('blender_cart',JSON.stringify(cart));
+    renderProducts();
+    renderCart();
+    showToast(idx===-1?"Добавлено":"Удалено");
+    document.getElementById('cartCount').innerText=cart.length;
+}
+function renderCart(){
+    const cont=document.getElementById('cartItems');
+    if(!cart.length){cont.innerHTML='<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';document.getElementById('cartTotal').innerHTML='';document.getElementById('checkoutForm').style.display='none';return;}
+    cont.innerHTML=cart.map(item=>`
+        <div class="cart-item">
+            <div><img class="cart-preview" src="${item.preview}"> ${item.name} - ${item.price===0?"Бесплатно":item.price.toLocaleString()+" ₽"}</div>
+            <button class="remove-item" onclick="removeFromCart(${item.id})">Удалить</button>
+        </div>
+    `).join('');
+    let total=cart.reduce((s,i)=>s+i.price,0);
+    document.getElementById('cartTotal').innerHTML=`<div class="total-block">Итого: ${total===0?"Бесплатно":total.toLocaleString()+" ₽"}</div>`;
+    document.getElementById('checkoutForm').style.display='block';
+}
+function removeFromCart(id){cart=cart.filter(i=>i.id!==id);localStorage.setItem('blender_cart',JSON.stringify(cart));renderCart();renderProducts();document.getElementById('cartCount').innerText=cart.length;}
+function processOrder(){
+    let name=document.getElementById('customerName').value.trim(),email=document.getElementById('customerEmail').value.trim();
+    if(!name||!email){showToast("Заполните имя и email");return;}
+    if(!cart.length)return;
+    let links=cart.map(item=>({name:item.name,url:item.fileUrl})).filter(l=>l.url);
+    let html=`<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>`+links.map(l=>`<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`).join('')+`<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
+    document.getElementById('cartItems').innerHTML=html;
+    document.getElementById('cartTotal').innerHTML='';
+    document.getElementById('checkoutForm').style.display='none';
+    cart=[];localStorage.setItem('blender_cart',JSON.stringify(cart));document.getElementById('cartCount').innerText=0;
+    if(tg?.HapticFeedback)tg.HapticFeedback.notificationOccurred('success');
+}
+function navigateTo(page){
+    document.getElementById('pageHome').classList.toggle('active',page==='home');
+    document.getElementById('pageCart').classList.toggle('active',page==='cart');
+    document.querySelectorAll('.nav-item').forEach((btn,i)=>btn.classList.toggle('active',(page==='home'&&i===0)||(page==='cart'&&i===1)));
+    if(page==='cart')renderCart();
+    closeModal();
+}
+let currentModalProduct=null,currentImageIndex=0;
+window.openProductModal=function(id){
+    let p=products.find(x=>x.id===id);if(!p)return;
+    currentModalProduct=p;currentImageIndex=0;
+    let images=p.images?.length?p.images:['https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'];
+    document.getElementById('modalGallery').innerHTML=images.map((img,i)=>`<img class="gallery-img" src="${img}" style="display:${i===0?'block':'none'};">`).join('');
+    document.getElementById('galleryNav').innerHTML=images.map((_,idx)=>`<div class="gallery-dot ${idx===currentImageIndex?'active':''}" data-dot="${idx}"></div>`).join('');
+    document.querySelectorAll('.gallery-dot').forEach(dot=>dot.addEventListener('click',(e)=>{currentImageIndex=parseInt(e.target.dataset.dot);updateGallery();}));
+    function updateGallery(){
+        document.querySelectorAll('#modalGallery .gallery-img').forEach((img,i)=>img.style.display=i===currentImageIndex?'block':'none');
+        document.querySelectorAll('#galleryNav .gallery-dot').forEach((d,i)=>d.classList.toggle('active',i===currentImageIndex));
+    }
+    document.getElementById('modalName').innerText=p.name;
+    document.getElementById('modalCategory').innerHTML=categories.find(c=>c.id===p.categoryId)?.name||"Без категории";
+    document.getElementById('modalPrice').innerHTML=`<span class="current-price">${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span>${p.oldPrice?`<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>`:''}`;
+    document.getElementById('modalDesc').innerText=p.description||"";
+    let yt=document.getElementById('youtubeLink');
+    if(p.youtubeUrl&&p.youtubeUrl.trim()){yt.href=p.youtubeUrl;yt.style.display='inline-flex';}else yt.style.display='none';
+    document.getElementById('modalAddBtn').innerText=cart.some(i=>i.id===p.id)?"✓ В корзине":"➕ В корзину";
+    document.getElementById('productModal').classList.add('active');
+};
+window.closeModal=function(){document.getElementById('productModal').classList.remove('active');};
+document.getElementById('modalAddBtn').onclick=()=>{if(currentModalProduct&&!cart.some(i=>i.id===currentModalProduct.id))toggleCart(currentModalProduct.id);closeModal();};
+
+function renderAdminCategoriesSidebar(){
+    const cont=document.getElementById('adminCategoryList');
+    cont.innerHTML=categories.map(cat=>`
+        <div class="category-folder ${currentAdminCategoryId===cat.id?'active':''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId===cat.id?'#ff7a2f':'transparent'}">
+            <span>📂 ${cat.name}</span>
+            <button class="delete-cat-btn" data-catid="${cat.id}" style="background:0 0;border:none;color:#ff8a7a;cursor:pointer">🗑️</button>
+        </div>
+    `).join('');
+    document.querySelectorAll('.category-folder').forEach(el=>{
+        el.addEventListener('click',(e)=>{if(e.target.classList.contains('delete-cat-btn'))return;currentAdminCategoryId=el.dataset.catid;renderAdminCategoriesSidebar();renderProductsByCategory();document.getElementById('currentCategoryTitle').innerText=`📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name||'?'}`;});
+        const del=el.querySelector('.delete-cat-btn');
+        if(del)del.addEventListener('click',(e)=>{e.stopPropagation();deleteCategoryById(el.dataset.catid);});
+    });
+}
+async function deleteCategoryById(catId){
+    if(!confirm("Удалить категорию и все товары?"))return;
+    const q=query(collection(db,"products"),where("categoryId","==",catId));
+    const snap=await getDocs(q);
+    for(let d of snap.docs)await deleteDoc(doc(db,"products",d.id));
+    await deleteDoc(doc(db,"categories",catId));
+    await loadCategories();await loadProducts();
+    if(currentAdminCategoryId===catId)currentAdminCategoryId=categories[0]?.id||null;
+    renderAdminCategoriesSidebar();renderProductsByCategory();renderAllProductsList();
+    showToast("Категория удалена");
+}
+window.addCategoryFromAdmin=async function(){
+    let name=document.getElementById('newAdminCatName').value.trim();
+    if(!name)return showToast("Введите название");
+    let newId="cat_"+Date.now();
+    await setDoc(doc(db,"categories",newId),{name});
+    await loadCategories();
+    renderAdminCategoriesSidebar();renderAllProductsList();
+    document.getElementById('newAdminCatName').value='';
+    showToast(`Категория "${name}" добавлена`);
+};
+function renderProductsByCategory(){
+    const cont=document.getElementById('adminProductsByCategory');
+    if(!currentAdminCategoryId){cont.innerHTML='<div style="padding:20px">Выберите категорию</div>';return;}
+    let filtered=products.filter(p=>p.categoryId===currentAdminCategoryId);
+    if(!filtered.length){cont.innerHTML='<div style="padding:20px">Нет товаров</div>';return;}
+    cont.innerHTML=filtered.map(p=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
+                <img src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
+                <div><strong>${p.name}</strong><br><span>${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span></div>
+            </div>
+            <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
+        </div>
+    `).join('');
+}
+function renderAllProductsList(){
+    const cont=document.getElementById('allProductsList');
+    if(!products.length){cont.innerHTML='<div style="padding:20px">Нет товаров</div>';return;}
+    cont.innerHTML=products.map(p=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
+            <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
+                <img src="${p.images?.[0]||'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
+                <div><strong>${p.name}</strong><br><span>${categories.find(c=>c.id===p.categoryId)?.name||'Без категории'} | ${p.price===0?"Бесплатно":p.price.toLocaleString()+" ₽"}</span></div>
+            </div>
+            <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
+        </div>
+    `).join('');
+}
+window.addProductInCurrentCategory=async function(){
+    if(!currentAdminCategoryId){showToast("Выберите категорию");return;}
+    let newId=Date.now();
+    let newProd={id:newId,name:"Новый ассет",categoryId:currentAdminCategoryId,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:"Добавьте описание"};
+    await setDoc(doc(db,"products",String(newId)),newProd);
+    await loadProducts();
+    renderProductsByCategory();renderAllProductsList();
+    openEditProductModal(newId);
+};
+window.addGlobalProduct=async function(){
+    let newId=Date.now();
+    let newProd={id:newId,name:"Новый ассет",categoryId:categories[0]?.id||null,price:0,oldPrice:null,fileUrl:"",youtubeUrl:"",images:[],description:""};
+    await setDoc(doc(db,"products",String(newId)),newProd);
+    await loadProducts();
+    renderAllProductsList();renderProductsByCategory();
+    openEditProductModal(newId);
+};
+window.deleteProductById=async function(id){
+    if(!confirm("Удалить товар?"))return;
+    let prod=products.find(p=>p.id===id);
+    if(prod?.images)for(let img of prod.images)if(img.includes('firebasestorage'))try{await deleteObject(ref(storage,img));}catch(e){}
+    await deleteDoc(doc(db,"products",String(id)));
+    await loadProducts();
+    renderProductsByCategory();renderAllProductsList();
+    showToast("Товар удалён");
+};
+async function uploadImagesToStorage(files,productId){
+    let urls=[];
+    for(let file of files){
+        let refFile=ref(storage,`products/${productId}/${Date.now()}_${file.name}`);
+        await uploadBytes(refFile,file);
+        urls.push(await getDownloadURL(refFile));
+    }
+    return urls;
+}
+function handleImageFiles(event){
+    let files=Array.from(event.target.files);
+    for(let file of files){
+        if(!file.type.startsWith('image/'))continue;
+        selectedImageFiles.push(file);
+        let reader=new FileReader();
+        reader.onload=function(e){
+            let div=document.createElement('div');
+            div.className='image-preview-item';
+            div.innerHTML=`<img src="${e.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
+            document.getElementById('imagePreviewList').appendChild(div);
+            div.querySelector('.remove-image-btn').addEventListener('click',()=>{
+                let idx=selectedImageFiles.findIndex(f=>f.name===file.name);
+                if(idx!==-1)selectedImageFiles.splice(idx,1);
+                div.remove();
+            });
+        };
+        reader.readAsDataURL(file);
+    }
+    document.getElementById('imageFileInput').value='';
+}
+window.openEditProductModal=async function(id){
+    let prod=products.find(p=>p.id===id);if(!prod)return;
+    selectedImageFiles=[];
+    document.getElementById('imagePreviewList').innerHTML='';
+    if(prod.images)for(let imgUrl of prod.images){
+        let div=document.createElement('div');
+        div.className='image-preview-item';
+        div.innerHTML=`<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
+        document.getElementById('imagePreviewList').appendChild(div);
+        div.querySelector('.remove-image-btn').addEventListener('click',async()=>{
+            if(imgUrl.includes('firebasestorage'))try{await deleteObject(ref(storage,imgUrl));}catch(e){}
+            prod.images=prod.images.filter(u=>u!==imgUrl);
+            await setDoc(doc(db,"products",String(id)),prod);
+            await loadProducts();
+            div.remove();
+            showToast("Изображение удалено");
+        });
+    }
+    document.getElementById('editProductId').value=id;
+    document.getElementById('editName').value=prod.name;
+    let catSelect=document.getElementById('editCategoryId');
+    catSelect.innerHTML=`<option value="">— Без категории —</option>`+categories.map(c=>`<option value="${c.id}" ${prod.categoryId===c.id?'selected':''}>${c.name}</option>`).join('');
+    document.getElementById('editPrice').value=prod.price;
+    document.getElementById('editOldPrice').value=prod.oldPrice||'';
+    document.getElementById('editFileUrl').value=prod.fileUrl||'';
+    document.getElementById('editYoutubeUrl').value=prod.youtubeUrl||'';
+    document.getElementById('editDesc').value=prod.description||'';
+    document.getElementById('editProductModal').classList.add('active');
+};
+window.closeEditProductModal=function(){document.getElementById('editProductModal').classList.remove('active');selectedImageFiles=[];};
+window.saveProductChanges=async function(){
+    let id=parseInt(document.getElementById('editProductId').value);
+    let prod=products.find(p=>p.id===id);if(!prod)return;
+    prod.name=document.getElementById('editName').value;
+    prod.categoryId=document.getElementById('editCategoryId').value||null;
+    prod.price=parseInt(document.getElementById('editPrice').value)||0;
+    prod.oldPrice=document.getElementById('editOldPrice').value?parseInt(document.getElementById('editOldPrice').value):null;
+    prod.fileUrl=document.getElementById('editFileUrl').value;
+    prod.youtubeUrl=document.getElementById('editYoutubeUrl').value;
+    prod.description=document.getElementById('editDesc').value;
+    if(selectedImageFiles.length){
+        let newUrls=await uploadImagesToStorage(selectedImageFiles,id);
+        prod.images=[...(prod.images||[]),...newUrls];
+    }
+    await setDoc(doc(db,"products",String(id)),prod);
+    await loadProducts();
+    renderProductsByCategory();renderAllProductsList();
+    showToast("Товар сохранён");
+    closeEditProductModal();
+};
+function handleLogoUpload(event){
+    let file=event.target.files[0];
+    if(!file||!file.type.startsWith('image/'))return;
+    let reader=new FileReader();
+    reader.onload=async function(e){
+        let storageRef=ref(storage,`logo/logo_${Date.now()}`);
+        let blob=await fetch(e.target.result).then(r=>r.blob());
+        await uploadBytes(storageRef,blob);
+        let url=await getDownloadURL(storageRef);
+        settings.logoImage=url;
+        await setDoc(doc(db,"settings","main"),settings);
+        updateLogoDisplay();
+        showToast("Логотип загружен");
+    };
+    reader.readAsDataURL(file);
+    document.getElementById('logoFileInput').value='';
+}
+async function removeLogo(){
+    if(settings.logoImage&&settings.logoImage.includes('firebasestorage'))try{await deleteObject(ref(storage,settings.logoImage));}catch(e){}
+    settings.logoImage=null;
+    await setDoc(doc(db,"settings","main"),settings);
+    updateLogoDisplay();
+    showToast("Логотип удалён");
+}
+function showAdminPanel(){
+    if(!tg||tg.initDataUnsafe?.user?.id!==ADMIN_ID){showToast("⛔ Доступ запрещён");return;}
+    currentAdminCategoryId=categories[0]?.id||null;
+    renderAdminCategoriesSidebar();renderProductsByCategory();renderAllProductsList();
+    document.getElementById('currentCategoryTitle').innerHTML=currentAdminCategoryId?`📦 Товары в категории: ${categories.find(c=>c.id===currentAdminCategoryId)?.name||''}`:'📦 Товары в категории';
+    document.getElementById('adminPanel').classList.add('active');
+    document.querySelectorAll('.admin-tab').forEach(tab=>{
+        tab.addEventListener('click',()=>{
+            document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.admin-section').forEach(sec=>sec.classList.remove('active'));
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+}
+window.closeAdminPanel=function(){document.getElementById('adminPanel').classList.remove('active');};
+
+let clickCount=0,clickTimer;
+document.getElementById('logoClick').addEventListener('click',()=>{
+    clickCount++;
+    clearTimeout(clickTimer);
+    clickTimer=setTimeout(()=>clickCount=0,800);
+    if(clickCount>=5){clickCount=0;showAdminPanel();}
+});
+
+let logoArea=document.getElementById('logoUploadArea');
+if(logoArea){
+    logoArea.addEventListener('dragover',e=>{e.preventDefault();logoArea.style.borderColor='#ff7a2f';});
+    logoArea.addEventListener('dragleave',()=>logoArea.style.borderColor='var(--border-light)');
+    logoArea.addEventListener('drop',async e=>{
+        e.preventDefault();logoArea.style.borderColor='var(--border-light)';
+        let file=e.dataTransfer.files[0];
+        if(file&&file.type.startsWith('image/')){
+            let reader=new FileReader();
+            reader.onload=async function(ev){
+                let storageRef=ref(storage,`logo/logo_${Date.now()}`);
+                let blob=await fetch(ev.target.result).then(r=>r.blob());
+                await uploadBytes(storageRef,blob);
+                let url=await getDownloadURL(storageRef);
+                settings.logoImage=url;
+                await setDoc(doc(db,"settings","main"),settings);
+                updateLogoDisplay();
+                showToast("Логотип загружен");
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+let imageArea=document.getElementById('imageUploadArea');
+if(imageArea){
+    imageArea.addEventListener('dragover',e=>{e.preventDefault();imageArea.style.borderColor='#ff7a2f';});
+    imageArea.addEventListener('dragleave',()=>imageArea.style.borderColor='var(--border-light)');
+    imageArea.addEventListener('drop',e=>{
+        e.preventDefault();imageArea.style.borderColor='var(--border-light)';
+        let files=Array.from(e.dataTransfer.files);
+        for(let file of files){
+            if(!file.type.startsWith('image/'))continue;
+            selectedImageFiles.push(file);
+            let reader=new FileReader();
+            reader.onload=function(ev){
+                let div=document.createElement('div');
+                div.className='image-preview-item';
+                div.innerHTML=`<img src="${ev.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
+                document.getElementById('imagePreviewList').appendChild(div);
+                div.querySelector('.remove-image-btn').addEventListener('click',()=>{
+                    let idx=selectedImageFiles.findIndex(f=>f.name===file.name);
+                    if(idx!==-1)selectedImageFiles.splice(idx,1);
+                    div.remove();
+                });
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+await loadSettings();
+await loadCategories();
+await loadProducts();
+renderCart();
+if(tg?.BackButton){
+    tg.BackButton.onClick(()=>{if(document.getElementById('pageHome').classList.contains('active'))tg.close();else navigateTo('home');});
+    tg.BackButton.hide();
+}
 window.filterProducts=filterProducts;
 window.toggleCart=toggleCart;
 window.removeFromCart=removeFromCart;
@@ -84,8 +508,7 @@ window.addCategoryFromAdmin=addCategoryFromAdmin;
 window.handleImageFiles=handleImageFiles;
 window.handleLogoUpload=handleLogoUpload;
 window.removeLogo=removeLogo;
-window.saveSettings=_0x3e4f;
-})();
+window.saveSettings=saveSettings;
 </script>
 </body>
 </html>
