@@ -11,9 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px;background:rgba(255,255,255,0.05);padding:4px;object-fit:contain}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer;transition:0.2s}.cart-btn:hover{border-color:var(--accent);background:rgba(255,122,47,0.1)}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.search-input:focus{border-color:var(--accent);outline:none}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap;transition:0.2s}.chip.active{background:var(--accent);color:#0a0c15;border-color:var(--accent)}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px;background:#0c0f18}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}.youtube-btn:hover{background:#ff0000;color:#fff}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:16px;flex-wrap:wrap;gap:12px}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none;transition:0.2s}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.admin-layout{display:flex;gap:24px;flex-wrap:wrap}.categories-sidebar{background:#131724;border-radius:32px;padding:20px;width:280px;border:1px solid var(--border)}.categories-sidebar h3{margin-bottom:16px;font-size:18px}.category-folder{background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:0.2s;border-left:3px solid transparent}.category-folder.active{background:rgba(255,122,47,0.15);border-left-color:var(--accent)}.category-folder span{font-weight:500}.delete-cat-btn{background:none;border:none;color:#ff8a7a;font-size:18px;cursor:pointer;padding:0 6px}.add-cat-form{display:flex;gap:8px;margin-top:20px}.add-cat-form input{flex:1;background:#0c0f18;border:1px solid var(--border);border-radius:40px;padding:10px 14px;color:#fff}.right-content{flex:1;min-width:280px}.products-in-cat{background:#131724;border-radius:32px;padding:20px;border:1px solid var(--border)}.product-admin-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px;flex-wrap:wrap;gap:12px}.product-admin-row:hover{background:rgba(255,122,47,0.08)}.product-admin-info{display:flex;align-items:center;gap:12px;flex:2;cursor:pointer}.admin-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;background:#0c0f18;border:1px solid var(--border)}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px;border:1px solid var(--border)}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px;transition:0.2s}.logo-upload-area:hover,.image-upload-area:hover{border-color:var(--accent);background:rgba(255,122,47,0.05)}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.loading{text-align:center;padding:40px;color:#8e8e9e}
+        .status-bar{position:fixed;top:0;left:0;right:0;background:#000;color:#0f0;font-size:10px;padding:2px 8px;z-index:10000;font-family:monospace}
     </style>
 </head>
 <body>
+<div class="status-bar" id="statusBar">🔄 Проверка подключения...</div>
+
 <div class="header">
     <div class="header-content">
         <div class="logo" id="logoClick">
@@ -31,12 +34,8 @@
     <div class="search-container">
         <input type="text" class="search-input" id="searchInput" placeholder="Поиск ассетов..." oninput="filterProducts()">
     </div>
-    <div class="categories" id="categoriesList">
-        <div class="loading">Загрузка категорий...</div>
-    </div>
-    <div id="productsGridContainer" class="products-grid">
-        <div class="loading">Загрузка товаров...</div>
-    </div>
+    <div class="categories" id="categoriesList"></div>
+    <div id="productsGridContainer" class="products-grid"></div>
 </div>
 
 <div id="pageCart" class="page">
@@ -157,7 +156,7 @@
 </div>
 
 <script>
-// ==================== НАСТРОЙКИ ====================
+// ========== НАСТРОЙКИ FIREBASE ==========
 const firebaseConfig = {
     apiKey: "AIzaSyCg0EUX3grKMXmKoLKZyGcWSAYPDZ-bwuQ",
     authDomain: "blendmanshop.firebaseapp.com",
@@ -167,6 +166,7 @@ const firebaseConfig = {
     appId: "1:32462864879:web:958c2f23c98859db9a761a"
 };
 
+// Инициализация
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
@@ -179,65 +179,79 @@ db.settings({
 const SUPABASE_URL = 'https://arrogldacaqtnkzjpcop.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4rtn65eVe_j_O0V_2qsaVg_05wnidon';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-// ==================================================
 
+// ========== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ==========
 const ADMIN_ID = 379731685;
 let tg = window.Telegram?.WebApp;
 if(tg){
     tg.ready();
     tg.expand();
-    console.log("Telegram WebApp initialized");
 }
 
 let categories = [];
 let products = [];
 let cart = [];
-let settings = {storeName:"BlendMan Shop",logoText:"🌀 BlendMan",logoImage:null};
+let settings = {storeName:"BlendMan Shop", logoText:"🌀 BlendMan", logoImage:null};
 let currentAdminCategoryId = null;
 let selectedImageFiles = [];
+let firebaseConnected = false;
 
-// Загружаем корзину
-try {
-    const savedCart = localStorage.getItem('blender_cart');
-    if(savedCart) cart = JSON.parse(savedCart);
-} catch(e) { console.error("Error loading cart:", e); }
+// Функция обновления статуса
+function updateStatus(message, isError = false) {
+    const statusBar = document.getElementById('statusBar');
+    if(statusBar) {
+        statusBar.innerHTML = message;
+        statusBar.style.color = isError ? '#ff6b6b' : '#6bff6b';
+        setTimeout(() => {
+            if(statusBar.innerHTML === message) {
+                statusBar.style.opacity = '0.5';
+            }
+        }, 3000);
+    }
+    console.log(message);
+}
 
-// ==== ПРОВЕРКА И СОЗДАНИЕ НАСТРОЕК ====
-async function ensureSettingsExist() {
+// Проверка подключения к Firebase
+async function testFirebaseConnection() {
+    updateStatus("🔍 Проверка подключения к Firebase...");
     try {
-        const docRef = db.collection('settings').doc('main');
-        const doc = await docRef.get();
-        
-        if(!doc.exists) {
-            const defaultSettings = {
-                storeName: "BlendMan Shop",
-                logoText: "🌀 BlendMan",
-                logoImage: null,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            };
-            await docRef.set(defaultSettings);
-            console.log("✅ Настройки созданы");
-            return defaultSettings;
-        }
-        console.log("✅ Настройки загружены");
-        return doc.data();
+        // Пытаемся создать тестовый документ
+        const testRef = db.collection('_test').doc('connection_test');
+        await testRef.set({ timestamp: firebase.firestore.FieldValue.serverTimestamp(), test: true });
+        await testRef.delete();
+        updateStatus("✅ Firebase подключен успешно!");
+        return true;
     } catch(e) {
-        console.error("Ошибка настроек:", e);
-        return {
-            storeName: "BlendMan Shop",
-            logoText: "🌀 BlendMan",
-            logoImage: null
-        };
+        updateStatus(`❌ Ошибка Firebase: ${e.message}`, true);
+        console.error("Firebase connection error:", e);
+        return false;
     }
 }
 
-// ==== ОБНОВЛЕНИЕ ЛОГОТИПА ====
-function updateLogoDisplay() {
+// Загрузка корзины
+try {
+    const savedCart = localStorage.getItem('blender_cart');
+    if(savedCart) cart = JSON.parse(savedCart);
+} catch(e) {}
+
+// ========== ОСНОВНЫЕ ФУНКЦИИ ==========
+function showToast(msg){
+    let t = document.getElementById('toastMsg');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function updateCartBadge(){
+    document.getElementById('cartCount').innerText = cart.length;
+}
+
+function updateLogoDisplay(){
     const container = document.getElementById('logoContainer');
     if(!container) return;
     container.innerHTML = '';
     
-    if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== '') {
+    if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== ''){
         const img = document.createElement('img');
         img.src = settings.logoImage;
         img.className = 'logo-img';
@@ -258,105 +272,110 @@ function updateLogoDisplay() {
     }
     
     document.title = settings.storeName || "BlendMan Shop";
-    
-    const preview = document.getElementById('logoPreviewContainer');
-    if(preview) {
-        if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== '') {
-            preview.innerHTML = `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;"><span style="margin-left:10px;">Текущий логотип</span>`;
-        } else {
-            preview.innerHTML = '<span style="color:#aaa;">Нет логотипа</span>';
-        }
-    }
 }
 
-// ==== ЗАГРУЗКА НАСТРОЕК ====
+function getPreviewImage(product){
+    if(product.images && product.images.length > 0 && product.images[0]) return product.images[0];
+    return "https://placehold.co/1024x1024/2b2b3a/white?text=No+Image";
+}
+
+function escapeHtml(str){
+    if(!str) return '';
+    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
+}
+
+// ========== ЗАГРУЗКА ДАННЫХ ИЗ FIRESTORE ==========
 async function loadSettings() {
     try {
-        const settingsData = await ensureSettingsExist();
-        settings.storeName = settingsData.storeName || "BlendMan Shop";
-        settings.logoText = settingsData.logoText || "🌀 BlendMan";
-        settings.logoImage = settingsData.logoImage || null;
-    } catch(e) { 
-        console.error("Ошибка:", e);
+        const docRef = db.collection('settings').doc('main');
+        const doc = await docRef.get();
+        
+        if(doc.exists) {
+            settings = doc.data();
+            updateStatus("✅ Настройки загружены из Firestore");
+        } else {
+            // Создаем настройки по умолчанию
+            await docRef.set(settings);
+            updateStatus("📝 Созданы настройки по умолчанию");
+        }
+        
+        // Обновляем поля в админке
+        const storeNameInput = document.getElementById('settingsStoreName');
+        const logoTextInput = document.getElementById('settingsLogoText');
+        if(storeNameInput) storeNameInput.value = settings.storeName;
+        if(logoTextInput) logoTextInput.value = settings.logoText;
+        
+        updateLogoDisplay();
+        return true;
+    } catch(e) {
+        updateStatus(`❌ Ошибка загрузки настроек: ${e.message}`, true);
+        return false;
     }
-    
-    const storeNameInput = document.getElementById('settingsStoreName');
-    const logoTextInput = document.getElementById('settingsLogoText');
-    if(storeNameInput) storeNameInput.value = settings.storeName;
-    if(logoTextInput) logoTextInput.value = settings.logoText;
-    
-    updateLogoDisplay();
 }
 
-// ==== ЗАГРУЗКА КАТЕГОРИЙ ====
 async function loadCategories() {
     try {
-        console.log("Загрузка категорий...");
+        updateStatus("📁 Загрузка категорий из Firestore...");
         const snapshot = await db.collection('categories').get();
         categories = [];
         snapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
         
-        console.log(`Загружено: ${categories.length} категорий`);
+        updateStatus(`✅ Загружено ${categories.length} категорий`);
         
         if(categories.length === 0) {
-            console.log("Создание категорий по умолчанию...");
+            updateStatus("📝 Создание категорий по умолчанию...");
             const defaultCats = [
                 { id: "cat1", name: "Add-on" },
                 { id: "cat2", name: "Скрипты" },
-                { id: "cat4", name: "Бандлы" },
-                { id: "cat5", name: "Материалы" }
+                { id: "cat3", name: "Бандлы" },
+                { id: "cat4", name: "Материалы" }
             ];
             for(const cat of defaultCats) {
                 await db.collection('categories').doc(cat.id).set(cat);
                 categories.push(cat);
             }
+            updateStatus(`✅ Создано ${categories.length} категорий`);
         }
         renderCategories();
-    } catch(e) { 
-        console.error("Ошибка загрузки категорий:", e);
-        document.getElementById('categoriesList').innerHTML = '<div class="loading">❌ Ошибка загрузки</div>';
+        return true;
+    } catch(e) {
+        updateStatus(`❌ Ошибка загрузки категорий: ${e.message}`, true);
+        return false;
     }
 }
 
-// ==== ЗАГРУЗКА ТОВАРОВ ====
 async function loadProducts() {
     try {
-        console.log("Загрузка товаров...");
+        updateStatus("📦 Загрузка товаров из Firestore...");
         const snapshot = await db.collection('products').get();
         products = [];
         snapshot.forEach(doc => products.push({ id: parseInt(doc.id), ...doc.data() }));
         
-        console.log(`Загружено: ${products.length} товаров`);
+        updateStatus(`✅ Загружено ${products.length} товаров`);
         
+        if(products.length === 0) {
+            updateStatus("📝 Создание демо-товаров...");
+            const demoProducts = [
+                { id: 1001, name: "Blender Pro Add-on", categoryId: "cat1", price: 2990, oldPrice: 5990, fileUrl: "#", youtubeUrl: "", images: [], description: "Мощный аддон для Blender с расширенными возможностями" },
+                { id: 1002, name: "Auto Rig Script", categoryId: "cat2", price: 1490, oldPrice: 2990, fileUrl: "#", youtubeUrl: "", images: [], description: "Автоматическая система риггинга для персонажей" },
+                { id: 1003, name: "Ultimate Materials Pack", categoryId: "cat4", price: 990, oldPrice: 1990, fileUrl: "#", youtubeUrl: "", images: [], description: "50+ фотореалистичных материалов для Cycles" }
+            ];
+            for(const prod of demoProducts) {
+                await db.collection('products').doc(String(prod.id)).set(prod);
+                products.push(prod);
+            }
+            updateStatus(`✅ Создано ${products.length} демо-товаров`);
+        }
         renderProducts();
         updateCartBadge();
-    } catch(e) { 
-        console.error("Ошибка загрузки товаров:", e);
-        document.getElementById('productsGridContainer').innerHTML = '<div class="loading">❌ Ошибка загрузки</div>';
+        return true;
+    } catch(e) {
+        updateStatus(`❌ Ошибка загрузки товаров: ${e.message}`, true);
+        return false;
     }
 }
 
-// ==== СОХРАНЕНИЕ НАСТРОЕК ====
-async function saveSettings() {
-    settings.storeName = document.getElementById('settingsStoreName').value.trim();
-    settings.logoText = document.getElementById('settingsLogoText').value.trim();
-    await db.collection('settings').doc('main').set(settings);
-    updateLogoDisplay();
-    showToast("Настройки сохранены");
-}
-
-// ==== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====
-function showToast(msg){
-    let t = document.getElementById('toastMsg');
-    t.innerText = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-}
-
-function updateCartBadge(){
-    document.getElementById('cartCount').innerText = cart.length;
-}
-
+// ========== ОТОБРАЖЕНИЕ КАТЕГОРИЙ И ТОВАРОВ ==========
 function renderCategories(){
     const container = document.getElementById('categoriesList');
     if(!container) return;
@@ -378,16 +397,6 @@ window.searchQuery = "";
 function filterProducts(){
     window.searchQuery = document.getElementById('searchInput').value.toLowerCase();
     renderProducts();
-}
-
-function escapeHtml(str){
-    if(!str) return '';
-    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
-}
-
-function getPreviewImage(product){
-    if(product.images && product.images.length > 0 && product.images[0]) return product.images[0];
-    return "https://placehold.co/1024x1024/2b2b3a/white?text=No+Image";
 }
 
 function renderProducts(){
@@ -490,6 +499,7 @@ function navigateTo(page){
     closeModal();
 }
 
+// ========== МОДАЛЬНОЕ ОКНО ТОВАРА ==========
 let currentModalProduct = null, currentImageIndex = 0;
 
 window.openProductModal = function(id){
@@ -536,13 +546,13 @@ document.getElementById('modalAddBtn').onclick = () => {
     closeModal();
 };
 
-// ========== АДМИН-ПАНЕЛЬ (ИСПРАВЛЕННАЯ) ==========
+// ========== АДМИН-ПАНЕЛЬ ==========
 function renderAdminCategoriesSidebar(){
     const container = document.getElementById('adminCategoryList');
     if(!container) return;
     
     if(!categories || categories.length === 0){
-        container.innerHTML = '<div class="loading">Загрузка категорий...</div>';
+        container.innerHTML = '<div class="loading">Нет категорий</div>';
         return;
     }
     
@@ -575,14 +585,18 @@ function renderAdminCategoriesSidebar(){
 
 async function deleteCategoryById(catId){
     if(!confirm("Удалить категорию и все товары в ней?")) return;
+    
     try {
         const productsSnapshot = await db.collection('products').where('categoryId', '==', catId).get();
         for(const doc of productsSnapshot.docs){
             await db.collection('products').doc(doc.id).delete();
         }
         await db.collection('categories').doc(catId).delete();
+        
+        // Перезагружаем данные
         await loadCategories();
         await loadProducts();
+        
         if(currentAdminCategoryId === catId){
             currentAdminCategoryId = categories[0]?.id || null;
         }
@@ -599,6 +613,7 @@ async function deleteCategoryById(catId){
 window.addCategoryFromAdmin = async function(){
     let name = document.getElementById('newAdminCatName').value.trim();
     if(!name) return showToast("Введите название");
+    
     let newId = "cat_" + Date.now();
     await db.collection('categories').doc(newId).set({ name });
     await loadCategories();
@@ -666,11 +681,12 @@ window.addProductInCurrentCategory = async function(){
         categoryId: currentAdminCategoryId,
         price: 0,
         oldPrice: null,
-        fileUrl: "",
+        fileUrl: "#",
         youtubeUrl: "",
         images: [],
         description: "Добавьте описание"
     };
+    
     await db.collection('products').doc(String(newId)).set(newProduct);
     await loadProducts();
     renderProductsByCategory();
@@ -691,11 +707,12 @@ window.addGlobalProduct = async function(){
         categoryId: categories[0]?.id || null,
         price: 0,
         oldPrice: null,
-        fileUrl: "",
+        fileUrl: "#",
         youtubeUrl: "",
         images: [],
         description: ""
     };
+    
     await db.collection('products').doc(String(newId)).set(newProduct);
     await loadProducts();
     renderAllProductsList();
@@ -706,6 +723,7 @@ window.addGlobalProduct = async function(){
 
 window.deleteProductById = async function(id){
     if(!confirm("Удалить товар?")) return;
+    
     await db.collection('products').doc(String(id)).delete();
     await loadProducts();
     renderProductsByCategory();
@@ -713,7 +731,44 @@ window.deleteProductById = async function(id){
     showToast("Товар удалён");
 };
 
-// ==== ЗАГРУЗКА ИЗОБРАЖЕНИЙ ====
+// ========== РЕДАКТИРОВАНИЕ ТОВАРА ==========
+window.openEditProductModal = async function(id){
+    const prod = products.find(p => p.id === id);
+    if(!prod) return;
+    selectedImageFiles = [];
+    document.getElementById('imagePreviewList').innerHTML = '';
+    if(prod.images){
+        for(let imgUrl of prod.images){
+            const div = document.createElement('div');
+            div.className = 'image-preview-item';
+            div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
+            document.getElementById('imagePreviewList').appendChild(div);
+            div.querySelector('.remove-image-btn').addEventListener('click', async () => {
+                prod.images = prod.images.filter(u => u !== imgUrl);
+                await db.collection('products').doc(String(id)).update({ images: prod.images });
+                await loadProducts();
+                div.remove();
+                showToast("Изображение удалено");
+            });
+        }
+    }
+    document.getElementById('editProductId').value = id;
+    document.getElementById('editName').value = prod.name;
+    const catSelect = document.getElementById('editCategoryId');
+    catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${c.name}</option>`).join('');
+    document.getElementById('editPrice').value = prod.price;
+    document.getElementById('editOldPrice').value = prod.oldPrice || '';
+    document.getElementById('editFileUrl').value = prod.fileUrl || '';
+    document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || '';
+    document.getElementById('editDesc').value = prod.description || '';
+    document.getElementById('editProductModal').classList.add('active');
+};
+
+window.closeEditProductModal = function(){
+    document.getElementById('editProductModal').classList.remove('active');
+    selectedImageFiles = [];
+};
+
 async function uploadImageToSupabase(file, productId, index){
     const fileExt = file.name.split('.').pop();
     const fileName = `${productId}/${Date.now()}_${index}.${fileExt}`;
@@ -754,47 +809,11 @@ function handleImageFiles(event){
     document.getElementById('imageFileInput').value = '';
 }
 
-window.openEditProductModal = async function(id){
-    const prod = products.find(p => p.id === id);
-    if(!prod) return;
-    selectedImageFiles = [];
-    document.getElementById('imagePreviewList').innerHTML = '';
-    if(prod.images){
-        for(let imgUrl of prod.images){
-            const div = document.createElement('div');
-            div.className = 'image-preview-item';
-            div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
-            document.getElementById('imagePreviewList').appendChild(div);
-            div.querySelector('.remove-image-btn').addEventListener('click', async () => {
-                prod.images = prod.images.filter(u => u !== imgUrl);
-                await db.collection('products').doc(String(id)).update({ images: prod.images });
-                await loadProducts();
-                div.remove();
-                showToast("Изображение удалено");
-            });
-        }
-    }
-    document.getElementById('editProductId').value = id;
-    document.getElementById('editName').value = prod.name;
-    const catSelect = document.getElementById('editCategoryId');
-    catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${c.name}</option>`).join('');
-    document.getElementById('editPrice').value = prod.price;
-    document.getElementById('editOldPrice').value = prod.oldPrice || '';
-    document.getElementById('editFileUrl').value = prod.fileUrl || '';
-    document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || '';
-    document.getElementById('editDesc').value = prod.description || '';
-    document.getElementById('editProductModal').classList.add('active');
-};
-
-window.closeEditProductModal = function(){
-    document.getElementById('editProductModal').classList.remove('active');
-    selectedImageFiles = [];
-};
-
 window.saveProductChanges = async function(){
     const id = parseInt(document.getElementById('editProductId').value);
     const prod = products.find(p => p.id === id);
     if(!prod) return;
+    
     prod.name = document.getElementById('editName').value;
     prod.categoryId = document.getElementById('editCategoryId').value || null;
     prod.price = parseInt(document.getElementById('editPrice').value) || 0;
@@ -802,10 +821,12 @@ window.saveProductChanges = async function(){
     prod.fileUrl = document.getElementById('editFileUrl').value;
     prod.youtubeUrl = document.getElementById('editYoutubeUrl').value;
     prod.description = document.getElementById('editDesc').value;
+    
     if(selectedImageFiles.length){
         const newUrls = await uploadImagesToSupabase(selectedImageFiles, id);
         prod.images = [...(prod.images || []), ...newUrls];
     }
+    
     await db.collection('products').doc(String(id)).update({
         name: prod.name,
         categoryId: prod.categoryId,
@@ -823,12 +844,22 @@ window.saveProductChanges = async function(){
     closeEditProductModal();
 };
 
+async function saveSettings(){
+    settings.storeName = document.getElementById('settingsStoreName').value.trim();
+    settings.logoText = document.getElementById('settingsLogoText').value.trim();
+    
+    await db.collection('settings').doc('main').set(settings);
+    updateLogoDisplay();
+    showToast("Настройки сохранены");
+}
+
 async function handleLogoUpload(event){
     const file = event.target.files[0];
     if(!file || !file.type.startsWith('image/')){
         showToast("Выберите изображение");
         return;
     }
+    
     const fileExt = file.name.split('.').pop();
     const fileName = `logo/logo_${Date.now()}.${fileExt}`;
     const { error } = await supabase.storage.from('product-images').upload(fileName, file);
@@ -851,15 +882,15 @@ async function removeLogo(){
     showToast("Логотип удалён");
 }
 
+// ========== ОТКРЫТИЕ АДМИН-ПАНЕЛИ ==========
 function showAdminPanel(){
+    // Проверяем права доступа
     if(!tg || tg.initDataUnsafe?.user?.id !== ADMIN_ID){
         showToast("⛔ Доступ запрещён");
         return;
     }
     
-    // Обновляем данные перед открытием
     currentAdminCategoryId = categories[0]?.id || null;
-    
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
@@ -868,19 +899,6 @@ function showAdminPanel(){
     document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categoryName}` : '📦 Товары в категории';
     
     document.getElementById('adminPanel').classList.add('active');
-    
-    // Настройка табов
-    document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.removeEventListener('click', handleTabClick);
-        tab.addEventListener('click', handleTabClick);
-    });
-}
-
-function handleTabClick(e){
-    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-    e.target.classList.add('active');
-    document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
-    document.getElementById(e.target.dataset.tab).classList.add('active');
 }
 
 window.closeAdminPanel = function(){
@@ -929,7 +947,7 @@ if(logoArea){
 const imageArea = document.getElementById('imageUploadArea');
 if(imageArea){
     imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
-    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'rgba(255,255,255,0.08)');
+    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'rgba(255,255,508,0.08)');
     imageArea.addEventListener('drop', e => {
         e.preventDefault();
         imageArea.style.borderColor = 'rgba(255,255,255,0.08)';
@@ -954,16 +972,48 @@ if(imageArea){
     });
 }
 
+// Настройка табов
+document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+        document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+
 // ===== ЗАПУСК =====
 (async function init() {
-    console.log("🚀 Инициализация...");
+    console.log("🚀 Запуск магазина...");
     
-    await loadSettings();
-    await loadCategories();
-    await loadProducts();
+    // Проверяем подключение к Firebase
+    const isConnected = await testFirebaseConnection();
+    
+    if(isConnected) {
+        // Загружаем данные из Firestore
+        await loadSettings();
+        await loadCategories();
+        await loadProducts();
+    } else {
+        updateStatus("⚠️ Используются локальные демо-данные", true);
+        // Создаем демо-данные если Firebase не доступен
+        categories = [
+            { id: "cat1", name: "Add-on" },
+            { id: "cat2", name: "Скрипты" },
+            { id: "cat3", name: "Бандлы" },
+            { id: "cat4", name: "Материалы" }
+        ];
+        products = [
+            { id: 1, name: "Blender Pro Add-on (ДЕМО)", categoryId: "cat1", price: 2990, oldPrice: 5990, fileUrl: "#", youtubeUrl: "", images: [], description: "Демо-режим: подключение к Firebase отсутствует" },
+            { id: 2, name: "Auto Rig Script (ДЕМО)", categoryId: "cat2", price: 1490, oldPrice: 2990, fileUrl: "#", youtubeUrl: "", images: [], description: "Демо-режим: подключение к Firebase отсутствует" }
+        ];
+        renderCategories();
+        renderProducts();
+        updateLogoDisplay();
+    }
     
     renderCart();
-    updateLogoDisplay();
+    updateStatus("✅ Магазин готов к работе!");
     
     if(tg?.BackButton){
         tg.BackButton.onClick(() => {
@@ -972,8 +1022,6 @@ if(imageArea){
         });
         tg.BackButton.hide();
     }
-    
-    console.log("✅ Инициализация завершена");
 })();
 
 // Экспорт функций
