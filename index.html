@@ -18,14 +18,13 @@
 <div id="pageHome" class="page active"><div class="search-container"><input type="text" class="search-input" id="searchInput" placeholder="Поиск ассетов..." oninput="filterProducts()"></div><div class="categories" id="categoriesList"></div><div id="productsGridContainer" class="products-grid"></div></div>
 <div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email для файлов"><button class="checkout-btn" onclick="processOrder()">✅ Подтвердить заказ</button></div></div></div></div>
 <div id="productModal" class="modal"><div class="modal-content"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeModal()">✖</button><div class="gallery" id="modalGallery"></div><div class="gallery-nav" id="galleryNav" style="display:flex;justify-content:center;gap:8px;margin:12px 0"></div><div class="product-header"><h2 id="modalName"></h2><a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none">▶ Смотреть видео</a></div><div id="modalCategory" style="color:#aaa"></div><div id="modalPrice" style="margin:12px 0"></div><p id="modalDesc"></p><button id="modalAddBtn" class="add-btn" style="margin-top:20px">➕ В корзину</button></div></div>
-<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2>🔧 Админ-панель</h2><button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖ Закрыть</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button><button class="admin-tab" data-tab="productsTab">📦 Товары</button><button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button></div><div id="categoriesTab" class="admin-section active"><div class="admin-layout"><div class="categories-sidebar"><h3>📁 Категории (папки)</h3><div id="adminCategoryList"></div><div class="add-cat-form"><input type="text" id="newAdminCatName" placeholder="Новая категория"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div class="right-content"><div class="products-in-cat"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><h3 id="currentCategoryTitle">📦 Товары в категории</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый товар</button></div><div id="adminProductsByCategory"></div></div></div></div></div><div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div><div id="settingsTab" class="admin-section"><div class="settings-card"><h3>⚙️ Настройки магазина</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Нажмите или перетащите изображение логотипа<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить логотип</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить настройки</button></div></div></div>
+<div id="adminPanel" class="admin-panel"><div class="admin-header"><h2>🔧 Админ-панель</h2><button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖ Закрыть</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button><button class="admin-tab" data-tab="productsTab">📦 Товары</button><button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button></div><div id="categoriesTab" class="admin-section active"><div class="admin-layout"><div class="categories-sidebar"><h3>📁 Категории (папки)</h3><div id="adminCategoryList"></div><div class="add-cat-form"><input type="text" id="newAdminCatName" placeholder="Новая категория"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div class="right-content"><div class="products-in-cat"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px"><h3 id="currentCategoryTitle">📦 Товары в категории</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый товар</button></div><div id="adminProductsByCategory"></div></div></div></div></div><div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div><div id="settingsTab" class="admin-section"><div class="settings-card"><h3>⚙️ Настройки магазина</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" value="BlendMan Shop" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" value="🌀 BlendMan" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Нажмите или перетащите изображение логотипа<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить логотип</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить настройки</button></div></div></div>
 <div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать товар</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="Ссылка на YouTube видео" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения товара</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Нажмите или перетащите изображения<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
 <div class="toast" id="toastMsg">Сообщение</div>
 <div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
 
 <script>
 // ==================== НАСТРОЙКИ ====================
-// FIREBASE (для текстовых данных)
 const firebaseConfig = {
     apiKey: "AIzaSyCg0EUX3grKMXmKoLKZyGcWSAYPDZ-bwuQ",
     authDomain: "blendmanshop.firebaseapp.com",
@@ -37,7 +36,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// SUPABASE (только для изображений)
 const SUPABASE_URL = 'https://arrogldacaqtnkzjpcop.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4rtn65eVe_j_O0V_2qsaVg_05wnidon';
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -54,73 +52,81 @@ let settings = {storeName:"BlendMan Shop",logoText:"🌀 BlendMan",logoImage:nul
 let currentAdminCategoryId = null;
 let selectedImageFiles = [];
 
-// ЗАГРУЗКА ДАННЫХ ИЗ FIRESTORE
-async function loadCategories(){
-    const snapshot = await db.collection('categories').get();
-    categories = [];
-    snapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
-    if(categories.length === 0){
-        const defaultCats = [
-            { id: "cat1", name: "Add-on" },
-            { id: "cat2", name: "Скрипты" },
-            { id: "cat4", name: "Бандлы" },
-            { id: "cat5", name: "Материалы" }
-        ];
-        for(const cat of defaultCats){
-            await db.collection('categories').doc(cat.id).set(cat);
-            categories.push(cat);
-        }
-    }
-    renderCategories();
-}
-
-async function loadProducts(){
-    const snapshot = await db.collection('products').get();
-    products = [];
-    snapshot.forEach(doc => products.push({ id: parseInt(doc.id), ...doc.data() }));
-    renderProducts();
-    updateCartBadge();
-}
-
-async function loadSettings(){
-    const doc = await db.collection('settings').doc('main').get();
-    if(doc.exists){
-        settings = { ...settings, ...doc.data() };
-    } else {
-        await db.collection('settings').doc('main').set(settings);
-    }
-    document.title = settings.storeName;
-    document.getElementById('settingsStoreName').value = settings.storeName;
-    document.getElementById('settingsLogoText').value = settings.logoText;
-    updateLogoDisplay();
-}
-
+// ПРИНУДИТЕЛЬНОЕ ОТОБРАЖЕНИЕ ЛОГОТИПА
 function updateLogoDisplay(){
     const container = document.getElementById('logoContainer');
     container.innerHTML = '';
-    if(settings.logoImage){
+    if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== ''){
         const img = document.createElement('img');
         img.src = settings.logoImage;
         img.className = 'logo-img';
+        img.onerror = () => { console.log("Ошибка загрузки картинки, используем текст"); };
         container.appendChild(img);
     }
     const span = document.createElement('span');
     span.className = 'logo-text';
-    span.innerText = settings.logoText;
+    span.innerText = settings.logoText || "🌀 BlendMan";
     container.appendChild(span);
+    document.title = settings.storeName || "BlendMan Shop";
+    
     const preview = document.getElementById('logoPreviewContainer');
     if(preview){
-        preview.innerHTML = settings.logoImage ? `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;">` : '<span style="color:#aaa;">Нет логотипа</span>';
+        preview.innerHTML = (settings.logoImage && settings.logoImage !== 'null') ? `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;">` : '<span style="color:#aaa;">Нет логотипа</span>';
     }
+}
+
+// ЗАГРУЗКА ДАННЫХ ИЗ FIRESTORE
+async function loadCategories(){
+    try{
+        const snapshot = await db.collection('categories').get();
+        categories = [];
+        snapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
+        if(categories.length === 0){
+            const defaultCats = [
+                { id: "cat1", name: "Add-on" },
+                { id: "cat2", name: "Скрипты" },
+                { id: "cat4", name: "Бандлы" },
+                { id: "cat5", name: "Материалы" }
+            ];
+            for(const cat of defaultCats){
+                await db.collection('categories').doc(cat.id).set(cat);
+                categories.push(cat);
+            }
+        }
+        renderCategories();
+    }catch(e){console.error(e);}
+}
+
+async function loadProducts(){
+    try{
+        const snapshot = await db.collection('products').get();
+        products = [];
+        snapshot.forEach(doc => products.push({ id: parseInt(doc.id), ...doc.data() }));
+        renderProducts();
+        updateCartBadge();
+    }catch(e){console.error(e);}
+}
+
+async function loadSettings(){
+    try{
+        const doc = await db.collection('settings').doc('main').get();
+        if(doc.exists){
+            settings = { ...settings, ...doc.data() };
+        } else {
+            await db.collection('settings').doc('main').set(settings);
+        }
+    }catch(e){console.error(e);}
+    updateLogoDisplay();
+    document.getElementById('settingsStoreName').value = settings.storeName;
+    document.getElementById('settingsLogoText').value = settings.logoText;
 }
 
 async function saveSettings(){
     settings.storeName = document.getElementById('settingsStoreName').value.trim();
     settings.logoText = document.getElementById('settingsLogoText').value.trim();
     await db.collection('settings').doc('main').set(settings);
-    document.title = settings.storeName;
     updateLogoDisplay();
-    showToast("Настройки сохранены в Firebase");
+    showToast("Настройки сохранены");
 }
 
 function showToast(msg){
@@ -304,7 +310,7 @@ document.getElementById('modalAddBtn').onclick = () => {
     closeModal();
 };
 
-// АДМИН-ПАНЕЛЬ (РАБОТА С FIRESTORE)
+// АДМИН-ПАНЕЛЬ
 function renderAdminCategoriesSidebar(){
     const container = document.getElementById('adminCategoryList');
     container.innerHTML = categories.map(cat => `
@@ -342,7 +348,7 @@ async function deleteCategoryById(catId){
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Категория удалена из Firebase");
+    showToast("Категория удалена");
 }
 
 window.addCategoryFromAdmin = async function(){
@@ -354,7 +360,7 @@ window.addCategoryFromAdmin = async function(){
     renderAdminCategoriesSidebar();
     renderAllProductsList();
     document.getElementById('newAdminCatName').value = '';
-    showToast(`Категория "${name}" добавлена в Firebase`);
+    showToast(`Категория "${name}" добавлена`);
 };
 
 function renderProductsByCategory(){
@@ -418,7 +424,7 @@ window.addProductInCurrentCategory = async function(){
     renderProductsByCategory();
     renderAllProductsList();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
+    showToast("Товар создан");
 };
 
 window.addGlobalProduct = async function(){
@@ -439,7 +445,7 @@ window.addGlobalProduct = async function(){
     renderAllProductsList();
     renderProductsByCategory();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
+    showToast("Товар создан");
 };
 
 window.deleteProductById = async function(id){
@@ -448,27 +454,22 @@ window.deleteProductById = async function(id){
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар удалён из Firebase");
+    showToast("Товар удалён");
 };
-
-// ЗАГРУЗКА ИЗОБРАЖЕНИЙ В SUPABASE STORAGE
-async function uploadImageToSupabase(file, productId, index){
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${productId}/${Date.now()}_${index}.${fileExt}`;
-    const { error } = await supabase.storage.from('product-images').upload(fileName, file);
-    if(error){
-        console.error(error);
-        return null;
-    }
-    const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
-    return urlData.publicUrl;
-}
 
 async function uploadImagesToSupabase(files, productId){
     let urls = [];
     for(let i = 0; i < files.length; i++){
-        const url = await uploadImageToSupabase(files[i], productId, i);
-        if(url) urls.push(url);
+        const file = files[i];
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${productId}/${Date.now()}_${i}.${fileExt}`;
+        const { error } = await supabase.storage.from('product-images').upload(fileName, file);
+        if(error){
+            console.error(error);
+            continue;
+        }
+        const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
+        urls.push(urlData.publicUrl);
     }
     return urls;
 }
@@ -560,7 +561,7 @@ window.saveProductChanges = async function(){
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар сохранён в Firebase");
+    showToast("Товар сохранён");
     closeEditProductModal();
 };
 
@@ -574,14 +575,14 @@ async function handleLogoUpload(event){
     const fileName = `logo/logo_${Date.now()}.${fileExt}`;
     const { error } = await supabase.storage.from('product-images').upload(fileName, file);
     if(error){
-        showToast("Ошибка загрузки логотипа в Supabase");
+        showToast("Ошибка загрузки логотипа: " + error.message);
         return;
     }
     const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
     settings.logoImage = urlData.publicUrl;
     await db.collection('settings').doc('main').set(settings);
     updateLogoDisplay();
-    showToast("Логотип загружен в Supabase Storage");
+    showToast("Логотип загружен!");
     document.getElementById('logoFileInput').value = '';
 }
 
@@ -593,10 +594,6 @@ async function removeLogo(){
 }
 
 function showAdminPanel(){
-    if(!tg || tg.initDataUnsafe?.user?.id !== ADMIN_ID){
-        showToast("⛔ Доступ запрещён");
-        return;
-    }
     currentAdminCategoryId = categories[0]?.id || null;
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
@@ -628,7 +625,6 @@ document.getElementById('logoClick').addEventListener('click', () => {
     }
 });
 
-// DRAG & DROP
 const logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
     logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
@@ -679,7 +675,6 @@ if(imageArea){
     });
 }
 
-// ЗАПУСК
 await loadSettings();
 await loadCategories();
 await loadProducts();
