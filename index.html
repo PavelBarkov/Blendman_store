@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px;background:rgba(255,255,255,0.05);padding:4px;object-fit:contain}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer;transition:0.2s}.cart-btn:hover{border-color:var(--accent);background:rgba(255,122,47,0.1)}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.search-input:focus{border-color:var(--accent);outline:none}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap;transition:0.2s}.chip.active{background:var(--accent);color:#0a0c15;border-color:var(--accent)}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px;background:#0c0f18}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}.youtube-btn:hover{background:#ff0000;color:#fff}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:16px;flex-wrap:wrap;gap:12px}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none;transition:0.2s}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.admin-layout{display:flex;gap:24px;flex-wrap:wrap}.categories-sidebar{background:#131724;border-radius:32px;padding:20px;width:280px;border:1px solid var(--border)}.categories-sidebar h3{margin-bottom:16px;font-size:18px}.category-folder{background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:0.2s;border-left:3px solid transparent}.category-folder.active{background:rgba(255,122,47,0.15);border-left-color:var(--accent)}.category-folder span{font-weight:500}.delete-cat-btn{background:none;border:none;color:#ff8a7a;font-size:18px;cursor:pointer;padding:0 6px}.add-cat-form{display:flex;gap:8px;margin-top:20px}.add-cat-form input{flex:1;background:#0c0f18;border:1px solid var(--border);border-radius:40px;padding:10px 14px;color:#fff}.right-content{flex:1;min-width:280px}.products-in-cat{background:#131724;border-radius:32px;padding:20px;border:1px solid var(--border)}.product-admin-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px;flex-wrap:wrap;gap:12px}.product-admin-row:hover{background:rgba(255,122,47,0.08)}.product-admin-info{display:flex;align-items:center;gap:12px;flex:2;cursor:pointer}.admin-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;background:#0c0f18;border:1px solid var(--border)}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px;border:1px solid var(--border)}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px;transition:0.2s}.logo-upload-area:hover,.image-upload-area:hover{border-color:var(--accent);background:rgba(255,122,47,0.05)}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px;background:rgba(255,255,255,0.05);padding:4px;object-fit:contain}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer;transition:0.2s}.cart-btn:hover{border-color:var(--accent);background:rgba(255,122,47,0.1)}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.search-input:focus{border-color:var(--accent);outline:none}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap;transition:0.2s}.chip.active{background:var(--accent);color:#0a0c15;border-color:var(--accent)}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border)}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px;background:#0c0f18}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:0.2s}.youtube-btn:hover{background:#ff0000;color:#fff}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:16px;flex-wrap:wrap;gap:12px}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none;transition:0.2s}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.admin-layout{display:flex;gap:24px;flex-wrap:wrap}.categories-sidebar{background:#131724;border-radius:32px;padding:20px;width:280px;border:1px solid var(--border)}.categories-sidebar h3{margin-bottom:16px;font-size:18px}.category-folder{background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:0.2s;border-left:3px solid transparent}.category-folder.active{background:rgba(255,122,47,0.15);border-left-color:var(--accent)}.category-folder span{font-weight:500}.delete-cat-btn{background:none;border:none;color:#ff8a7a;font-size:18px;cursor:pointer;padding:0 6px}.add-cat-form{display:flex;gap:8px;margin-top:20px}.add-cat-form input{flex:1;background:#0c0f18;border:1px solid var(--border);border-radius:40px;padding:10px 14px;color:#fff}.right-content{flex:1;min-width:280px}.products-in-cat{background:#131724;border-radius:32px;padding:20px;border:1px solid var(--border)}.product-admin-row{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px;flex-wrap:wrap;gap:12px}.product-admin-row:hover{background:rgba(255,122,47,0.08)}.product-admin-info{display:flex;align-items:center;gap:12px;flex:2;cursor:pointer}.admin-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;background:#0c0f18;border:1px solid var(--border)}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px;border:1px solid var(--border)}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px;transition:0.2s}.logo-upload-area:hover,.image-upload-area:hover{border-color:var(--accent);background:rgba(255,122,47,0.05)}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.loading{text-align:center;padding:40px;color:#8e8e9e}
     </style>
 </head>
 <body>
@@ -31,8 +31,12 @@
     <div class="search-container">
         <input type="text" class="search-input" id="searchInput" placeholder="Поиск ассетов..." oninput="filterProducts()">
     </div>
-    <div class="categories" id="categoriesList"></div>
-    <div id="productsGridContainer" class="products-grid"></div>
+    <div class="categories" id="categoriesList">
+        <div class="loading">Загрузка категорий...</div>
+    </div>
+    <div id="productsGridContainer" class="products-grid">
+        <div class="loading">Загрузка товаров...</div>
+    </div>
 </div>
 
 <div id="pageCart" class="page">
@@ -162,8 +166,17 @@ const firebaseConfig = {
     messagingSenderId: "32462864879",
     appId: "1:32462864879:web:958c2f23c98859db9a761a"
 };
+
+// Инициализируем Firebase с дополнительными настройками для Telegram WebView
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+// Настройки Firestore для работы в Telegram WebView
+db.settings({
+    ignoreUndefinedProperties: true,
+    experimentalForceLongPolling: true, // Важно для Telegram WebView!
+    cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+});
 
 const SUPABASE_URL = 'https://arrogldacaqtnkzjpcop.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_4rtn65eVe_j_O0V_2qsaVg_05wnidon';
@@ -172,14 +185,24 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const ADMIN_ID = 379731685;
 let tg = window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();}
+if(tg){
+    tg.ready();
+    tg.expand();
+    console.log("Telegram WebApp initialized");
+}
 
 let categories = [];
 let products = [];
-let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
+let cart = [];
 let settings = {storeName:"BlendMan Shop",logoText:"🌀 BlendMan",logoImage:null};
 let currentAdminCategoryId = null;
 let selectedImageFiles = [];
+
+// Загружаем корзину из localStorage
+try {
+    const savedCart = localStorage.getItem('blender_cart');
+    if(savedCart) cart = JSON.parse(savedCart);
+} catch(e) { console.error("Error loading cart:", e); }
 
 // ==== ПРОВЕРКА СУЩЕСТВОВАНИЯ НАСТРОЕК В FIREBASE ====
 async function ensureSettingsExist() {
@@ -188,7 +211,6 @@ async function ensureSettingsExist() {
         const doc = await docRef.get();
         
         if(!doc.exists) {
-            // Создаем настройки по умолчанию
             const defaultSettings = {
                 storeName: "BlendMan Shop",
                 logoText: "🌀 BlendMan",
@@ -199,6 +221,7 @@ async function ensureSettingsExist() {
             console.log("✅ Настройки созданы в Firebase");
             return defaultSettings;
         }
+        console.log("✅ Настройки загружены из Firebase");
         return doc.data();
     } catch(e) {
         console.error("Ошибка при проверке настроек:", e);
@@ -210,7 +233,7 @@ async function ensureSettingsExist() {
     }
 }
 
-// ==== ОБНОВЛЕНИЕ ЛОГОТИПА (ИСПРАВЛЕННАЯ ВЕРСИЯ) ====
+// ==== ОБНОВЛЕНИЕ ЛОГОТИПА ====
 function updateLogoDisplay() {
     const container = document.getElementById('logoContainer');
     if(!container) {
@@ -219,15 +242,16 @@ function updateLogoDisplay() {
     }
     container.innerHTML = '';
     
-    // Если есть изображение логотипа - показываем только его
+    // Если есть изображение логотипа - показываем его
     if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== '') {
         const img = document.createElement('img');
         img.src = settings.logoImage;
         img.className = 'logo-img';
         img.alt = "Logo";
-        img.onerror = function() {
-            console.error("Failed to load logo image:", settings.logoImage);
-            // Если изображение не загрузилось, показываем текст
+        img.onload = () => console.log("Logo image loaded");
+        img.onerror = () => {
+            console.error("Failed to load logo image");
+            // Показываем текст при ошибке загрузки
             const span = document.createElement('span');
             span.className = 'logo-text';
             span.innerText = settings.logoText || "🌀 BlendMan";
@@ -235,17 +259,14 @@ function updateLogoDisplay() {
             container.appendChild(span);
         };
         container.appendChild(img);
-        console.log("✅ Логотип-изображение отображается");
     } else {
-        // Если нет изображения, показываем текст
+        // Показываем текст
         const span = document.createElement('span');
         span.className = 'logo-text';
         span.innerText = settings.logoText || "🌀 BlendMan";
         container.appendChild(span);
-        console.log("✅ Текстовый логотип отображается:", settings.logoText);
     }
     
-    // Обновляем заголовок страницы
     document.title = settings.storeName || "BlendMan Shop";
     
     // Обновляем preview в админке
@@ -259,21 +280,18 @@ function updateLogoDisplay() {
     }
 }
 
-// ==== ЗАГРУЗКА НАСТРОЕК ИЗ FIRESTORE (ИСПРАВЛЕННАЯ) ====
+// ==== ЗАГРУЗКА НАСТРОЕК ====
 async function loadSettings() {
     try {
-        // Проверяем существование настроек и получаем их
         const settingsData = await ensureSettingsExist();
-        
         settings.storeName = settingsData.storeName || "BlendMan Shop";
         settings.logoText = settingsData.logoText || "🌀 BlendMan";
         settings.logoImage = settingsData.logoImage || null;
         
-        console.log("✅ Загруженные настройки:", settings);
+        console.log("Загружены настройки:", settings);
         
     } catch(e) { 
         console.error("Ошибка загрузки настроек:", e);
-        // Устанавливаем значения по умолчанию при ошибке
         settings = {
             storeName: "BlendMan Shop",
             logoText: "🌀 BlendMan",
@@ -281,32 +299,26 @@ async function loadSettings() {
         };
     }
     
-    // Обновляем поля в админке
     const storeNameInput = document.getElementById('settingsStoreName');
     const logoTextInput = document.getElementById('settingsLogoText');
     if(storeNameInput) storeNameInput.value = settings.storeName;
     if(logoTextInput) logoTextInput.value = settings.logoText;
     
-    // Обновляем отображение
     updateLogoDisplay();
-}
-
-// ==== СОХРАНЕНИЕ НАСТРОЕК ====
-async function saveSettings() {
-    settings.storeName = document.getElementById('settingsStoreName').value.trim();
-    settings.logoText = document.getElementById('settingsLogoText').value.trim();
-    await db.collection('settings').doc('main').set(settings);
-    updateLogoDisplay();
-    showToast("Настройки сохранены в Firebase");
 }
 
 // ==== ЗАГРУЗКА КАТЕГОРИЙ ====
 async function loadCategories() {
     try {
+        console.log("Загрузка категорий из Firebase...");
         const snapshot = await db.collection('categories').get();
         categories = [];
         snapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
+        
+        console.log(`Загружено категорий: ${categories.length}`);
+        
         if(categories.length === 0) {
+            console.log("Создание категорий по умолчанию...");
             const defaultCats = [
                 { id: "cat1", name: "Add-on" },
                 { id: "cat2", name: "Скрипты" },
@@ -317,20 +329,31 @@ async function loadCategories() {
                 await db.collection('categories').doc(cat.id).set(cat);
                 categories.push(cat);
             }
+            console.log("Категории по умолчанию созданы");
         }
         renderCategories();
-    } catch(e) { console.error(e); }
+    } catch(e) { 
+        console.error("Ошибка загрузки категорий:", e);
+        document.getElementById('categoriesList').innerHTML = '<div class="loading">❌ Ошибка загрузки категорий. Проверьте интернет.</div>';
+    }
 }
 
 // ==== ЗАГРУЗКА ТОВАРОВ ====
 async function loadProducts() {
     try {
+        console.log("Загрузка товаров из Firebase...");
         const snapshot = await db.collection('products').get();
         products = [];
         snapshot.forEach(doc => products.push({ id: parseInt(doc.id), ...doc.data() }));
+        
+        console.log(`Загружено товаров: ${products.length}`);
+        
         renderProducts();
         updateCartBadge();
-    } catch(e) { console.error(e); }
+    } catch(e) { 
+        console.error("Ошибка загрузки товаров:", e);
+        document.getElementById('productsGridContainer').innerHTML = '<div class="loading">❌ Ошибка загрузки товаров. Проверьте интернет.</div>';
+    }
 }
 
 // ==== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====
@@ -391,7 +414,7 @@ function renderProducts(){
     }
     grid.innerHTML = filtered.map(p => `
         <div class="product-card" onclick="openProductModal(${p.id})">
-            <img class="product-preview" src="${getPreviewImage(p)}" loading="lazy">
+            <img class="product-preview" src="${getPreviewImage(p)}" loading="lazy" onerror="this.src='https://placehold.co/1024x1024/2b2b3a/white?text=Error'">
             <div class="product-name">${escapeHtml(p.name)}</div>
             <div><span class="current-price">${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span>${p.oldPrice ? `<span class="old-price">${p.oldPrice.toLocaleString()} ₽</span>` : ''}</div>
             <button class="add-btn" onclick="event.stopPropagation(); toggleCart(${p.id})">${cart.some(i=>i.id===p.id) ? '✓ В корзине' : '+ В корзину'}</button>
@@ -405,13 +428,15 @@ function toggleCart(id){
         cart.splice(idx, 1);
     } else {
         let prod = products.find(p => p.id === id);
-        cart.push({
-            id: prod.id,
-            name: prod.name,
-            price: prod.price,
-            fileUrl: prod.fileUrl,
-            preview: getPreviewImage(prod)
-        });
+        if(prod){
+            cart.push({
+                id: prod.id,
+                name: prod.name,
+                price: prod.price,
+                fileUrl: prod.fileUrl,
+                preview: getPreviewImage(prod)
+            });
+        }
     }
     localStorage.setItem('blender_cart', JSON.stringify(cart));
     renderProducts();
@@ -430,7 +455,7 @@ function renderCart(){
     }
     container.innerHTML = cart.map(item => `
         <div class="cart-item">
-            <div><img class="cart-preview" src="${item.preview}"> ${item.name} - ${item.price === 0 ? "Бесплатно" : item.price.toLocaleString() + " ₽"}</div>
+            <div><img class="cart-preview" src="${item.preview}" onerror="this.src='https://placehold.co/48x48/2b2b3a/white?text=?'"> ${item.name} - ${item.price === 0 ? "Бесплатно" : item.price.toLocaleString() + " ₽"}</div>
             <button class="remove-item" onclick="removeFromCart(${item.id})">Удалить</button>
         </div>
     `).join('');
@@ -484,7 +509,7 @@ window.openProductModal = function(id){
     currentModalProduct = p;
     currentImageIndex = 0;
     let images = p.images?.length ? p.images : [getPreviewImage(p)];
-    document.getElementById('modalGallery').innerHTML = images.map((img, i) => `<img class="gallery-img" src="${img}" style="display:${i === 0 ? 'block' : 'none'};">`).join('');
+    document.getElementById('modalGallery').innerHTML = images.map((img, i) => `<img class="gallery-img" src="${img}" style="display:${i === 0 ? 'block' : 'none'};" onerror="this.src='https://placehold.co/1024x1024/2b2b3a/white?text=Error'">`).join('');
     document.getElementById('galleryNav').innerHTML = images.map((_, idx) => `<div class="gallery-dot ${idx === currentImageIndex ? 'active' : ''}" data-dot="${idx}"></div>`).join('');
     document.querySelectorAll('.gallery-dot').forEach(dot => {
         dot.addEventListener('click', (e) => {
@@ -522,10 +547,14 @@ document.getElementById('modalAddBtn').onclick = () => {
     closeModal();
 };
 
-// ==== АДМИН-ПАНЕЛЬ (КАТЕГОРИИ, ТОВАРЫ) ====
+// ==== АДМИН-ПАНЕЛЬ ====
 function renderAdminCategoriesSidebar(){
     const container = document.getElementById('adminCategoryList');
     if(!container) return;
+    if(!categories.length){
+        container.innerHTML = '<div class="loading">Загрузка категорий...</div>';
+        return;
+    }
     container.innerHTML = categories.map(cat => `
         <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}">
             <span>📂 ${cat.name}</span>
@@ -552,16 +581,22 @@ function renderAdminCategoriesSidebar(){
 
 async function deleteCategoryById(catId){
     if(!confirm("Удалить категорию и все товары в ней?")) return;
-    const productsSnapshot = await db.collection('products').where('categoryId', '==', catId).get();
-    productsSnapshot.forEach(async doc => await db.collection('products').doc(doc.id).delete());
-    await db.collection('categories').doc(catId).delete();
-    await loadCategories();
-    await loadProducts();
-    if(currentAdminCategoryId === catId) currentAdminCategoryId = categories[0]?.id || null;
-    renderAdminCategoriesSidebar();
-    renderProductsByCategory();
-    renderAllProductsList();
-    showToast("Категория удалена из Firebase");
+    try {
+        const productsSnapshot = await db.collection('products').where('categoryId', '==', catId).get();
+        const deletePromises = productsSnapshot.docs.map(doc => db.collection('products').doc(doc.id).delete());
+        await Promise.all(deletePromises);
+        await db.collection('categories').doc(catId).delete();
+        await loadCategories();
+        await loadProducts();
+        if(currentAdminCategoryId === catId) currentAdminCategoryId = categories[0]?.id || null;
+        renderAdminCategoriesSidebar();
+        renderProductsByCategory();
+        renderAllProductsList();
+        showToast("Категория удалена из Firebase");
+    } catch(e) {
+        console.error(e);
+        showToast("Ошибка удаления");
+    }
 }
 
 window.addCategoryFromAdmin = async function(){
@@ -591,7 +626,7 @@ function renderProductsByCategory(){
     container.innerHTML = categoryProducts.map(p => `
         <div class="product-admin-row">
             <div class="product-admin-info" onclick="openEditProductModal(${p.id})">
-                <img class="admin-preview" src="${getPreviewImage(p)}">
+                <img class="admin-preview" src="${getPreviewImage(p)}" onerror="this.src='https://placehold.co/48x48/2b2b3a/white?text=?'">
                 <div><strong>${escapeHtml(p.name)}</strong><br><span>${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
@@ -609,7 +644,7 @@ function renderAllProductsList(){
     container.innerHTML = products.map(p => `
         <div class="product-admin-row">
             <div class="product-admin-info" onclick="openEditProductModal(${p.id})">
-                <img class="admin-preview" src="${getPreviewImage(p)}">
+                <img class="admin-preview" src="${getPreviewImage(p)}" onerror="this.src='https://placehold.co/48x48/2b2b3a/white?text=?'">
                 <div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c => c.id === p.categoryId)?.name || 'Без категории'} | ${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
@@ -836,24 +871,27 @@ window.closeAdminPanel = function(){
 };
 
 let clickCount = 0, clickTimer;
-document.getElementById('logoClick').addEventListener('click', () => {
-    clickCount++;
-    clearTimeout(clickTimer);
-    clickTimer = setTimeout(() => clickCount = 0, 800);
-    if(clickCount >= 5){
-        clickCount = 0;
-        showAdminPanel();
-    }
-});
+const logoElement = document.getElementById('logoClick');
+if(logoElement){
+    logoElement.addEventListener('click', () => {
+        clickCount++;
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => clickCount = 0, 800);
+        if(clickCount >= 5){
+            clickCount = 0;
+            showAdminPanel();
+        }
+    });
+}
 
 // DRAG & DROP
 const logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
     logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
-    logoArea.addEventListener('dragleave', () => logoArea.style.borderColor = 'var(--border-light)');
+    logoArea.addEventListener('dragleave', () => logoArea.style.borderColor = 'rgba(255,255,255,0.08)');
     logoArea.addEventListener('drop', async e => {
         e.preventDefault();
-        logoArea.style.borderColor = 'var(--border-light)';
+        logoArea.style.borderColor = 'rgba(255,255,255,0.08)';
         const file = e.dataTransfer.files[0];
         if(file && file.type.startsWith('image/')){
             const fileExt = file.name.split('.').pop();
@@ -872,10 +910,10 @@ if(logoArea){
 const imageArea = document.getElementById('imageUploadArea');
 if(imageArea){
     imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
-    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'var(--border-light)');
+    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'rgba(255,255,255,0.08)');
     imageArea.addEventListener('drop', e => {
         e.preventDefault();
-        imageArea.style.borderColor = 'var(--border-light)';
+        imageArea.style.borderColor = 'rgba(255,255,255,0.08)';
         const files = Array.from(e.dataTransfer.files);
         for(let file of files){
             if(!file.type.startsWith('image/')) continue;
@@ -900,18 +938,14 @@ if(imageArea){
 // ===== ЗАПУСК =====
 (async function init() {
     console.log("🚀 Инициализация магазина...");
+    console.log("Telegram WebApp:", tg ? "доступен" : "не доступен");
     
-    await loadSettings();    // Загружаем настройки
-    console.log("✓ Настройки загружены:", settings);
-    
-    await loadCategories();  // Загружаем категории
-    console.log("✓ Категории загружены:", categories.length);
-    
-    await loadProducts();    // Загружаем товары
-    console.log("✓ Товары загружены:", products.length);
+    await loadSettings();
+    await loadCategories();
+    await loadProducts();
     
     renderCart();
-    updateLogoDisplay(); // Явно вызываем обновление логотипа
+    updateLogoDisplay();
     
     if(tg?.BackButton){
         tg.BackButton.onClick(() => {
@@ -920,8 +954,18 @@ if(imageArea){
         });
         tg.BackButton.hide();
     }
+    
+    // Проверка подключения к Firebase
+    try {
+        const testDoc = await db.collection('settings').doc('main').get();
+        console.log("✅ Firebase подключен успешно");
+    } catch(e) {
+        console.error("❌ Ошибка подключения к Firebase:", e);
+        showToast("Ошибка подключения к базе данных");
+    }
 })();
 
+// Экспорт функций в глобальную область
 window.filterProducts = filterProducts;
 window.toggleCart = toggleCart;
 window.removeFromCart = removeFromCart;
