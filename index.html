@@ -167,15 +167,13 @@ const firebaseConfig = {
     appId: "1:32462864879:web:958c2f23c98859db9a761a"
 };
 
-// Инициализируем Firebase с дополнительными настройками для Telegram WebView
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-// Настройки Firestore для работы в Telegram WebView
+// Настройки для Telegram WebView
 db.settings({
     ignoreUndefinedProperties: true,
-    experimentalForceLongPolling: true, // Важно для Telegram WebView!
-    cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+    experimentalForceLongPolling: true
 });
 
 const SUPABASE_URL = 'https://arrogldacaqtnkzjpcop.supabase.co';
@@ -198,13 +196,13 @@ let settings = {storeName:"BlendMan Shop",logoText:"🌀 BlendMan",logoImage:nul
 let currentAdminCategoryId = null;
 let selectedImageFiles = [];
 
-// Загружаем корзину из localStorage
+// Загружаем корзину
 try {
     const savedCart = localStorage.getItem('blender_cart');
     if(savedCart) cart = JSON.parse(savedCart);
 } catch(e) { console.error("Error loading cart:", e); }
 
-// ==== ПРОВЕРКА СУЩЕСТВОВАНИЯ НАСТРОЕК В FIREBASE ====
+// ==== ПРОВЕРКА И СОЗДАНИЕ НАСТРОЕК ====
 async function ensureSettingsExist() {
     try {
         const docRef = db.collection('settings').doc('main');
@@ -218,13 +216,13 @@ async function ensureSettingsExist() {
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             };
             await docRef.set(defaultSettings);
-            console.log("✅ Настройки созданы в Firebase");
+            console.log("✅ Настройки созданы");
             return defaultSettings;
         }
-        console.log("✅ Настройки загружены из Firebase");
+        console.log("✅ Настройки загружены");
         return doc.data();
     } catch(e) {
-        console.error("Ошибка при проверке настроек:", e);
+        console.error("Ошибка настроек:", e);
         return {
             storeName: "BlendMan Shop",
             logoText: "🌀 BlendMan",
@@ -236,22 +234,15 @@ async function ensureSettingsExist() {
 // ==== ОБНОВЛЕНИЕ ЛОГОТИПА ====
 function updateLogoDisplay() {
     const container = document.getElementById('logoContainer');
-    if(!container) {
-        console.error("logoContainer not found");
-        return;
-    }
+    if(!container) return;
     container.innerHTML = '';
     
-    // Если есть изображение логотипа - показываем его
     if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== '') {
         const img = document.createElement('img');
         img.src = settings.logoImage;
         img.className = 'logo-img';
         img.alt = "Logo";
-        img.onload = () => console.log("Logo image loaded");
         img.onerror = () => {
-            console.error("Failed to load logo image");
-            // Показываем текст при ошибке загрузки
             const span = document.createElement('span');
             span.className = 'logo-text';
             span.innerText = settings.logoText || "🌀 BlendMan";
@@ -260,7 +251,6 @@ function updateLogoDisplay() {
         };
         container.appendChild(img);
     } else {
-        // Показываем текст
         const span = document.createElement('span');
         span.className = 'logo-text';
         span.innerText = settings.logoText || "🌀 BlendMan";
@@ -269,13 +259,12 @@ function updateLogoDisplay() {
     
     document.title = settings.storeName || "BlendMan Shop";
     
-    // Обновляем preview в админке
     const preview = document.getElementById('logoPreviewContainer');
     if(preview) {
         if(settings.logoImage && settings.logoImage !== 'null' && settings.logoImage !== '') {
             preview.innerHTML = `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;"><span style="margin-left:10px;">Текущий логотип</span>`;
         } else {
-            preview.innerHTML = '<span style="color:#aaa;">Нет логотипа, используется текстовый</span>';
+            preview.innerHTML = '<span style="color:#aaa;">Нет логотипа</span>';
         }
     }
 }
@@ -287,16 +276,8 @@ async function loadSettings() {
         settings.storeName = settingsData.storeName || "BlendMan Shop";
         settings.logoText = settingsData.logoText || "🌀 BlendMan";
         settings.logoImage = settingsData.logoImage || null;
-        
-        console.log("Загружены настройки:", settings);
-        
     } catch(e) { 
-        console.error("Ошибка загрузки настроек:", e);
-        settings = {
-            storeName: "BlendMan Shop",
-            logoText: "🌀 BlendMan",
-            logoImage: null
-        };
+        console.error("Ошибка:", e);
     }
     
     const storeNameInput = document.getElementById('settingsStoreName');
@@ -310,12 +291,12 @@ async function loadSettings() {
 // ==== ЗАГРУЗКА КАТЕГОРИЙ ====
 async function loadCategories() {
     try {
-        console.log("Загрузка категорий из Firebase...");
+        console.log("Загрузка категорий...");
         const snapshot = await db.collection('categories').get();
         categories = [];
         snapshot.forEach(doc => categories.push({ id: doc.id, ...doc.data() }));
         
-        console.log(`Загружено категорий: ${categories.length}`);
+        console.log(`Загружено: ${categories.length} категорий`);
         
         if(categories.length === 0) {
             console.log("Создание категорий по умолчанию...");
@@ -329,31 +310,39 @@ async function loadCategories() {
                 await db.collection('categories').doc(cat.id).set(cat);
                 categories.push(cat);
             }
-            console.log("Категории по умолчанию созданы");
         }
         renderCategories();
     } catch(e) { 
         console.error("Ошибка загрузки категорий:", e);
-        document.getElementById('categoriesList').innerHTML = '<div class="loading">❌ Ошибка загрузки категорий. Проверьте интернет.</div>';
+        document.getElementById('categoriesList').innerHTML = '<div class="loading">❌ Ошибка загрузки</div>';
     }
 }
 
 // ==== ЗАГРУЗКА ТОВАРОВ ====
 async function loadProducts() {
     try {
-        console.log("Загрузка товаров из Firebase...");
+        console.log("Загрузка товаров...");
         const snapshot = await db.collection('products').get();
         products = [];
         snapshot.forEach(doc => products.push({ id: parseInt(doc.id), ...doc.data() }));
         
-        console.log(`Загружено товаров: ${products.length}`);
+        console.log(`Загружено: ${products.length} товаров`);
         
         renderProducts();
         updateCartBadge();
     } catch(e) { 
         console.error("Ошибка загрузки товаров:", e);
-        document.getElementById('productsGridContainer').innerHTML = '<div class="loading">❌ Ошибка загрузки товаров. Проверьте интернет.</div>';
+        document.getElementById('productsGridContainer').innerHTML = '<div class="loading">❌ Ошибка загрузки</div>';
     }
+}
+
+// ==== СОХРАНЕНИЕ НАСТРОЕК ====
+async function saveSettings() {
+    settings.storeName = document.getElementById('settingsStoreName').value.trim();
+    settings.logoText = document.getElementById('settingsLogoText').value.trim();
+    await db.collection('settings').doc('main').set(settings);
+    updateLogoDisplay();
+    showToast("Настройки сохранены");
 }
 
 // ==== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ====
@@ -547,28 +536,33 @@ document.getElementById('modalAddBtn').onclick = () => {
     closeModal();
 };
 
-// ==== АДМИН-ПАНЕЛЬ ====
+// ========== АДМИН-ПАНЕЛЬ (ИСПРАВЛЕННАЯ) ==========
 function renderAdminCategoriesSidebar(){
     const container = document.getElementById('adminCategoryList');
     if(!container) return;
-    if(!categories.length){
+    
+    if(!categories || categories.length === 0){
         container.innerHTML = '<div class="loading">Загрузка категорий...</div>';
         return;
     }
+    
     container.innerHTML = categories.map(cat => `
         <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}">
             <span>📂 ${cat.name}</span>
             <button class="delete-cat-btn" data-catid="${cat.id}">🗑️</button>
         </div>
     `).join('');
+    
     document.querySelectorAll('.category-folder').forEach(el => {
         el.addEventListener('click', (e) => {
             if(e.target.classList.contains('delete-cat-btn')) return;
             currentAdminCategoryId = el.dataset.catid;
             renderAdminCategoriesSidebar();
             renderProductsByCategory();
-            document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
+            const categoryName = categories.find(c => c.id === currentAdminCategoryId)?.name || '?';
+            document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categoryName}`;
         });
+        
         const del = el.querySelector('.delete-cat-btn');
         if(del){
             del.addEventListener('click', (e) => {
@@ -583,16 +577,19 @@ async function deleteCategoryById(catId){
     if(!confirm("Удалить категорию и все товары в ней?")) return;
     try {
         const productsSnapshot = await db.collection('products').where('categoryId', '==', catId).get();
-        const deletePromises = productsSnapshot.docs.map(doc => db.collection('products').doc(doc.id).delete());
-        await Promise.all(deletePromises);
+        for(const doc of productsSnapshot.docs){
+            await db.collection('products').doc(doc.id).delete();
+        }
         await db.collection('categories').doc(catId).delete();
         await loadCategories();
         await loadProducts();
-        if(currentAdminCategoryId === catId) currentAdminCategoryId = categories[0]?.id || null;
+        if(currentAdminCategoryId === catId){
+            currentAdminCategoryId = categories[0]?.id || null;
+        }
         renderAdminCategoriesSidebar();
         renderProductsByCategory();
         renderAllProductsList();
-        showToast("Категория удалена из Firebase");
+        showToast("Категория удалена");
     } catch(e) {
         console.error(e);
         showToast("Ошибка удаления");
@@ -608,21 +605,24 @@ window.addCategoryFromAdmin = async function(){
     renderAdminCategoriesSidebar();
     renderAllProductsList();
     document.getElementById('newAdminCatName').value = '';
-    showToast(`Категория "${name}" добавлена в Firebase`);
+    showToast(`Категория "${name}" добавлена`);
 };
 
 function renderProductsByCategory(){
     const container = document.getElementById('adminProductsByCategory');
     if(!container) return;
+    
     if(!currentAdminCategoryId){
         container.innerHTML = '<div style="padding:20px;text-align:center;">Выберите категорию слева</div>';
         return;
     }
+    
     const categoryProducts = products.filter(p => p.categoryId === currentAdminCategoryId);
     if(!categoryProducts.length){
         container.innerHTML = '<div style="padding:20px;text-align:center;">Нет товаров. Нажмите "+ Новый товар"</div>';
         return;
     }
+    
     container.innerHTML = categoryProducts.map(p => `
         <div class="product-admin-row">
             <div class="product-admin-info" onclick="openEditProductModal(${p.id})">
@@ -637,10 +637,12 @@ function renderProductsByCategory(){
 function renderAllProductsList(){
     const container = document.getElementById('allProductsList');
     if(!container) return;
+    
     if(!products.length){
         container.innerHTML = '<div style="padding:20px;text-align:center;">Нет товаров</div>';
         return;
     }
+    
     container.innerHTML = products.map(p => `
         <div class="product-admin-row">
             <div class="product-admin-info" onclick="openEditProductModal(${p.id})">
@@ -674,10 +676,14 @@ window.addProductInCurrentCategory = async function(){
     renderProductsByCategory();
     renderAllProductsList();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
+    showToast("Товар создан");
 };
 
 window.addGlobalProduct = async function(){
+    if(!categories.length){
+        showToast("Сначала создайте категорию");
+        return;
+    }
     const newId = Date.now();
     const newProduct = {
         id: newId,
@@ -695,7 +701,7 @@ window.addGlobalProduct = async function(){
     renderAllProductsList();
     renderProductsByCategory();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
+    showToast("Товар создан");
 };
 
 window.deleteProductById = async function(id){
@@ -704,10 +710,10 @@ window.deleteProductById = async function(id){
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар удалён из Firebase");
+    showToast("Товар удалён");
 };
 
-// ==== ЗАГРУЗКА ИЗОБРАЖЕНИЙ В SUPABASE ====
+// ==== ЗАГРУЗКА ИЗОБРАЖЕНИЙ ====
 async function uploadImageToSupabase(file, productId, index){
     const fileExt = file.name.split('.').pop();
     const fileName = `${productId}/${Date.now()}_${index}.${fileExt}`;
@@ -813,7 +819,7 @@ window.saveProductChanges = async function(){
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар сохранён в Firebase");
+    showToast("Товар сохранён");
     closeEditProductModal();
 };
 
@@ -827,14 +833,14 @@ async function handleLogoUpload(event){
     const fileName = `logo/logo_${Date.now()}.${fileExt}`;
     const { error } = await supabase.storage.from('product-images').upload(fileName, file);
     if(error){
-        showToast("Ошибка загрузки логотипа в Supabase: " + error.message);
+        showToast("Ошибка загрузки: " + error.message);
         return;
     }
     const { data: urlData } = supabase.storage.from('product-images').getPublicUrl(fileName);
     settings.logoImage = urlData.publicUrl;
     await db.collection('settings').doc('main').set(settings);
     updateLogoDisplay();
-    showToast("Логотип загружен в Supabase Storage");
+    showToast("Логотип загружен");
     document.getElementById('logoFileInput').value = '';
 }
 
@@ -850,26 +856,38 @@ function showAdminPanel(){
         showToast("⛔ Доступ запрещён");
         return;
     }
+    
+    // Обновляем данные перед открытием
     currentAdminCategoryId = categories[0]?.id || null;
+    
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
-    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
+    
+    const categoryName = categories.find(c => c.id === currentAdminCategoryId)?.name || '';
+    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categoryName}` : '📦 Товары в категории';
+    
     document.getElementById('adminPanel').classList.add('active');
+    
+    // Настройка табов
     document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(tab.dataset.tab).classList.add('active');
-        });
+        tab.removeEventListener('click', handleTabClick);
+        tab.addEventListener('click', handleTabClick);
     });
+}
+
+function handleTabClick(e){
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(e.target.dataset.tab).classList.add('active');
 }
 
 window.closeAdminPanel = function(){
     document.getElementById('adminPanel').classList.remove('active');
 };
 
+// Клик по логотипу для входа в админку
 let clickCount = 0, clickTimer;
 const logoElement = document.getElementById('logoClick');
 if(logoElement){
@@ -884,7 +902,7 @@ if(logoElement){
     });
 }
 
-// DRAG & DROP
+// Drag & Drop для логотипа
 const logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
     logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
@@ -907,6 +925,7 @@ if(logoArea){
     });
 }
 
+// Drag & Drop для изображений товаров
 const imageArea = document.getElementById('imageUploadArea');
 if(imageArea){
     imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
@@ -937,8 +956,7 @@ if(imageArea){
 
 // ===== ЗАПУСК =====
 (async function init() {
-    console.log("🚀 Инициализация магазина...");
-    console.log("Telegram WebApp:", tg ? "доступен" : "не доступен");
+    console.log("🚀 Инициализация...");
     
     await loadSettings();
     await loadCategories();
@@ -955,17 +973,10 @@ if(imageArea){
         tg.BackButton.hide();
     }
     
-    // Проверка подключения к Firebase
-    try {
-        const testDoc = await db.collection('settings').doc('main').get();
-        console.log("✅ Firebase подключен успешно");
-    } catch(e) {
-        console.error("❌ Ошибка подключения к Firebase:", e);
-        showToast("Ошибка подключения к базе данных");
-    }
+    console.log("✅ Инициализация завершена");
 })();
 
-// Экспорт функций в глобальную область
+// Экспорт функций
 window.filterProducts = filterProducts;
 window.toggleCart = toggleCart;
 window.removeFromCart = removeFromCart;
@@ -984,6 +995,7 @@ window.handleImageFiles = handleImageFiles;
 window.handleLogoUpload = handleLogoUpload;
 window.removeLogo = removeLogo;
 window.saveSettings = saveSettings;
+window.closeAdminPanel = closeAdminPanel;
 </script>
 </body>
 </html>
