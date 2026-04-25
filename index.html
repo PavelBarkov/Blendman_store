@@ -6,7 +6,7 @@
     <title>Blender Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.admin-login-modal .modal-content{max-width:400px;text-align:center}.password-list{background:#0c0f18;border-radius:20px;padding:12px;margin-top:16px}.password-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border)}.add-password-form{display:flex;gap:8px;margin-top:16px}
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px;flex-wrap:wrap}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.admin-login-modal .modal-content{max-width:400px;text-align:center}.password-list{background:#0c0f18;border-radius:20px;padding:12px;margin-top:16px}.password-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border)}.password-item:last-child{border-bottom:none}.add-password-form{display:flex;gap:8px;margin-top:16px}
     </style>
 </head>
 <body>
@@ -14,9 +14,68 @@
 <div id="pageHome" class="page active"><div class="search-container"><input type="text" class="search-input" id="searchInput" placeholder="Поиск..." oninput="filterProducts()"></div><div class="categories" id="categoriesList"></div><div id="productsGridContainer" class="products-grid"></div></div>
 <div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email"><button class="checkout-btn" onclick="processOrder()">✅ Подтвердить</button></div></div></div></div>
 <div id="productModal" class="modal"><div class="modal-content"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeModal()">✖</button><div class="gallery" id="modalGallery"></div><div class="gallery-nav" id="galleryNav" style="display:flex;justify-content:center;gap:8px;margin:12px 0"></div><div class="product-header"><h2 id="modalName"></h2><a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none">▶ Видео</a></div><div id="modalCategory" style="color:#aaa"></div><div id="modalPrice" style="margin:12px 0"></div><p id="modalDesc"></p><button id="modalAddBtn" class="add-btn" style="margin-top:20px">➕ В корзину</button></div></div>
-<div id="adminPanel" class="admin-panel"><div style="display:flex;justify-content:space-between;margin-bottom:28px"><h2>🔧 Админ-панель</h2><button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button><button class="admin-tab" data-tab="productsTab">📦 Товары</button><button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button><button class="admin-tab" data-tab="passwordsTab">🔐 Пароли</button></div><div id="categoriesTab" class="admin-section active"><div style="display:flex;gap:24px;flex-wrap:wrap"><div style="background:#131724;border-radius:32px;padding:20px;width:280px"><h3>Категории</h3><div id="adminCategoryList"></div><div style="display:flex;gap:8px;margin-top:20px"><input type="text" id="newAdminCatName" placeholder="Новая" style="flex:1;background:#0c0f18;border-radius:40px;padding:10px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div style="flex:1;background:#131724;border-radius:32px;padding:20px"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><h3 id="currentCategoryTitle">Товары</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый</button></div><div id="adminProductsByCategory"></div></div></div></div><div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div><div id="settingsTab" class="admin-section"><div class="settings-card"><h3>Настройки</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button></div></div><div id="passwordsTab" class="admin-section"><div class="settings-card"><h3>🔐 Пароли для входа в админку</h3><p style="color:#aaa;margin-bottom:16px">Админ с Telegram ID ${ADMIN_ID} имеет постоянный доступ. Остальные входят по паролю.</p><div class="add-password-form"><input type="text" id="newPasswordInput" placeholder="Новый пароль" style="flex:1;background:#0c0f18;border-radius:40px;padding:12px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addAdminPassword()">➕ Добавить</button></div><div id="adminPasswordsList" class="password-list"></div></div></div></div>
+
+<!-- АДМИН ПАНЕЛЬ -->
+<div id="adminPanel" class="admin-panel">
+    <div style="display:flex;justify-content:space-between;margin-bottom:28px">
+        <h2>🔧 Админ-панель</h2>
+        <button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖</button>
+    </div>
+    <div class="admin-tabs" id="adminTabs">
+        <button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button>
+        <button class="admin-tab" data-tab="productsTab">📦 Товары</button>
+        <button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button>
+        <button class="admin-tab" data-tab="passwordsTab">🔐 Пароли</button>
+    </div>
+    <div id="categoriesTab" class="admin-section active">
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+            <div style="background:#131724;border-radius:32px;padding:20px;width:280px">
+                <h3>Категории</h3>
+                <div id="adminCategoryList"></div>
+                <div style="display:flex;gap:8px;margin-top:20px">
+                    <input type="text" id="newAdminCatName" placeholder="Новая" style="flex:1;background:#0c0f18;border-radius:40px;padding:10px;border:1px solid var(--border);color:#fff">
+                    <button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button>
+                </div>
+            </div>
+            <div style="flex:1;background:#131724;border-radius:32px;padding:20px">
+                <div style="display:flex;justify-content:space-between;margin-bottom:20px">
+                    <h3 id="currentCategoryTitle">Товары</h3>
+                    <button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый</button>
+                </div>
+                <div id="adminProductsByCategory"></div>
+            </div>
+        </div>
+    </div>
+    <div id="productsTab" class="admin-section">
+        <button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button>
+        <div id="allProductsList"></div>
+    </div>
+    <div id="settingsTab" class="admin-section">
+        <div class="settings-card">
+            <h3>Настройки</h3>
+            <div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div>
+            <div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div>
+            <div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div>
+            <button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button>
+        </div>
+    </div>
+    <div id="passwordsTab" class="admin-section">
+        <div class="settings-card">
+            <h3>🔐 Пароли для входа в админку</h3>
+            <p style="color:#aaa;margin-bottom:16px">Админ с Telegram ID <span id="adminIdDisplay">379731685</span> имеет постоянный доступ. Остальные входят по паролю.</p>
+            <div class="add-password-form">
+                <input type="text" id="newPasswordInput" placeholder="Новый пароль" style="flex:1;background:#0c0f18;border-radius:40px;padding:12px;border:1px solid var(--border);color:#fff">
+                <button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addAdminPassword()">➕ Добавить</button>
+            </div>
+            <div id="adminPasswordsList" class="password-list">Загрузка...</div>
+        </div>
+    </div>
+</div>
+
 <div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Загрузить<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
+
 <div id="adminLoginModal" class="modal"><div class="modal-content" style="max-width:400px;text-align:center"><h3>🔐 Вход в админ-панель</h3><input type="password" id="adminPasswordInput" placeholder="Пароль" style="width:100%;padding:14px;margin:20px 0;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><button class="checkout-btn" onclick="checkAdminPassword()">Войти</button><button class="back-btn" style="margin-top:12px" onclick="closeAdminLoginModal()">Отмена</button></div></div>
+
 <div class="toast" id="toastMsg">Сообщение</div>
 <div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
 
@@ -32,6 +91,7 @@ let selectedImageFiles = [];
 let ADMIN_ID = 379731685;
 let tg = window.Telegram?.WebApp;
 let firebaseConfig = null;
+let adminPasswords = [];
 
 // ==================== ЗАГРУЗКА КОНФИГА ИЗ JSONBIN ====================
 async function loadFirebaseConfig() {
@@ -87,11 +147,11 @@ async function initFirebase() {
             tg.BackButton.hide();
         }
     }
+    
+    document.getElementById('adminIdDisplay').innerText = ADMIN_ID;
 }
 
 // ==================== ЗАГРУЗКА ПАРОЛЕЙ ====================
-let adminPasswords = [];
-
 async function loadAdminPasswords() {
     try {
         const passwordsRef = collection(db, "adminPasswords");
@@ -131,7 +191,7 @@ function renderAdminPasswordsList() {
     }
     container.innerHTML = adminPasswords.map(p => `
         <div class="password-item">
-            <span>🔑 ${p.password}</span>
+            <span>🔑 ${escapeHtml(p.password)}</span>
             <button class="btn-icon btn-danger" onclick="deleteAdminPassword('${p.id}')">🗑️</button>
         </div>
     `).join('');
@@ -148,11 +208,12 @@ function showAdminLoginModal() {
 
 function closeAdminLoginModal() {
     document.getElementById('adminLoginModal').classList.remove('active');
+    document.getElementById('adminPasswordInput').value = '';
 }
 
 async function checkAdminPassword() {
     const password = document.getElementById('adminPasswordInput').value;
-    if(password === "admin123") { // мастер-пароль на всякий случай
+    if(password === "admin123") {
         closeAdminLoginModal();
         showAdminPanelDirect();
         return;
@@ -171,19 +232,25 @@ function showAdminPanelDirect() {
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
-    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
+    if(document.getElementById('currentCategoryTitle')) {
+        document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
+    }
     document.getElementById('adminPanel').classList.add('active');
+    
+    // Настройка вкладок
     document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.removeEventListener('click', tab._handler);
+        tab._handler = () => {
             document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(tab.dataset.tab).classList.add('active');
-        });
+        };
+        tab.addEventListener('click', tab._handler);
     });
 }
 
-// ==================== ОСТАЛЬНЫЕ ФУНКЦИИ (БЕЗ ИЗМЕНЕНИЙ ЛОГИКИ) ====================
+// ==================== ОСТАЛЬНЫЕ ФУНКЦИИ ====================
 async function loadCategories(){
     const querySnapshot = await getDocs(collection(db, "categories"));
     categories = [];
@@ -271,9 +338,10 @@ function updateCartBadge(){
 
 function renderCategories(){
     const container = document.getElementById('categoriesList');
+    if(!container) return;
     let cur = window.currentCategoryId || null;
     container.innerHTML = `<div class="chip ${cur === null ? 'active' : ''}" data-cat="">🔥 Все</div>` + 
-        categories.map(c => `<div class="chip ${cur === c.id ? 'active' : ''}" data-cat="${c.id}">${c.name}</div>`).join('');
+        categories.map(c => `<div class="chip ${cur === c.id ? 'active' : ''}" data-cat="${c.id}">${escapeHtml(c.name)}</div>`).join('');
     document.querySelectorAll('.chip').forEach(ch => {
         ch.addEventListener('click', () => {
             window.currentCategoryId = ch.dataset.cat === "" ? null : ch.dataset.cat;
@@ -313,7 +381,8 @@ function renderProducts(){
 }
 
 function escapeHtml(str){
-    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
+    if(!str) return '';
+    return String(str).replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
 }
 
 function toggleCart(id){
@@ -347,7 +416,7 @@ function renderCart(){
     }
     container.innerHTML = cart.map(item => `
         <div class="cart-item">
-            <div><img class="cart-preview" src="${item.preview}"> ${item.name} - ${item.price === 0 ? "Бесплатно" : item.price.toLocaleString() + " ₽"}</div>
+            <div><img class="cart-preview" src="${item.preview}"> ${escapeHtml(item.name)} - ${item.price === 0 ? "Бесплатно" : item.price.toLocaleString() + " ₽"}</div>
             <button class="remove-item" onclick="removeFromCart(${item.id})">Удалить</button>
         </div>
     `).join('');
@@ -373,8 +442,8 @@ function processOrder(){
     }
     if(!cart.length) return;
     let links = cart.map(item => ({ name: item.name, url: item.fileUrl })).filter(l => l.url);
-    let html = `<div><h3>✅ Спасибо, ${name}!</h3><p>Ваши файлы:</p>` + 
-        links.map(l => `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${l.name}</a>`).join('') + 
+    let html = `<div><h3>✅ Спасибо, ${escapeHtml(name)}!</h3><p>Ваши файлы:</p>` + 
+        links.map(l => `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${escapeHtml(l.name)}</a>`).join('') + 
         `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
     document.getElementById('cartItems').innerHTML = html;
     document.getElementById('cartTotal').innerHTML = '';
@@ -451,7 +520,7 @@ function renderAdminCategoriesSidebar(){
     if(!container) return;
     container.innerHTML = categories.map(cat => `
         <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId === cat.id ? '#ff7a2f' : 'transparent'}">
-            <span>📂 ${cat.name}</span>
+            <span>📂 ${escapeHtml(cat.name)}</span>
             <button class="delete-cat-btn" data-catid="${cat.id}" style="background:none;border:none;color:#ff8a7a;cursor:pointer">🗑️</button>
         </div>
     `).join('');
@@ -461,7 +530,9 @@ function renderAdminCategoriesSidebar(){
             currentAdminCategoryId = el.dataset.catid;
             renderAdminCategoriesSidebar();
             renderProductsByCategory();
-            document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
+            if(document.getElementById('currentCategoryTitle')) {
+                document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
+            }
         });
         const del = el.querySelector('.delete-cat-btn');
         if(del){
@@ -660,7 +731,7 @@ window.openEditProductModal = async function(id){
     document.getElementById('editProductId').value = id;
     document.getElementById('editName').value = prod.name;
     let catSelect = document.getElementById('editCategoryId');
-    catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${c.name}</option>`).join('');
+    catSelect.innerHTML = `<option value="">— Без категории —</option>` + categories.map(c => `<option value="${c.id}" ${prod.categoryId === c.id ? 'selected' : ''}>${escapeHtml(c.name)}</option>`).join('');
     document.getElementById('editPrice').value = prod.price;
     document.getElementById('editOldPrice').value = prod.oldPrice || '';
     document.getElementById('editFileUrl').value = prod.fileUrl || '';
@@ -732,7 +803,7 @@ function closeAdminPanel(){
     document.getElementById('adminPanel').classList.remove('active');
 }
 
-// Обработчик клика по логотипу для вызова админки
+// Обработчик клика по логотипу
 let clickCount = 0, clickTimer;
 document.getElementById('logoClick').addEventListener('click', () => {
     clickCount++;
@@ -744,7 +815,7 @@ document.getElementById('logoClick').addEventListener('click', () => {
     }
 });
 
-// Drag & drop для логотипа и изображений
+// Drag & drop
 let logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
     logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
@@ -798,7 +869,7 @@ if(imageArea){
     });
 }
 
-// Глобальные функции для HTML-вызовов
+// Глобальные функции
 window.filterProducts = filterProducts;
 window.toggleCart = toggleCart;
 window.removeFromCart = removeFromCart;
