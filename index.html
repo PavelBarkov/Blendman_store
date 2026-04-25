@@ -5,27 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Blender Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px;flex-wrap:wrap}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.password-modal .modal-content{max-width:400px;text-align:center}.password-input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin:20px 0;font-size:16px}
+    </style>
+</head>
+<body>
+<div class="header"><div class="header-content"><div class="logo" id="logoClick"><span id="logoContainer"></span></div><button class="cart-btn" onclick="navigateTo('cart')">🛒 <span id="cartCount">0</span></button></div></div>
+<div id="pageHome" class="page active"><div class="search-container"><input type="text" class="search-input" id="searchInput" placeholder="Поиск..." oninput="filterProducts()"></div><div class="categories" id="categoriesList"></div><div id="productsGridContainer" class="products-grid"></div></div>
+<div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email"><button class="checkout-btn" onclick="processOrder()">✅ Подтвердить</button></div></div></div></div>
+<div id="productModal" class="modal"><div class="modal-content"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeModal()">✖</button><div class="gallery" id="modalGallery"></div><div class="gallery-nav" id="galleryNav" style="display:flex;justify-content:center;gap:8px;margin:12px 0"></div><div class="product-header"><h2 id="modalName"></h2><a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none">▶ Видео</a></div><div id="modalCategory" style="color:#aaa"></div><div id="modalPrice" style="margin:12px 0"></div><p id="modalDesc"></p><button id="modalAddBtn" class="add-btn" style="margin-top:20px">➕ В корзину</button></div></div>
+<div id="adminPanel" class="admin-panel"><div style="display:flex;justify-content:space-between;margin-bottom:28px"><h2>🔧 Админ</h2><button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button><button class="admin-tab" data-tab="productsTab">📦 Товары</button><button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button><button class="admin-tab" data-tab="passwordsTab">🔐 Пароли</button></div><div id="categoriesTab" class="admin-section active"><div style="display:flex;gap:24px;flex-wrap:wrap"><div style="background:#131724;border-radius:32px;padding:20px;width:280px"><h3>Категории</h3><div id="adminCategoryList"></div><div style="display:flex;gap:8px;margin-top:20px"><input type="text" id="newAdminCatName" placeholder="Новая" style="flex:1;background:#0c0f18;border-radius:40px;padding:10px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div style="flex:1;background:#131724;border-radius:32px;padding:20px"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><h3 id="currentCategoryTitle">Товары</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый</button></div><div id="adminProductsByCategory"></div></div></div></div><div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div><div id="settingsTab" class="admin-section"><div class="settings-card"><h3>Настройки</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button></div></div><div id="passwordsTab" class="admin-section"><div class="settings-card"><h3>🔐 Управление паролями</h3><p style="color:#aaa;margin-bottom:16px;font-size:14px">Пароли для входа в админ-панель (кроме главного админа с ID 379731685).</p><div style="display:flex;gap:12px;margin-bottom:20px"><input type="text" id="newAdminPassword" placeholder="Новый пароль" style="flex:1;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addAdminPassword()">➕ Добавить</button></div><div id="adminPasswordsList"></div></div></div></div></div>
+<div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Загрузить<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
+<div id="passwordModal" class="modal password-modal"><div class="modal-content"><h3>🔐 Вход в админ-панель</h3><p style="color:#aaa;margin-top:8px">Введите пароль администратора</p><input type="password" id="adminPasswordInput" class="password-input" placeholder="Пароль" autocomplete="off"><button class="checkout-btn" onclick="checkAdminPassword()">Войти</button><button class="btn-icon" style="margin-top:12px;width:100%" onclick="closePasswordModal()">Отмена</button></div></div>
+<div class="toast" id="toastMsg">Сообщение</div>
+<div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCg0EUX3grKMXmKoLKZyGcWSAYPDZ-bwuQ",
-            authDomain: "blendmanshop.firebaseapp.com",
-            projectId: "blendmanshop",
-            storageBucket: "blendmanshop.firebasestorage.app",
-            messagingSenderId: "32462864879",
-            appId: "1:32462864879:web:958c2f23c98859db9a761a",
-            measurementId: "G-HWLL4RRPDP"
-        };
+<script>
 
+const BIN_ID = "69ec592faaba8821973663e4";
+const FIREBASE_CONFIG_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`;
+let tg = window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();}
+let categories = [];
+let products = [];
+let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
+let settings = {storeName:"Blender Shop",logoText:"🌀 BLENDER SHOP",logoImage:null};
+let currentAdminCategoryId = null;
+let selectedImageFiles = [];
+let currentAdminPassword = null;
+let db = null;
+async function initFirebase() {
+    try {
+        showToast("Загрузка конфигурации...");
+        const response = await fetch(FIREBASE_CONFIG_URL);
+        const data = await response.json();
+        const firebaseConfig = data.record;            
+        const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
+        const { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+        const { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js");        
         const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
-
+        db = getFirestore(app);        
         window.db = db;
-        window.storage = storage;
         window.collection = collection;
         window.doc = doc;
         window.setDoc = setDoc;
@@ -34,148 +55,25 @@
         window.getDoc = getDoc;
         window.query = query;
         window.where = where;
+        window.storage = getStorage(app);
         window.ref = ref;
         window.uploadBytes = uploadBytes;
         window.getDownloadURL = getDownloadURL;
-        window.deleteObject = deleteObject;
-        
-        console.log("Firebase инициализирован");
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px;flex-wrap:wrap}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border)}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.password-modal .modal-content{max-width:400px;text-align:center}.password-input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin:20px 0;font-size:16px}.admin-password-btn{margin-top:20px}.password-item{background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-    </style>
-</head>
-<body>
-<div class="header"><div class="header-content"><div class="logo" id="logoClick"><span id="logoContainer"></span></div><button class="cart-btn" onclick="navigateTo('cart')">🛒 <span id="cartCount">0</span></button></div></div>
-<div id="pageHome" class="page active"><div class="search-container"><input type="text" class="search-input" id="searchInput" placeholder="Поиск..." oninput="filterProducts()"></div><div class="categories" id="categoriesList"></div><div id="productsGridContainer" class="products-grid"></div></div>
-<div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email"><button class="checkout-btn" onclick="processOrder()">✅ Подтвердить</button></div></div></div></div>
-<div id="productModal" class="modal"><div class="modal-content"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeModal()">✖</button><div class="gallery" id="modalGallery"></div><div class="gallery-nav" id="galleryNav" style="display:flex;justify-content:center;gap:8px;margin:12px 0"></div><div class="product-header"><h2 id="modalName"></h2><a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none">▶ Видео</a></div><div id="modalCategory" style="color:#aaa"></div><div id="modalPrice" style="margin:12px 0"></div><p id="modalDesc"></p><button id="modalAddBtn" class="add-btn" style="margin-top:20px">➕ В корзину</button></div></div>
-<div id="adminPanel" class="admin-panel"><div style="display:flex;justify-content:space-between;margin-bottom:28px"><h2>🔧 Админ</h2><button class="btn-icon btn-danger" onclick="closeAdminPanel()">✖</button></div><div class="admin-tabs"><button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button><button class="admin-tab" data-tab="productsTab">📦 Товары</button><button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button><button class="admin-tab" data-tab="passwordsTab">🔐 Пароли</button></div><div id="categoriesTab" class="admin-section active"><div style="display:flex;gap:24px;flex-wrap:wrap"><div style="background:#131724;border-radius:32px;padding:20px;width:280px"><h3>Категории</h3><div id="adminCategoryList"></div><div style="display:flex;gap:8px;margin-top:20px"><input type="text" id="newAdminCatName" placeholder="Новая" style="flex:1;background:#0c0f18;border-radius:40px;padding:10px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div style="flex:1;background:#131724;border-radius:32px;padding:20px"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><h3 id="currentCategoryTitle">Товары</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый</button></div><div id="adminProductsByCategory"></div></div></div></div><div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div><div id="settingsTab" class="admin-section"><div class="settings-card"><h3>Настройки</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button></div></div><div id="passwordsTab" class="admin-section"><div class="settings-card"><h3>🔐 Управление паролями</h3><p style="color:#aaa;margin-bottom:16px;font-size:14px">Пароли для входа в админ-панель (кроме главного админа с ID 379731685). Добавленные пароли могут использовать другие пользователи.</p><div style="display:flex;gap:12px;margin-bottom:20px"><input type="text" id="newAdminPassword" placeholder="Новый пароль" style="flex:1;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addAdminPassword()">➕ Добавить</button></div><div id="adminPasswordsList"></div></div></div></div></div>
-<div id="editProductModal" class="modal"><div class="modal-content" style="max-width:650px"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeEditProductModal()">✖</button><h3>✏️ Редактировать</h3><input type="hidden" id="editProductId"><div style="margin:12px 0"><input type="text" id="editName" placeholder="Название" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><select id="editCategoryId" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></select></div><div style="margin:12px 0"><input type="number" id="editPrice" placeholder="Цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="number" id="editOldPrice" placeholder="Старая цена" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editFileUrl" placeholder="Ссылка на файл" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:12px 0"><input type="text" id="editYoutubeUrl" placeholder="YouTube ссылка" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><label>Изображения</label><div id="imageUploadArea" class="image-upload-area" onclick="document.getElementById('imageFileInput').click()">📸 Загрузить<input type="file" id="imageFileInput" multiple accept="image/*" style="display:none" onchange="handleImageFiles(event)"></div><div id="imagePreviewList" class="image-preview-list"></div><div style="margin:12px 0"><textarea id="editDesc" rows="3" placeholder="Описание" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></textarea></div><button class="checkout-btn" onclick="saveProductChanges()">💾 Сохранить</button></div></div>
-<div id="passwordModal" class="modal password-modal"><div class="modal-content"><h3>🔐 Вход в админ-панель</h3><p style="color:#aaa;margin-top:8px">Введите пароль администратора</p><input type="password" id="adminPasswordInput" class="password-input" placeholder="Пароль" autocomplete="off"><button class="checkout-btn admin-password-btn" onclick="checkAdminPassword()">Войти</button><button class="btn-icon" style="margin-top:12px;width:100%" onclick="closePasswordModal()">Отмена</button></div></div>
-<div class="toast" id="toastMsg">Сообщение</div>
-<div class="bottom-nav"><button class="nav-item active" onclick="navigateTo('home')">🏠 Каталог</button><button class="nav-item" onclick="navigateTo('cart')">🛒 Корзина</button></div>
-
-<script type="module">
-import { getFirestore, collection, getDocs, doc, setDoc, deleteDoc, query, where, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
-
-const db = window.db;
-const storage = window.storage;
-const SUPER_ADMIN_ID = 379731685;
-let tg = window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();}
-
-let categories = [];
-let products = [];
-let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
-let settings = {storeName:"Blender Shop",logoText:"🌀 BLENDER SHOP",logoImage:null};
-let currentAdminCategoryId = null;
-let selectedImageFiles = [];
-
-// Функции для работы с паролями админов (хранятся в settings -> admin)
-async function loadAdminPasswords() {
-    const settingsRef = doc(db, "settings", "admin");
-    const docSnap = await getDoc(settingsRef);
-    if (docSnap.exists()) {
-        return docSnap.data().passwords || [];
-    } else {
-        // Создаём документ с паролем по умолчанию 1234
-        await setDoc(settingsRef, { passwords: ["1234"] });
-        return ["1234"];
+        window.deleteObject = deleteObject;        
+        console.log("Firebase инициализирован");        
+        await loadCategories();
+        await loadProducts();
+        await loadSettings();
+        await loadAdminPasswordsToList();
+        renderCart();
+        showToast("Готово!");        
+    } catch(error) {
+        console.error(error);
+        document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff7a2f">⚠️ Ошибка! Проверь идентификатор Bin ID. Должно быть что-то типа "65f3a8b1dc74654018a2c3f4"</div>';
     }
 }
 
-async function saveAdminPasswords(passwords) {
-    const settingsRef = doc(db, "settings", "admin");
-    await setDoc(settingsRef, { passwords: passwords });
-}
-
-async function verifyAdminPassword(inputPassword) {
-    // Главный админ по ID имеет доступ всегда (без пароля)
-    const userId = tg?.initDataUnsafe?.user?.id;
-    if (userId === SUPER_ADMIN_ID) return true;
-    
-    // Для остальных проверяем пароль из Firestore
-    const passwords = await loadAdminPasswords();
-    return passwords.includes(inputPassword);
-}
-
-async function addAdminPassword() {
-    const input = document.getElementById('newAdminPassword');
-    const newPass = input.value.trim();
-    if (!newPass) {
-        showToast("Введите пароль");
-        return;
-    }
-    const passwords = await loadAdminPasswords();
-    if (passwords.includes(newPass)) {
-        showToast("Такой пароль уже существует");
-        return;
-    }
-    passwords.push(newPass);
-    await saveAdminPasswords(passwords);
-    input.value = '';
-    renderAdminPasswordsList();
-    showToast("Пароль добавлен");
-}
-
-async function removeAdminPassword(passToRemove) {
-    let passwords = await loadAdminPasswords();
-    passwords = passwords.filter(p => p !== passToRemove);
-    await saveAdminPasswords(passwords);
-    renderAdminPasswordsList();
-    showToast("Пароль удалён");
-}
-
-async function renderAdminPasswordsList() {
-    const container = document.getElementById('adminPasswordsList');
-    if (!container) return;
-    const passwords = await loadAdminPasswords();
-    if (passwords.length === 0) {
-        container.innerHTML = '<div style="color:#aaa;text-align:center;padding:20px">Нет добавленных паролей</div>';
-        return;
-    }
-    container.innerHTML = passwords.map(pass => `
-        <div class="password-item">
-            <span>🔑 ${'•'.repeat(Math.min(pass.length, 12))}</span>
-            <button class="btn-icon btn-danger" onclick="removeAdminPassword('${pass.replace(/'/g, "\\'")}')">🗑️ Удалить</button>
-        </div>
-    `).join('');
-}
-
-// Модальное окно для ввода пароля
-function showPasswordModal() {
-    const modal = document.getElementById('passwordModal');
-    const input = document.getElementById('adminPasswordInput');
-    if (input) input.value = '';
-    modal.classList.add('active');
-}
-
-function closePasswordModal() {
-    document.getElementById('passwordModal').classList.remove('active');
-}
-
-async function checkAdminPassword() {
-    const input = document.getElementById('adminPasswordInput');
-    const password = input.value.trim();
-    if (!password) {
-        showToast("Введите пароль");
-        return;
-    }
-    const isValid = await verifyAdminPassword(password);
-    if (isValid) {
-        closePasswordModal();
-        showAdminPanel();
-        showToast("Добро пожаловать в админ-панель");
-    } else {
-        showToast("❌ Неверный пароль");
-        input.value = '';
-    }
-}
-
-async function loadCategories(){
+async function loadCategories() {
     const querySnapshot = await getDocs(collection(db, "categories"));
     categories = [];
     querySnapshot.forEach((doc) => {
@@ -192,12 +90,11 @@ async function loadCategories(){
             await setDoc(doc(db, "categories", cat.id), cat);
             categories.push(cat);
         }
-        console.log("Категории созданы в Firestore");
     }
     renderCategories();
 }
 
-async function loadProducts(){
+async function loadProducts() {
     const querySnapshot = await getDocs(collection(db, "products"));
     products = [];
     querySnapshot.forEach((doc) => {
@@ -205,20 +102,14 @@ async function loadProducts(){
     });
     renderProducts();
     updateCartBadge();
-    console.log("Товары загружены из Firestore:", products.length);
 }
 
-async function loadSettings(){
-    const querySnapshot = await getDocs(collection(db, "settings"));
-    if(!querySnapshot.empty){
-        for (const docSnap of querySnapshot.docs) {
-            if (docSnap.id === "main") {
-                settings = { ...settings, ...docSnap.data() };
-            }
-        }
+async function loadSettings() {
+    const settingsDoc = await getDoc(doc(db, "settings", "main"));
+    if(settingsDoc.exists()){
+        settings = { ...settings, ...settingsDoc.data() };
     } else {
         await setDoc(doc(db, "settings", "main"), settings);
-        console.log("Настройки созданы в Firestore");
     }
     document.title = settings.storeName;
     if(document.getElementById('settingsStoreName')) document.getElementById('settingsStoreName').value = settings.storeName;
@@ -226,7 +117,57 @@ async function loadSettings(){
     updateLogoDisplay();
 }
 
-function updateLogoDisplay(){
+async function loadAdminPasswordsToList() {
+    const adminDoc = await getDoc(doc(db, "settings", "admin"));
+    const passwords = adminDoc.exists ? adminDoc.data().passwords || [] : ["1234"];
+    renderAdminPasswordsList(passwords);
+}
+
+function renderAdminPasswordsList(passwords) {
+    const container = document.getElementById('adminPasswordsList');
+    if(!container) return;
+    if(passwords.length === 0){
+        container.innerHTML = '<div style="color:#aaa;text-align:center;padding:20px">Нет добавленных паролей</div>';
+        return;
+    }
+    container.innerHTML = passwords.map(pass => `
+        <div style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center">
+            <span>🔑 ${'•'.repeat(Math.min(pass.length, 12))}</span>
+            <button class="btn-icon btn-danger" onclick="removeAdminPassword('${pass.replace(/'/g, "\\'")}')">🗑️ Удалить</button>
+        </div>
+    `).join('');
+}
+
+async function addAdminPassword() {
+    const input = document.getElementById('newAdminPassword');
+    const password = input.value.trim();
+    if(!password) {
+        showToast("Введите пароль");
+        return;
+    }
+    const adminDoc = await getDoc(doc(db, "settings", "admin"));
+    let passwords = adminDoc.exists ? adminDoc.data().passwords || [] : ["1234"];
+    if(passwords.includes(password)) {
+        showToast("Такой пароль уже есть");
+        return;
+    }
+    passwords.push(password);
+    await setDoc(doc(db, "settings", "admin"), { passwords });
+    renderAdminPasswordsList(passwords);
+    input.value = '';
+    showToast("Пароль добавлен");
+}
+
+async function removeAdminPassword(password) {
+    const adminDoc = await getDoc(doc(db, "settings", "admin"));
+    let passwords = adminDoc.exists ? adminDoc.data().passwords || [] : ["1234"];
+    passwords = passwords.filter(p => p !== password);
+    await setDoc(doc(db, "settings", "admin"), { passwords });
+    renderAdminPasswordsList(passwords);
+    showToast("Пароль удалён");
+}
+
+function updateLogoDisplay() {
     const container = document.getElementById('logoContainer');
     container.innerHTML = '';
     if(settings.logoImage){
@@ -239,33 +180,20 @@ function updateLogoDisplay(){
     span.className = 'logo-text';
     span.innerText = settings.logoText;
     container.appendChild(span);
-    const preview = document.getElementById('logoPreviewContainer');
-    if(preview){
-        preview.innerHTML = settings.logoImage ? `<img src="${settings.logoImage}" style="height:60px;border-radius:12px;">` : '<span style="color:#aaa;">Нет логотипа</span>';
-    }
 }
 
-async function saveSettings(){
-    settings.storeName = document.getElementById('settingsStoreName').value.trim();
-    settings.logoText = document.getElementById('settingsLogoText').value.trim();
-    await setDoc(doc(db, "settings", "main"), settings);
-    document.title = settings.storeName;
-    updateLogoDisplay();
-    showToast("Настройки сохранены в Firebase");
-}
-
-function showToast(msg){
+function showToast(msg) {
     let t = document.getElementById('toastMsg');
     t.innerText = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-function updateCartBadge(){
+function updateCartBadge() {
     document.getElementById('cartCount').innerText = cart.length;
 }
 
-function renderCategories(){
+function renderCategories() {
     const container = document.getElementById('categoriesList');
     let cur = window.currentCategoryId || null;
     container.innerHTML = `<div class="chip ${cur === null ? 'active' : ''}" data-cat="">🔥 Все</div>` + 
@@ -282,12 +210,16 @@ function renderCategories(){
 window.currentCategoryId = null;
 window.searchQuery = "";
 
-function filterProducts(){
+function filterProducts() {
     window.searchQuery = document.getElementById('searchInput').value.toLowerCase();
     renderProducts();
 }
 
-function renderProducts(){
+function escapeHtml(str) {
+    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
+}
+
+function renderProducts() {
     let filtered = products.filter(p => {
         if(window.currentCategoryId && p.categoryId !== window.currentCategoryId) return false;
         if(window.searchQuery && !p.name.toLowerCase().includes(window.searchQuery)) return false;
@@ -308,11 +240,7 @@ function renderProducts(){
     `).join('');
 }
 
-function escapeHtml(str){
-    return str.replace(/[&<>]/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;' }[m]));
-}
-
-function toggleCart(id){
+function toggleCart(id) {
     let idx = cart.findIndex(i => i.id === id);
     if(idx !== -1){
         cart.splice(idx, 1);
@@ -333,7 +261,7 @@ function toggleCart(id){
     updateCartBadge();
 }
 
-function renderCart(){
+function renderCart() {
     const container = document.getElementById('cartItems');
     if(!cart.length){
         container.innerHTML = '<div style="text-align:center;padding:40px;">🛍️ Корзина пуста</div>';
@@ -352,7 +280,7 @@ function renderCart(){
     document.getElementById('checkoutForm').style.display = 'block';
 }
 
-function removeFromCart(id){
+function removeFromCart(id) {
     cart = cart.filter(i => i.id !== id);
     localStorage.setItem('blender_cart', JSON.stringify(cart));
     renderCart();
@@ -360,7 +288,7 @@ function removeFromCart(id){
     updateCartBadge();
 }
 
-function processOrder(){
+function processOrder() {
     let name = document.getElementById('customerName').value.trim();
     let email = document.getElementById('customerEmail').value.trim();
     if(!name || !email){
@@ -381,7 +309,7 @@ function processOrder(){
     if(tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
 }
 
-function navigateTo(page){
+function navigateTo(page) {
     document.getElementById('pageHome').classList.toggle('active', page === 'home');
     document.getElementById('pageCart').classList.toggle('active', page === 'cart');
     document.querySelectorAll('.nav-item').forEach((btn, i) => {
@@ -393,7 +321,7 @@ function navigateTo(page){
 
 let currentModalProduct = null, currentImageIndex = 0;
 
-window.openProductModal = function(id){
+window.openProductModal = function(id) {
     let p = products.find(x => x.id === id);
     if(!p) return;
     currentModalProduct = p;
@@ -430,7 +358,7 @@ window.openProductModal = function(id){
     document.getElementById('productModal').classList.add('active');
 };
 
-window.closeModal = function(){
+window.closeModal = function() {
     document.getElementById('productModal').classList.remove('active');
 };
 
@@ -441,11 +369,70 @@ document.getElementById('modalAddBtn').onclick = () => {
     closeModal();
 };
 
-// АДМИН-ПАНЕЛЬ
-function renderAdminCategoriesSidebar(){
+// АДМИНСКИЕ ФУНКЦИИ
+async function verifyAdminPassword(password) {
+    const userId = tg?.initDataUnsafe?.user?.id;
+    if (userId === 379731685) return true;
+    
+    const adminDoc = await getDoc(doc(db, "settings", "admin"));
+    const passwords = adminDoc.exists ? adminDoc.data().passwords || [] : ["1234"];
+    return passwords.includes(password);
+}
+
+async function checkAdminPassword() {
+    const input = document.getElementById('adminPasswordInput');
+    const password = input.value.trim();
+    if (!password) {
+        showToast("Введите пароль");
+        return;
+    }
+    const isValid = await verifyAdminPassword(password);
+    if (isValid) {
+        currentAdminPassword = password;
+        closePasswordModal();
+        await showAdminPanel();
+        showToast("Добро пожаловать в админ-панель");
+    } else {
+        showToast("❌ Неверный пароль");
+        input.value = '';
+    }
+}
+
+function showPasswordModal() {
+    document.getElementById('passwordModal').classList.add('active');
+}
+
+function closePasswordModal() {
+    document.getElementById('passwordModal').classList.remove('active');
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminPanel').classList.remove('active');
+}
+
+async function showAdminPanel() {
+    currentAdminCategoryId = categories[0]?.id || null;
+    renderAdminCategoriesSidebar();
+    renderProductsByCategory();
+    renderAllProductsList();
+    await loadAdminPasswordsToList();
+    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
+    document.getElementById('adminPanel').classList.add('active');
+    document.querySelectorAll('.admin-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+}
+
+function renderAdminCategoriesSidebar() {
     const container = document.getElementById('adminCategoryList');
+    if(!container) return;
     container.innerHTML = categories.map(cat => `
-        <div class="category-folder ${currentAdminCategoryId === cat.id ? 'active' : ''}" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId === cat.id ? '#ff7a2f' : 'transparent'}">
+        <div class="category-folder" data-catid="${cat.id}" style="background:rgba(255,255,255,0.03);border-radius:20px;padding:12px 16px;margin-bottom:10px;display:flex;justify-content:space-between;cursor:pointer;border-left:3px solid ${currentAdminCategoryId === cat.id ? '#ff7a2f' : 'transparent'}">
             <span>📂 ${cat.name}</span>
             <button class="delete-cat-btn" data-catid="${cat.id}" style="background:none;border:none;color:#ff8a7a;cursor:pointer">🗑️</button>
         </div>
@@ -456,7 +443,7 @@ function renderAdminCategoriesSidebar(){
             currentAdminCategoryId = el.dataset.catid;
             renderAdminCategoriesSidebar();
             renderProductsByCategory();
-            document.getElementById('currentCategoryTitle').innerText = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
+            document.getElementById('currentCategoryTitle').innerHTML = `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || '?'}`;
         });
         const del = el.querySelector('.delete-cat-btn');
         if(del){
@@ -468,7 +455,7 @@ function renderAdminCategoriesSidebar(){
     });
 }
 
-async function deleteCategoryById(catId){
+async function deleteCategoryById(catId) {
     if(!confirm("Удалить категорию и все товары в ней?")) return;
     const q = query(collection(db, "products"), where("categoryId", "==", catId));
     const snapshot = await getDocs(q);
@@ -482,10 +469,10 @@ async function deleteCategoryById(catId){
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Категория удалена из Firebase");
+    showToast("Категория удалена");
 }
 
-window.addCategoryFromAdmin = async function(){
+async function addCategoryFromAdmin() {
     let name = document.getElementById('newAdminCatName').value.trim();
     if(!name) return showToast("Введите название");
     let newId = "cat_" + Date.now();
@@ -494,10 +481,10 @@ window.addCategoryFromAdmin = async function(){
     renderAdminCategoriesSidebar();
     renderAllProductsList();
     document.getElementById('newAdminCatName').value = '';
-    showToast(`Категория "${name}" добавлена в Firebase`);
-};
+    showToast(`Категория "${name}" добавлена`);
+}
 
-function renderProductsByCategory(){
+function renderProductsByCategory() {
     const container = document.getElementById('adminProductsByCategory');
     if(!currentAdminCategoryId){
         container.innerHTML = '<div style="padding:20px">Выберите категорию</div>';
@@ -519,7 +506,7 @@ function renderProductsByCategory(){
     `).join('');
 }
 
-function renderAllProductsList(){
+function renderAllProductsList() {
     const container = document.getElementById('allProductsList');
     if(!products.length){
         container.innerHTML = '<div style="padding:20px">Нет товаров</div>';
@@ -536,7 +523,7 @@ function renderAllProductsList(){
     `).join('');
 }
 
-window.addProductInCurrentCategory = async function(){
+async function addProductInCurrentCategory() {
     if(!currentAdminCategoryId){
         showToast("Выберите категорию");
         return;
@@ -558,10 +545,10 @@ window.addProductInCurrentCategory = async function(){
     renderProductsByCategory();
     renderAllProductsList();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
-};
+    showToast("Товар создан");
+}
 
-window.addGlobalProduct = async function(){
+async function addGlobalProduct() {
     let newId = Date.now();
     let newProduct = {
         id: newId,
@@ -579,30 +566,28 @@ window.addGlobalProduct = async function(){
     renderAllProductsList();
     renderProductsByCategory();
     openEditProductModal(newId);
-    showToast("Товар создан в Firebase");
-};
+    showToast("Товар создан");
+}
 
-window.deleteProductById = async function(id){
+async function deleteProductById(id) {
     if(!confirm("Удалить товар?")) return;
     await deleteDoc(doc(db, "products", String(id)));
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар удалён из Firebase");
-};
-
-async function uploadImagesToStorage(files, productId){
-    let urls = [];
-    for(let file of files){
-        let storageRef = ref(storage, `products/${productId}/${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        let url = await getDownloadURL(storageRef);
-        urls.push(url);
-    }
-    return urls;
+    showToast("Товар удалён");
 }
 
-function handleImageFiles(event){
+async function saveSettings() {
+    settings.storeName = document.getElementById('settingsStoreName').value.trim();
+    settings.logoText = document.getElementById('settingsLogoText').value.trim();
+    await setDoc(doc(db, "settings", "main"), settings);
+    document.title = settings.storeName;
+    updateLogoDisplay();
+    showToast("Настройки сохранены");
+}
+
+function handleImageFiles(event) {
     let files = Array.from(event.target.files);
     for(let file of files){
         if(!file.type.startsWith('image/')) continue;
@@ -611,20 +596,26 @@ function handleImageFiles(event){
         reader.onload = function(e){
             let div = document.createElement('div');
             div.className = 'image-preview-item';
-            div.innerHTML = `<img src="${e.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
+            div.innerHTML = `<img src="${e.target.result}"><button class="remove-image-btn" onclick="this.parentElement.remove(); selectedImageFiles = selectedImageFiles.filter(f => f.name !== '${file.name}')">✖</button>`;
             document.getElementById('imagePreviewList').appendChild(div);
-            div.querySelector('.remove-image-btn').addEventListener('click', () => {
-                let idx = selectedImageFiles.findIndex(f => f.name === file.name);
-                if(idx !== -1) selectedImageFiles.splice(idx, 1);
-                div.remove();
-            });
         };
         reader.readAsDataURL(file);
     }
     document.getElementById('imageFileInput').value = '';
 }
 
-window.openEditProductModal = async function(id){
+async function uploadImagesToStorage(files, productId) {
+    let urls = [];
+    for(let file of files){
+        let storageRef = ref(window.storage, `products/${productId}/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        let url = await getDownloadURL(storageRef);
+        urls.push(url);
+    }
+    return urls;
+}
+
+async function openEditProductModal(id) {
     let prod = products.find(p => p.id === id);
     if(!prod) return;
     selectedImageFiles = [];
@@ -633,21 +624,8 @@ window.openEditProductModal = async function(id){
         for(let imgUrl of prod.images){
             let div = document.createElement('div');
             div.className = 'image-preview-item';
-            div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" data-url="${imgUrl}">✖</button>`;
+            div.innerHTML = `<img src="${imgUrl}"><button class="remove-image-btn" onclick="this.parentElement.remove(); prod.images = prod.images.filter(u => u !== '${imgUrl}')">✖</button>`;
             document.getElementById('imagePreviewList').appendChild(div);
-            div.querySelector('.remove-image-btn').addEventListener('click', async () => {
-                if(imgUrl.includes('firebasestorage')){
-                    try{
-                        const imageRef = ref(storage, imgUrl);
-                        await deleteObject(imageRef);
-                    }catch(e){}
-                }
-                prod.images = prod.images.filter(u => u !== imgUrl);
-                await setDoc(doc(db, "products", String(id)), prod);
-                await loadProducts();
-                div.remove();
-                showToast("Изображение удалено");
-            });
         }
     }
     document.getElementById('editProductId').value = id;
@@ -660,14 +638,14 @@ window.openEditProductModal = async function(id){
     document.getElementById('editYoutubeUrl').value = prod.youtubeUrl || '';
     document.getElementById('editDesc').value = prod.description || '';
     document.getElementById('editProductModal').classList.add('active');
-};
+}
 
-window.closeEditProductModal = function(){
+function closeEditProductModal() {
     document.getElementById('editProductModal').classList.remove('active');
     selectedImageFiles = [];
-};
+}
 
-window.saveProductChanges = async function(){
+async function saveProductChanges() {
     let id = parseInt(document.getElementById('editProductId').value);
     let prod = products.find(p => p.id === id);
     if(!prod) return;
@@ -686,62 +664,27 @@ window.saveProductChanges = async function(){
     await loadProducts();
     renderProductsByCategory();
     renderAllProductsList();
-    showToast("Товар сохранён в Firebase");
+    showToast("Товар сохранён");
     closeEditProductModal();
-};
-
-function handleLogoUpload(event){
-    let file = event.target.files[0];
-    if(!file || !file.type.startsWith('image/')) return;
-    let reader = new FileReader();
-    reader.onload = async function(e){
-        let storageRef = ref(storage, `logo/logo_${Date.now()}`);
-        let blob = await fetch(e.target.result).then(r => r.blob());
-        await uploadBytes(storageRef, blob);
-        let url = await getDownloadURL(storageRef);
-        settings.logoImage = url;
-        await setDoc(doc(db, "settings", "main"), settings);
-        updateLogoDisplay();
-        showToast("Логотип загружен в Firebase Storage");
-    };
-    reader.readAsDataURL(file);
-    document.getElementById('logoFileInput').value = '';
 }
 
-async function removeLogo(){
-    if(settings.logoImage && settings.logoImage.includes('firebasestorage')){
-        try{
-            const logoRef = ref(storage, settings.logoImage);
-            await deleteObject(logoRef);
-        }catch(e){}
-    }
+function handleLogoUpload(event) {
+    let file = event.target.files[0];
+    if(!file) return;
+    let reader = new FileReader();
+    reader.onload = async function(e){
+        settings.logoImage = e.target.result;
+        updateLogoDisplay();
+        showToast("Логотип обновлён (временно)");
+    };
+    reader.readAsDataURL(file);
+}
+
+async function removeLogo() {
     settings.logoImage = null;
-    await setDoc(doc(db, "settings", "main"), settings);
     updateLogoDisplay();
     showToast("Логотип удалён");
 }
-
-function showAdminPanel(){
-    currentAdminCategoryId = categories[0]?.id || null;
-    renderAdminCategoriesSidebar();
-    renderProductsByCategory();
-    renderAllProductsList();
-    renderAdminPasswordsList();
-    document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
-    document.getElementById('adminPanel').classList.add('active');
-    document.querySelectorAll('.admin-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
-            document.getElementById(tab.dataset.tab).classList.add('active');
-        });
-    });
-}
-
-window.closeAdminPanel = function(){
-    document.getElementById('adminPanel').classList.remove('active');
-};
 
 // Обработчик кликов по логотипу
 let clickCount = 0, clickTimer;
@@ -751,91 +694,17 @@ document.getElementById('logoClick').addEventListener('click', () => {
     clickTimer = setTimeout(() => clickCount = 0, 800);
     if(clickCount >= 5){
         clickCount = 0;
-        // Проверяем, является ли пользователь супер-админом по ID
         const userId = tg?.initDataUnsafe?.user?.id;
-        if (userId === SUPER_ADMIN_ID) {
-            // Супер-админ заходит без пароля
+        if (userId === 379731685) {
             showAdminPanel();
             showToast("Добро пожаловать, главный администратор");
         } else {
-            // Остальным показываем окно ввода пароля
             showPasswordModal();
         }
     }
 });
 
-let logoArea = document.getElementById('logoUploadArea');
-if(logoArea){
-    logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
-    logoArea.addEventListener('dragleave', () => logoArea.style.borderColor = 'var(--border-light)');
-    logoArea.addEventListener('drop', async e => {
-        e.preventDefault();
-        logoArea.style.borderColor = 'var(--border-light)';
-        let file = e.dataTransfer.files[0];
-        if(file && file.type.startsWith('image/')){
-            let reader = new FileReader();
-            reader.onload = async function(ev){
-                let storageRef = ref(storage, `logo/logo_${Date.now()}`);
-                let blob = await fetch(ev.target.result).then(r => r.blob());
-                await uploadBytes(storageRef, blob);
-                let url = await getDownloadURL(storageRef);
-                settings.logoImage = url;
-                await setDoc(doc(db, "settings", "main"), settings);
-                updateLogoDisplay();
-                showToast("Логотип загружен");
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-}
-
-let imageArea = document.getElementById('imageUploadArea');
-if(imageArea){
-    imageArea.addEventListener('dragover', e => { e.preventDefault(); imageArea.style.borderColor = '#ff7a2f'; });
-    imageArea.addEventListener('dragleave', () => imageArea.style.borderColor = 'var(--border-light)');
-    imageArea.addEventListener('drop', e => {
-        e.preventDefault();
-        imageArea.style.borderColor = 'var(--border-light)';
-        let files = Array.from(e.dataTransfer.files);
-        for(let file of files){
-            if(!file.type.startsWith('image/')) continue;
-            selectedImageFiles.push(file);
-            let reader = new FileReader();
-            reader.onload = function(ev){
-                let div = document.createElement('div');
-                div.className = 'image-preview-item';
-                div.innerHTML = `<img src="${ev.target.result}"><button class="remove-image-btn" data-filename="${file.name}">✖</button>`;
-                document.getElementById('imagePreviewList').appendChild(div);
-                div.querySelector('.remove-image-btn').addEventListener('click', () => {
-                    let idx = selectedImageFiles.findIndex(f => f.name === file.name);
-                    if(idx !== -1) selectedImageFiles.splice(idx, 1);
-                    div.remove();
-                });
-            };
-            reader.readAsDataURL(file);
-        }
-    });
-}
-
 // Глобальные функции
-window.removeAdminPassword = removeAdminPassword;
-window.addAdminPassword = addAdminPassword;
-window.checkAdminPassword = checkAdminPassword;
-window.closePasswordModal = closePasswordModal;
-
-// ЗАПУСК
-await loadSettings();
-await loadCategories();
-await loadProducts();
-renderCart();
-if(tg?.BackButton){
-    tg.BackButton.onClick(() => {
-        if(document.getElementById('pageHome').classList.contains('active')) tg.close();
-        else navigateTo('home');
-    });
-    tg.BackButton.hide();
-}
-
 window.filterProducts = filterProducts;
 window.toggleCart = toggleCart;
 window.removeFromCart = removeFromCart;
@@ -843,17 +712,26 @@ window.processOrder = processOrder;
 window.navigateTo = navigateTo;
 window.openProductModal = openProductModal;
 window.closeModal = closeModal;
+window.checkAdminPassword = checkAdminPassword;
+window.closePasswordModal = closePasswordModal;
+window.closeAdminPanel = closeAdminPanel;
+window.showAdminPanel = showAdminPanel;
+window.addCategoryFromAdmin = addCategoryFromAdmin;
+window.addProductInCurrentCategory = addProductInCurrentCategory;
+window.addGlobalProduct = addGlobalProduct;
 window.openEditProductModal = openEditProductModal;
 window.closeEditProductModal = closeEditProductModal;
 window.saveProductChanges = saveProductChanges;
 window.deleteProductById = deleteProductById;
-window.addProductInCurrentCategory = addProductInCurrentCategory;
-window.addGlobalProduct = addGlobalProduct;
-window.addCategoryFromAdmin = addCategoryFromAdmin;
 window.handleImageFiles = handleImageFiles;
 window.handleLogoUpload = handleLogoUpload;
 window.removeLogo = removeLogo;
 window.saveSettings = saveSettings;
+window.addAdminPassword = addAdminPassword;
+window.removeAdminPassword = removeAdminPassword;
+
+// Запуск
+initFirebase();
 </script>
 </body>
 </html>
