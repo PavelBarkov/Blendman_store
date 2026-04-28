@@ -6,7 +6,7 @@
     <title>Blender Shop</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px;flex-wrap:wrap}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border);cursor:default}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer;z-index:2}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.admin-login-modal .modal-content{max-width:400px;text-align:center}.password-list{background:#0c0f18;border-radius:20px;padding:12px;margin-top:16px}.password-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border)}.password-item:last-child{border-bottom:none}.add-password-form{display:flex;gap:8px;margin-top:16px}.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px}@keyframes spin{to{transform:rotate(360deg)}}.splash-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:#07090f;display:flex;align-items:center;justify-content:center;z-index:10000;flex-direction:column;gap:20px}.splash-spinner{width:48px;height:48px;border:3px solid #ff7a2f;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}.splash-text{color:#ff7a2f;font-size:18px}
+        *{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:#07090f;color:#f0f3fa;padding-bottom:80px}:root{--accent:#ff7a2f;--bg-card:rgba(18,22,35,0.75);--border:rgba(255,255,255,0.08)}.header{position:sticky;top:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 20px;z-index:100}.header-content{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-img{height:44px;width:auto;border-radius:14px}.logo-text{font-size:22px;font-weight:800;background:linear-gradient(135deg,#ff7a2f,#3b8fc2);-webkit-background-clip:text;background-clip:text;color:transparent}.cart-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:60px;padding:8px 20px;display:flex;gap:10px;cursor:pointer}.cart-count{background:var(--accent);border-radius:40px;padding:2px 10px;font-weight:700}.search-container{max-width:1400px;margin:20px auto 0;padding:0 20px}.search-input{width:100%;padding:14px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:60px;color:#fff;font-size:16px}.categories{max-width:1400px;margin:20px auto 0;padding:0 20px;display:flex;gap:12px;overflow-x:auto}.chip{background:var(--bg-card);border:1px solid var(--border);padding:8px 20px;border-radius:40px;font-size:14px;cursor:pointer;white-space:nowrap}.chip.active{background:var(--accent);color:#0a0c15}.products-grid{max-width:1400px;margin:32px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}.product-card{background:var(--bg-card);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:28px;padding:20px;cursor:pointer;transition:0.2s}.product-card:hover{transform:translateY(-6px);border-color:var(--accent)}.product-preview{width:100%;aspect-ratio:1;object-fit:cover;border-radius:20px;background:#0c0f18;margin-bottom:16px}.product-name{font-size:20px;font-weight:700;margin:8px 0 4px}.current-price{color:var(--accent);font-weight:800;font-size:22px}.old-price{text-decoration:line-through;color:#8e8e9e;font-size:14px;margin-left:8px}.add-btn{background:rgba(255,122,47,0.12);border:1px solid rgba(255,122,47,0.4);color:var(--accent);padding:10px;border-radius:60px;width:100%;font-weight:600;margin-top:16px;cursor:pointer;transition:0.2s}.add-btn:hover{background:var(--accent);color:#0a0c15}.page{display:none}.page.active{display:block}.cart-container{max-width:900px;margin:0 auto;padding:24px 20px}.cart-item{background:var(--bg-card);border-radius:28px;padding:18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}.cart-preview{width:48px;height:48px;object-fit:cover;border-radius:12px;margin-right:12px}.remove-item{background:rgba(231,76,60,0.2);border:none;color:#ff6b5e;padding:8px 18px;border-radius:40px;cursor:pointer}.total-block{font-size:28px;font-weight:800;margin:24px 0;text-align:right}.checkout-btn{background:linear-gradient(105deg,var(--accent),#c2410c);border:none;padding:16px;border-radius:60px;font-weight:700;width:100%;color:#fff;cursor:pointer}.form-card{background:#131724;border-radius:32px;padding:24px;margin-top:20px}.form-card input{width:100%;padding:14px;background:#0c0f18;border:1px solid var(--border);border-radius:28px;color:#fff;margin-bottom:12px}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}.modal.active{display:flex}.modal-content{background:#11141f;max-width:650px;width:100%;border-radius:48px;padding:24px;border:1px solid rgba(255,122,47,0.5);position:relative}.gallery{display:flex;overflow-x:auto;gap:16px;border-radius:28px;margin-bottom:16px}.gallery-img{flex:0 0 100%;max-height:55vh;object-fit:contain;border-radius:24px}.gallery-dot{width:8px;height:8px;background:#4a4a5a;border-radius:10px;cursor:pointer;margin:0 4px}.gallery-dot.active{background:var(--accent);width:24px}.product-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:8px}.youtube-btn{background:rgba(255,0,0,0.15);border:1px solid rgba(255,0,0,0.4);color:#ff3b3b;padding:8px 16px;border-radius:60px;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:8px}.admin-panel{position:fixed;top:0;left:0;right:0;bottom:0;background:#0a0c15;z-index:1100;overflow-y:auto;padding:24px;display:none}.admin-panel.active{display:block}.admin-tabs{display:flex;gap:8px;background:#131724;padding:6px;border-radius:60px;width:fit-content;margin-bottom:24px;flex-wrap:wrap}.admin-tab{padding:8px 24px;border-radius:40px;background:transparent;color:#aaa;font-weight:600;cursor:pointer;border:none}.admin-tab.active{background:var(--accent);color:#0a0c15}.admin-section{display:none}.admin-section.active{display:block}.btn-icon{background:rgba(255,255,255,0.05);border:none;padding:8px 16px;border-radius:40px;color:#fff;cursor:pointer}.btn-danger{background:rgba(231,76,60,0.2);color:#ff8a7a}.settings-card{background:#131724;border-radius:32px;padding:24px;max-width:600px}.logo-upload-area,.image-upload-area{background:#0c0f18;border:2px dashed var(--border);border-radius:28px;padding:20px;text-align:center;cursor:pointer;margin-bottom:16px}.image-preview-list{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.image-preview-item{position:relative;width:80px;height:80px;border-radius:16px;overflow:hidden;border:1px solid var(--border);cursor:default}.image-preview-item img{width:100%;height:100%;object-fit:cover}.remove-image-btn{position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);border:none;color:#fff;border-radius:20px;width:20px;height:20px;font-size:12px;cursor:pointer;z-index:2}.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(7,9,15,0.92);backdrop-filter:blur(16px);display:flex;justify-content:space-around;padding:10px 0 20px;border-top:1px solid rgba(255,122,47,0.2)}.nav-item{background:0 0;border:none;color:#8e8e9e;font-size:13px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer}.nav-item.active{color:var(--accent)}.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#1e1f2a;color:#fff;padding:12px 28px;border-radius:60px;font-size:14px;opacity:0;transition:0.2s;z-index:1200;border-left:4px solid var(--accent);pointer-events:none}.toast.show{opacity:1}.back-btn{background:0 0;border:1px solid var(--border);padding:8px 20px;border-radius:40px;margin-bottom:20px;color:#fff;cursor:pointer}.admin-login-modal .modal-content{max-width:400px;text-align:center}.password-list{background:#0c0f18;border-radius:20px;padding:12px;margin-top:16px}.password-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid var(--border)}.password-item:last-child{border-bottom:none}.add-password-form{display:flex;gap:8px;margin-top:16px}.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px}.payment-tab-btn{background:rgba(255,122,47,0.1);border:1px solid var(--accent);padding:10px;border-radius:28px;margin-top:12px;width:100%;cursor:pointer;color:var(--accent);font-weight:600}.robokassa-settings{background:#0c0f18;border-radius:28px;padding:20px;margin-top:20px}.stat-card{background:#0c0f18;border-radius:20px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}@keyframes spin{to{transform:rotate(360deg)}}.splash-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:#07090f;display:flex;align-items:center;justify-content:center;z-index:10000;flex-direction:column;gap:20px}.splash-spinner{width:48px;height:48px;border:3px solid #ff7a2f;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}.splash-text{color:#ff7a2f;font-size:18px}
     </style>
 </head>
 <body>
@@ -17,7 +17,7 @@
 
 <div class="header"><div class="header-content"><div class="logo" id="logoClick"><span id="logoContainer"></span></div><button class="cart-btn" onclick="navigateTo('cart')">🛒 <span id="cartCount">0</span></button></div></div>
 <div id="pageHome" class="page active"><div class="search-container"><input type="text" class="search-input" id="searchInput" placeholder="Поиск..." oninput="filterProducts()"></div><div class="categories" id="categoriesList"></div><div id="productsGridContainer" class="products-grid"></div></div>
-<div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email"><button class="checkout-btn" onclick="processOrder()">✅ Подтвердить</button></div></div></div></div>
+<div id="pageCart" class="page"><div class="cart-container"><button class="back-btn" onclick="navigateTo('home')">← Назад</button><h2>🛒 Корзина</h2><div id="cartItems"></div><div id="cartTotal"></div><div id="checkoutForm" style="display:none;"><div class="form-card"><input type="text" id="customerName" placeholder="Ваше имя"><input type="email" id="customerEmail" placeholder="Email"><button class="checkout-btn" onclick="processOrder()">💳 Оплатить через Robokassa</button></div></div></div></div>
 <div id="productModal" class="modal"><div class="modal-content"><button class="modal-close" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);border:none;border-radius:60px;width:36px;height:36px;color:#fff;font-size:20px;cursor:pointer" onclick="closeModal()">✖</button><div class="gallery" id="modalGallery"></div><div class="gallery-nav" id="galleryNav" style="display:flex;justify-content:center;gap:8px;margin:12px 0"></div><div class="product-header"><h2 id="modalName"></h2><a id="youtubeLink" class="youtube-btn" href="#" target="_blank" style="display:none">▶ Видео</a></div><div id="modalCategory" style="color:#aaa"></div><div id="modalPrice" style="margin:12px 0"></div><p id="modalDesc"></p><button id="modalAddBtn" class="add-btn" style="margin-top:20px">➕ В корзину</button></div></div>
 
 <div id="adminPanel" class="admin-panel">
@@ -26,11 +26,15 @@
         <button class="admin-tab active" data-tab="categoriesTab">📁 Категории</button>
         <button class="admin-tab" data-tab="productsTab">📦 Товары</button>
         <button class="admin-tab" data-tab="settingsTab">⚙️ Настройки</button>
+        <button class="admin-tab" data-tab="paymentsTab">💳 Robokassa</button>
+        <button class="admin-tab" data-tab="statsTab">📊 Статистика</button>
         <button class="admin-tab" data-tab="passwordsTab">🔐 Пароли</button>
     </div>
     <div id="categoriesTab" class="admin-section active"><div style="display:flex;gap:24px;flex-wrap:wrap"><div style="background:#131724;border-radius:32px;padding:20px;width:280px"><h3>Категории</h3><div id="adminCategoryList"></div><div style="display:flex;gap:8px;margin-top:20px"><input type="text" id="newAdminCatName" placeholder="Новая" style="flex:1;background:#0c0f18;border-radius:40px;padding:10px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addCategoryFromAdmin()">➕</button></div></div><div style="flex:1;background:#131724;border-radius:32px;padding:20px"><div style="display:flex;justify-content:space-between;margin-bottom:20px"><h3 id="currentCategoryTitle">Товары</h3><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addProductInCurrentCategory()">➕ Новый</button></div><div id="adminProductsByCategory"></div></div></div></div>
     <div id="productsTab" class="admin-section"><button class="btn-icon" style="background:var(--accent);color:#0a0c15;margin-bottom:20px" onclick="addGlobalProduct()">➕ Добавить товар</button><div id="allProductsList"></div></div>
-    <div id="settingsTab" class="admin-section"><div class="settings-card"><h3>Настройки</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button></div></div>
+    <div id="settingsTab" class="admin-section"><div class="settings-card"><h3>Настройки магазина</h3><div style="margin:20px 0"><input type="text" id="settingsStoreName" placeholder="Название магазина" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div style="margin:20px 0"><input type="text" id="settingsLogoText" placeholder="Текстовый логотип" style="width:100%;padding:14px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"></div><div><div id="logoUploadArea" class="logo-upload-area" onclick="document.getElementById('logoFileInput').click()">📸 Загрузить логотип<input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)"></div><div id="logoPreviewContainer" style="margin-top:16px"></div><button class="btn-icon btn-danger" onclick="removeLogo()">🗑️ Удалить</button></div><button class="checkout-btn" onclick="saveSettings()" style="margin-top:20px">💾 Сохранить</button></div></div>
+    <div id="paymentsTab" class="admin-section"><div class="settings-card"><h3>💰 Настройки Robokassa</h3><div class="robokassa-settings"><label style="display:block;margin-bottom:8px">Merchant Login:</label><input type="text" id="robokassaMerchantLogin" placeholder="Ваш логин в Robokassa" style="width:100%;padding:12px;margin-bottom:16px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><label style="display:block;margin-bottom:8px">Пароль №1 (для подписи):</label><input type="password" id="robokassaPassword1" placeholder="Пароль №1 из настроек магазина" style="width:100%;padding:12px;margin-bottom:16px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><label style="display:block;margin-bottom:8px">Пароль №2 (для уведомлений):</label><input type="password" id="robokassaPassword2" placeholder="Пароль №2 для проверки уведомлений" style="width:100%;padding:12px;margin-bottom:16px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#fff"><div style="margin-bottom:16px"><label style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" id="robokassaTestMode"> 🧪 Тестовый режим (IsTest=1)</label></div><div style="margin-bottom:16px"><label>Result URL (для уведомлений):</label><input type="text" id="robokassaResultUrl" readonly value="https://ваш-сайт/robokassa-notification" style="width:100%;padding:12px;background:#0c0f18;border-radius:28px;border:1px solid var(--border);color:#aaa"><small style="display:block;margin-top:4px;color:#aaa">Скопируйте этот URL и вставьте в настройках магазина Robokassa как Result URL</small></div><button class="checkout-btn" onclick="saveRobokassaSettings()" style="margin-top:12px">💾 Сохранить настройки</button></div></div></div>
+    <div id="statsTab" class="admin-section"><div class="settings-card"><h3>📊 Статистика продаж</h3><div id="salesStatistics"><div style="text-align:center;padding:40px;color:#aaa">Загрузка статистики...</div></div></div></div>
     <div id="passwordsTab" class="admin-section"><div class="settings-card"><h3>🔐 Пароли для входа в админку</h3><p style="color:#aaa;margin-bottom:16px">Админ с Telegram ID <span id="adminIdDisplay">379731685</span> имеет постоянный доступ. Остальные входят по паролю.</p><div class="add-password-form"><input type="text" id="newPasswordInput" placeholder="Новый пароль" style="flex:1;background:#0c0f18;border-radius:40px;padding:12px;border:1px solid var(--border);color:#fff"><button class="btn-icon" style="background:var(--accent);color:#0a0c15" onclick="addAdminPassword()">➕ Добавить</button></div><div id="adminPasswordsList" class="password-list">Загрузка...</div></div></div>
 </div>
 
@@ -43,17 +47,18 @@
 
 <script>
 // ==================== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ====================
-let db, collection, doc, setDoc, deleteDoc, getDocs, query, where;
+let db, collection, doc, setDoc, deleteDoc, getDocs, query, where, increment, addDoc;
 let categories = [];
 let products = [];
 let cart = JSON.parse(localStorage.getItem('blender_cart')) || [];
 let settings = {storeName:"Blender Shop",logoText:"🌀 BLENDER SHOP",logoImage:null};
+let robokassaSettings = {merchantLogin:"",password1:"",password2:"",testMode:true};
 let currentAdminCategoryId = null;
 let selectedImageFiles = [];
 let ADMIN_ID = 379731685;
 let tg = window.Telegram?.WebApp;
 let adminPasswords = [];
-let IMGBB_API_KEY = "6d207e02198a847aa98d0a2a901485a5"; // ЗАМЕНИ НА СВОЙ КЛЮЧ С https://api.imgbb.com/
+let IMGBB_API_KEY = "6d207e02198a847aa98d0a2a901485a5";
 
 // Скрываем сплэш
 function hideSplash() {
@@ -92,6 +97,8 @@ async function initFirebase(firebaseConfig) {
     getDocs = firestore.getDocs;
     query = firestore.query;
     where = firestore.where;
+    increment = firestore.increment;
+    addDoc = firestore.addDoc;
     
     console.log("Firebase инициализирован");
     
@@ -99,11 +106,13 @@ async function initFirebase(firebaseConfig) {
         loadSettings(),
         loadCategories(),
         loadProducts(),
-        loadAdminPasswords()
+        loadAdminPasswords(),
+        loadRobokassaSettings()
     ]);
     
     renderCart();
     hideSplash();
+    setupResultUrlListener();
     
     if(tg){
         tg.ready();
@@ -120,8 +129,40 @@ async function initFirebase(firebaseConfig) {
     document.getElementById('adminIdDisplay').innerText = ADMIN_ID;
 }
 
+// ==================== ЗАГРУЗКА НАСТРОЕК ROBOXASSA ====================
+async function loadRobokassaSettings() {
+    try {
+        const settingsRef = doc(db, "robokassa", "config");
+        const settingsSnap = await getDocs(query(collection(db, "robokassa"), where("__name__", "==", "config")));
+        if(!settingsSnap.empty){
+            settingsSnap.forEach(docSnap => {
+                robokassaSettings = docSnap.data();
+            });
+        }
+        document.getElementById('robokassaMerchantLogin').value = robokassaSettings.merchantLogin || '';
+        document.getElementById('robokassaPassword1').value = robokassaSettings.password1 || '';
+        document.getElementById('robokassaPassword2').value = robokassaSettings.password2 || '';
+        document.getElementById('robokassaTestMode').checked = robokassaSettings.testMode !== false;
+        
+        const currentUrl = window.location.origin;
+        const resultUrl = currentUrl + '/robokassa-notification';
+        document.getElementById('robokassaResultUrl').value = resultUrl;
+    } catch(e) { console.error(e); }
+}
+
+async function saveRobokassaSettings() {
+    robokassaSettings = {
+        merchantLogin: document.getElementById('robokassaMerchantLogin').value.trim(),
+        password1: document.getElementById('robokassaPassword1').value,
+        password2: document.getElementById('robokassaPassword2').value,
+        testMode: document.getElementById('robokassaTestMode').checked
+    };
+    await setDoc(doc(db, "robokassa", "config"), robokassaSettings);
+    showToast("Настройки Robokassa сохранены");
+}
+
 // ==================== ЗАГРУЗКА ПАРОЛЕЙ ====================
-async function loadAdminPasswords() {
+async function loadAdminPasswords(){
     try {
         const passwordsRef = collection(db, "adminPasswords");
         const snapshot = await getDocs(passwordsRef);
@@ -201,6 +242,7 @@ function showAdminPanelDirect() {
     renderAdminCategoriesSidebar();
     renderProductsByCategory();
     renderAllProductsList();
+    loadSalesStatistics();
     if(document.getElementById('currentCategoryTitle')) {
         document.getElementById('currentCategoryTitle').innerHTML = currentAdminCategoryId ? `📦 Товары в категории: ${categories.find(c => c.id === currentAdminCategoryId)?.name || ''}` : '📦 Товары в категории';
     }
@@ -213,9 +255,221 @@ function showAdminPanelDirect() {
             tab.classList.add('active');
             document.querySelectorAll('.admin-section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(tab.dataset.tab).classList.add('active');
+            if(tab.dataset.tab === 'statsTab') loadSalesStatistics();
         };
         tab.addEventListener('click', tab._handler);
     });
+}
+
+// ==================== СИСТЕМА ОПЛАТЫ ЧЕРЕЗ ROBOXASSA ====================
+async function processOrder() {
+    let name = document.getElementById('customerName').value.trim();
+    let email = document.getElementById('customerEmail').value.trim();
+    if(!name || !email){
+        showToast("Заполните имя и email");
+        return;
+    }
+    if(!cart.length) return;
+    
+    if(!robokassaSettings.merchantLogin || !robokassaSettings.password1){
+        showToast("Настройки Robokassa не заполнены в админ-панели");
+        return;
+    }
+    
+    const total = cart.reduce((s, i) => s + i.price, 0);
+    if(total === 0){
+        await processFreeOrder(name, email);
+        return;
+    }
+    
+    showToast("Перенаправление на оплату...");
+    
+    const invId = Date.now();
+    const description = `Заказ #${invId} (${cart.map(i => i.name).join(', ')})`;
+    const outSum = total.toFixed(2);
+    
+    const signatureStr = `${robokassaSettings.merchantLogin}:${outSum}:${invId}:${robokassaSettings.password1}`;
+    const signatureValue = CryptoJS.MD5(signatureStr).toString();
+    
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = robokassaSettings.testMode ? 'https://test.auth.robokassa.ru/Merchant/Index.aspx' : 'https://auth.robokassa.ru/Merchant/Index.aspx';
+    
+    const params = {
+        MerchantLogin: robokassaSettings.merchantLogin,
+        OutSum: outSum,
+        InvId: invId,
+        Description: description,
+        SignatureValue: signatureValue,
+        Email: email,
+        Culture: 'ru'
+    };
+    
+    if(robokassaSettings.testMode) params.IsTest = '1';
+    
+    for(let key in params){
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = params[key];
+        form.appendChild(input);
+    }
+    
+    const orderData = {
+        invId: invId,
+        customerName: name,
+        customerEmail: email,
+        items: cart.map(i => ({ id: i.id, name: i.name, price: i.price })),
+        total: total,
+        status: 'pending',
+        createdAt: new Date().toISOString()
+    };
+    
+    await setDoc(doc(db, "orders", String(invId)), orderData);
+    
+    document.body.appendChild(form);
+    form.submit();
+}
+
+async function processFreeOrder(name, email) {
+    const invId = Date.now();
+    
+    for(const item of cart){
+        const productRef = doc(db, "products", String(item.id));
+        await setDoc(productRef, { salesCount: increment(1) }, { merge: true });
+        
+        const product = products.find(p => p.id === item.id);
+        if(product){
+            product.salesCount = (product.salesCount || 0) + 1;
+        }
+    }
+    
+    const orderData = {
+        invId: invId,
+        customerName: name,
+        customerEmail: email,
+        items: cart.map(i => ({ id: i.id, name: i.name, price: i.price })),
+        total: 0,
+        status: 'completed',
+        isFree: true,
+        createdAt: new Date().toISOString()
+    };
+    
+    await setDoc(doc(db, "orders", String(invId)), orderData);
+    
+    let links = cart.map(item => ({ name: item.name, url: item.fileUrl })).filter(l => l.url);
+    let html = `<div><h3>✅ Спасибо, ${escapeHtml(name)}!</h3><p>Ваши файлы для скачивания:</p>` + 
+        links.map(l => `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${escapeHtml(l.name)}</a>`).join('') + 
+        `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
+    document.getElementById('cartItems').innerHTML = html;
+    document.getElementById('cartTotal').innerHTML = '';
+    document.getElementById('checkoutForm').style.display = 'none';
+    cart = [];
+    localStorage.setItem('blender_cart', JSON.stringify(cart));
+    updateCartBadge();
+    if(tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
+}
+
+function setupResultUrlListener() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.has('InvId') && urlParams.has('OutSum') && urlParams.has('SignatureValue')){
+        checkPaymentNotification();
+    }
+}
+
+async function checkPaymentNotification() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const invId = urlParams.get('InvId');
+    const outSum = urlParams.get('OutSum');
+    const signatureValue = urlParams.get('SignatureValue');
+    
+    const expectedSignature = CryptoJS.MD5(`${outSum}:${invId}:${robokassaSettings.password2}`).toString();
+    
+    if(signatureValue.toUpperCase() === expectedSignature.toUpperCase()){
+        const orderRef = doc(db, "orders", String(invId));
+        const orderSnap = await getDocs(query(collection(db, "orders"), where("__name__", "==", String(invId))));
+        
+        if(!orderSnap.empty){
+            orderSnap.forEach(async docSnap => {
+                const order = docSnap.data();
+                if(order.status === 'pending'){
+                    await setDoc(orderRef, { status: 'completed', paidAt: new Date().toISOString() }, { merge: true });
+                    
+                    for(const item of order.items){
+                        const productRef = doc(db, "products", String(item.id));
+                        await setDoc(productRef, { salesCount: increment(1) }, { merge: true });
+                        
+                        const product = products.find(p => p.id === item.id);
+                        if(product){
+                            product.salesCount = (product.salesCount || 0) + 1;
+                        }
+                    }
+                    
+                    showToast("Оплата прошла успешно!");
+                    cart = [];
+                    localStorage.setItem('blender_cart', JSON.stringify(cart));
+                    updateCartBadge();
+                    
+                    setTimeout(() => {
+                        navigateTo('home');
+                    }, 2000);
+                }
+            });
+        }
+    }
+}
+
+// ==================== СТАТИСТИКА ПРОДАЖ ====================
+async function loadSalesStatistics() {
+    try {
+        const ordersSnapshot = await getDocs(collection(db, "orders"));
+        const productsSnapshot = await getDocs(collection(db, "products"));
+        
+        let totalSales = 0;
+        let totalRevenue = 0;
+        const productSales = {};
+        
+        ordersSnapshot.forEach(docSnap => {
+            const order = docSnap.data();
+            if(order.status === 'completed'){
+                totalRevenue += order.total || 0;
+                totalSales++;
+                if(order.items){
+                    order.items.forEach(item => {
+                        productSales[item.id] = (productSales[item.id] || 0) + 1;
+                    });
+                }
+            }
+        });
+        
+        const productStats = [];
+        productsSnapshot.forEach(docSnap => {
+            const product = docSnap.data();
+            productStats.push({
+                id: docSnap.id,
+                name: product.name,
+                salesCount: product.salesCount || 0,
+                price: product.price
+            });
+        });
+        
+        const statsHtml = `
+            <div style="background:#0c0f18;border-radius:28px;padding:20px;margin-bottom:20px">
+                <h4>📈 Общая статистика</h4>
+                <div class="stat-card"><span>📦 Всего продаж:</span><strong>${totalSales}</strong></div>
+                <div class="stat-card"><span>💰 Общая выручка:</span><strong>${totalRevenue.toLocaleString()} ₽</strong></div>
+            </div>
+            <div style="background:#0c0f18;border-radius:28px;padding:20px">
+                <h4>📊 Статистика по товарам</h4>
+                ${productStats.map(p => `<div class="stat-card"><span>${escapeHtml(p.name)}</span><div>Продано: <strong>${p.salesCount}</strong> | Выручка: <strong>${(p.salesCount * p.price).toLocaleString()} ₽</strong></div></div>`).join('')}
+            </div>
+        `;
+        
+        document.getElementById('salesStatistics').innerHTML = statsHtml;
+    } catch(e) {
+        console.error('Ошибка загрузки статистики:', e);
+        document.getElementById('salesStatistics').innerHTML = '<div style="text-align:center;padding:40px;color:#aaa">Ошибка загрузки статистики</div>';
+    }
 }
 
 // ==================== ОСНОВНЫЕ ФУНКЦИИ ====================
@@ -401,27 +655,6 @@ function removeFromCart(id){
     updateCartBadge();
 }
 
-function processOrder(){
-    let name = document.getElementById('customerName').value.trim();
-    let email = document.getElementById('customerEmail').value.trim();
-    if(!name || !email){
-        showToast("Заполните имя и email");
-        return;
-    }
-    if(!cart.length) return;
-    let links = cart.map(item => ({ name: item.name, url: item.fileUrl })).filter(l => l.url);
-    let html = `<div><h3>✅ Спасибо, ${escapeHtml(name)}!</h3><p>Ваши файлы:</p>` + 
-        links.map(l => `<a href="${l.url}" target="_blank" style="display:inline-block; background:#ff7a2f; margin:8px; padding:8px 16px; border-radius:40px; color:#0a0c15; text-decoration:none;">📥 ${escapeHtml(l.name)}</a>`).join('') + 
-        `<br><button class="checkout-btn" onclick="location.reload()">Закрыть</button></div>`;
-    document.getElementById('cartItems').innerHTML = html;
-    document.getElementById('cartTotal').innerHTML = '';
-    document.getElementById('checkoutForm').style.display = 'none';
-    cart = [];
-    localStorage.setItem('blender_cart', JSON.stringify(cart));
-    updateCartBadge();
-    if(tg?.HapticFeedback) tg.HapticFeedback.notificationOccurred('success');
-}
-
 function navigateTo(page){
     document.getElementById('pageHome').classList.toggle('active', page === 'home');
     document.getElementById('pageCart').classList.toggle('active', page === 'cart');
@@ -529,7 +762,6 @@ async function uploadImagesToImgBB(files) {
     return urls;
 }
 
-// Обработчик выбора файлов
 function handleImageFiles(event) {
     const files = Array.from(event.target.files);
     for(const file of files){
@@ -635,7 +867,7 @@ function renderProductsByCategory(){
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
             <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
                 <img src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
-                <div><strong>${escapeHtml(p.name)}</strong><br><span>${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
+                <div><strong>${escapeHtml(p.name)}</strong><br><span>${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span><br><span style="font-size:12px;color:#aaa">Продано: ${p.salesCount || 0}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
         </div>
@@ -653,7 +885,7 @@ function renderAllProductsList(){
         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-radius:24px;padding:12px 16px;margin-bottom:12px">
             <div style="display:flex;align-items:center;gap:12px;cursor:pointer" onclick="openEditProductModal(${p.id})">
                 <img src="${p.images?.[0] || 'https://placehold.co/1024x1024/2b2b3a/white?text=No+Image'}" style="width:48px;height:48px;object-fit:cover;border-radius:12px">
-                <div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c => c.id === p.categoryId)?.name || 'Без категории'} | ${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span></div>
+                <div><strong>${escapeHtml(p.name)}</strong><br><span>${categories.find(c => c.id === p.categoryId)?.name || 'Без категории'} | ${p.price === 0 ? "Бесплатно" : p.price.toLocaleString() + " ₽"}</span><br><span style="font-size:12px;color:#aaa">Продано: ${p.salesCount || 0}</span></div>
             </div>
             <div><button class="btn-icon" onclick="event.stopPropagation(); openEditProductModal(${p.id})">✏️ Ред.</button><button class="btn-icon btn-danger" onclick="event.stopPropagation(); deleteProductById(${p.id})">🗑️</button></div>
         </div>
@@ -675,7 +907,8 @@ window.addProductInCurrentCategory = async function(){
         fileUrl: "",
         youtubeUrl: "",
         images: [],
-        description: "Добавьте описание"
+        description: "Добавьте описание",
+        salesCount: 0
     };
     await setDoc(doc(db, "products", String(newId)), newProduct);
     products.push(newProduct);
@@ -697,7 +930,8 @@ window.addGlobalProduct = async function(){
         fileUrl: "",
         youtubeUrl: "",
         images: [],
-        description: ""
+        description: "",
+        salesCount: 0
     };
     await setDoc(doc(db, "products", String(newId)), newProduct);
     products.push(newProduct);
@@ -874,7 +1108,6 @@ document.getElementById('logoClick').addEventListener('click', () => {
     }
 });
 
-// Drag & drop для логотипа
 let logoArea = document.getElementById('logoUploadArea');
 if(logoArea){
     logoArea.addEventListener('dragover', e => { e.preventDefault(); logoArea.style.borderColor = '#ff7a2f'; });
@@ -936,7 +1169,6 @@ if(imageArea){
 
 window.removeSelectedImage = removeSelectedImage;
 window.deleteExistingImage = deleteExistingImage;
-
 window.filterProducts = filterProducts;
 window.toggleCart = toggleCart;
 window.removeFromCart = removeFromCart;
@@ -960,8 +1192,10 @@ window.checkAdminPassword = checkAdminPassword;
 window.closeAdminLoginModal = closeAdminLoginModal;
 window.addAdminPassword = addAdminPassword;
 window.deleteAdminPassword = deleteAdminPassword;
+window.saveRobokassaSettings = saveRobokassaSettings;
 
 loadFirebaseConfig();
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </body>
 </html>
